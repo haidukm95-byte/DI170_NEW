@@ -1,0 +1,33 @@
+HTTP methods
+
+There are many methods to send HTTP messages; the most used is GET and POST.
+Here is the difference between them:
+GET method
+
+GET is used to retrieve data (and should only be used to this), all the data of a GET request is passed to the URL.
+
+Because of this, it has a length restriction, it can be bookmarked, and it should never be used to pass sensitive data because anyone listening on the network will see all the traffic.
+
+GET indicates that a resource should be fetched
+
+The data is passed as argument arg1=val1&arg2=val2, in this syntax:
+
+/path/to/page.html?arg1=val1&arg2=val2
+
+For example:
+
+/action_page.html?firstname=Mickey&lastname=Mouse
+
+This is a request to action_page.html, where firstname is equal to Mickey and lastname is equivalent to Mouse.
+
+
+POST method
+
+POST is used to send data to a server to create/update a resource.
+POST method stores the data sent to the server in the request body.
+
+The request body is encrypted and never cached/saved in history; thus, this method is much safer to pass sensitive data like password or credit card.
+
+POST means that data is pushed to the server (creating or modifying a resource or generating a temporary document to send back).
+
+See more on http methods on w3schools.com

@@ -1,0 +1,85 @@
+The action attribute
+
+The action attribute defines where the data gets sent.
+Its value must be a valid relative or absolute URL.
+If this attribute isn’t provided, the data will be sent to the URL of the page containing the form, i.e. the current page.
+
+Examples:
+
+    Here, the data is sent to an absolute URL :
+
+    <form action="https://example.com">
+
+
+    Here, the data is sent to a relative URL. The data is sent to a different URL on the same origin:
+
+    <form action="/somewhere_else">
+
+
+    When specified with no attributes, as below, the <form> data is sent to the same page that the form is present on.
+
+Note: It’s possible to specify a URL that uses the HTTPS (secure HTTP) protocol.
+When you do this, the data is encrypted along with the rest of the request, even if the form itself is hosted on an insecure page accessed using HTTP.
+
+On the other hand, if the form is hosted on a secure page but you specify an insecure HTTP URL with the action attribute, all browsers display a security warning to the user each time they try to send data because the data will not be encrypted.
+
+
+The method attribute
+
+HTML pages may include forms, which allow the user to fill out the information and send it to the server.
+Here is an example of an HTML form asking the user for his name and a message.
+
+<form method="GET" action="index.html">
+    <p>Name: <input type="text" name="name"></p>
+    <p>Message:<br><textarea name="message"></textarea></p>
+    <p><button type="submit">Send</button></p>
+</form>
+
+
+When you click the Send button, the form is submitted, meaning that the content of its field is packed into an HTTP request and the browser navigates to the result of that request.
+
+The method attribute of the form specifies the HTTP method used to send the form. This attribute may take two values:
+
+    If you use the GET method, the form submission values are passed as part of the URL. The form data is specified by the action attribute (with a question mark (“?”) as a separator).
+
+    If it is POST, the information is sent to the server as part of the data body and will not be visible in the URL box in the user’s browser.
+
+    If you don’t specify the method, GET is taken by default.
+
+Let’s work on the Network tab of the Chrome DevTools:
+
+
+GET method
+
+When the element’s method attribute is GET (or is omitted), the information in the form is added to the end of the action URL as a query string.
+
+After filling the form, in the Network tab, you will get:
+
+Request URL: index.html?name=John&message=Hello
+Request Method: GET
+
+Query String Parameter
+name: John
+message: Hello
+
+
+    The question mark indicates the end of the path part of the URL and the start of the query.
+    It is followed by pairs of names and values, corresponding to:
+        the name attribute on the form field elements
+        and the content of those elements, respectively.
+    An ampersand character (&) is used to separate the pairs.
+
+
+POST method
+
+If we change the method to POST, we get the information as part of the data body:
+
+Request URL: index.html
+Request Method: POST
+
+From Data
+name: John
+message: Hello
+
+ContentType "application/x-www-form-urlencoded" `
+Body "name=John&message=Hello"

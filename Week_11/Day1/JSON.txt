@@ -1,0 +1,254 @@
+What is JSON?
+
+JSON stands for “JavaScript Object Notation”.
+The JSON is a general format to represent values and objects. Initially, it was made for JavaScript, but many other languages have libraries to handle it.
+So it’s easy to use JSON for data exchange when the client uses JavaScript, and the server is written on Ruby/PHP/Java/Whatever.
+
+For example:
+
+{
+    "firstName": "Jane",
+    "lastName": "Doe",
+    "hobbies": ["running", "sky diving", "singing"],
+    "age": 35,
+    "children": [
+        {
+            "firstName": "Alice",
+            "age": 6
+        },
+        {
+            "firstName": "Bob",
+            "age": 8
+        }
+    ]
+}
+
+
+Javascript methods to handle JSON
+
+JavaScript provides methods:
+
+    JSON.stringify to convert objects into JSON.
+    JSON.parse to convert JSON back into an object.
+
+
+JSON.stringify
+
+Syntax:
+
+JSON.stringify(obj, replacer, space)
+
+    obj: is the value to convert to a JSON string.
+    replacer (Optional) is a function that alters the behavior of the stringification process. If this value is null or not provided, all object properties are included in the resulting JSON string.
+    space (Optional) is a String or Number object that’s used to insert white space into the output JSON string for readability purposes.
+
+For instance:
+
+let student = {
+  name: 'John',
+  age: 30,
+  isAdmin: false,
+  courses: ['html', 'css', 'js'],
+  wife: null
+};
+
+let jsonStudent = JSON.stringify(student);
+
+alert(typeof jsonStudent); // string
+
+alert(jsonStudent);
+/* JSON-encoded object:
+{"name":"John","age":30,"isAdmin":false,"courses":["html","css","js"],"wife":null}
+*/
+
+
+Pretty print JSON string
+
+If you skip the optional parameters when calling JSON.stringify(), the output JSON string will not include any spaces or line breaks. This makes it hard to read the serialized JSON string, especially when you write it in a file.
+
+To improve the readability, we can pass in a number as the 3rd argument representing the total white spaces. The white space count must be between 0 and 10.
+
+For instance:
+
+let student = {
+  name: 'John',
+  age: 30,
+  isAdmin: false,
+  courses: ['html', 'css', 'js'],
+  wife: null
+};
+
+let jsonStudent = JSON.stringify(student, null, 2);
+/* 
+{
+  "name": "John",
+  "age": 30,
+  "isAdmin": false,
+  "courses": [
+    "html",
+    "css",
+    "js"
+  ],
+  "wife": null
+}
+*/
+
+
+The method JSON.stringify(student) takes the object and converts it into a string.
+
+The resulting JSON string is called a JSON-encoded or serialized or stringified or marshaled object. We are ready to send it over the wire or put it into a plain data store.
+
+
+Difference between JSON-encoded object and object literal
+
+    Strings use double-quotes. No single quotes or backticks in JSON. So 'John' becomes "John".
+    Object property names are double-quoted also. That’s obligatory. So age:30 becomes "age":30.
+    JSON.stringify can be applied to a primitive data type as well.
+
+
+Data types supported by JSON
+
+    Objects { ... }
+    Arrays [ ... ]
+    Primitives:
+        strings
+        numbers
+        boolean values true/false
+        null
+
+For instance:
+
+// a number in JSON is just a number
+alert( JSON.stringify(1) ) // 1
+
+// a string in JSON is still a string, but double-quoted
+alert( JSON.stringify('test') ) // "test"
+
+alert( JSON.stringify(true) ); // true
+
+alert( JSON.stringify([1, 2, 3]) ); // [1,2,3]
+
+
+JavaScript object properties skipped by JSON.stringify
+
+    Function properties (methods).
+    Symbolic properties.
+    Properties that store undefined.
+
+Example:
+
+let user = {
+  sayHi() { // ignored
+    alert("Hello");
+  },
+
+  [Symbol("id")]: 123, // ignored
+
+  key: undefined // ignored
+};
+
+alert( JSON.stringify(user) ); // {} (empty object)
+
+
+Nested JavaScript object in JSON
+
+Nested objects are supported and converted automatically.
+
+For instance:
+
+let meetup = {
+  title: "Conference",
+  room: {
+    number: 23,
+    participants: ["John", "Ann"]
+  }
+};
+
+alert(JSON.stringify(meetup,null,2));
+
+/* The whole structure is stringified:
+
+{
+  "title": "Conference",
+  "room": {
+    "number": 23,
+    "participants": [
+      "John",
+      "Ann"
+    ]
+  }
+}
+
+*/
+
+
+toJSON method
+
+The toJSON() method returns a string representation of the Date object.
+
+Example:
+
+const event = new Date('May 21, 2020 12:15:30 UTC');
+
+const jsonDate = event.toJSON();
+
+console.log(jsonDate);
+// 2020-05-21T12:15:30.000Z
+
+
+JSON.stringify automatically calls the toJSON() method.
+
+For instance:
+
+let meetup = {
+  title: "Conference",
+  date: new Date(Date.UTC(2017, 0, 1)),
+  room : 208
+};
+
+alert(JSON.stringify(meetup));
+
+/*
+  {"title":"Conference","date":"2017-01-01T00:00:00.000Z","room":208}
+*/
+
+
+JSON.parse
+
+To decode a JSON-string, we need another method named JSON.parse.
+The syntax:
+
+let value = JSON.parse(str, [reviver]);
+
+    str : JSON-string to parse.
+    reviver : Optional function(key,value) that will be called for each (key, value) pair and can transform the value.
+
+For instance:
+
+let numbers = "[0, 1, 2, 3]";
+
+numbers = JSON.parse(numbers);
+
+alert(numbers); //[0, 1, 2, 3]
+alert(numbers[1]); // 1
+
+
+Or for nested objects:
+
+let userData = '{ "name": "John", "age": 35, "isAdmin": false, "friends": [0,1,2,3] }';
+
+let user = JSON.parse(userData);
+
+alert(user);
+// { name: 'John', age: 35, isAdmin: false, friends: [ 0, 1, 2, 3 ] }
+
+alert(user.friends[1] ); // 1
+
+
+Summary
+
+JSON is a data format that has its independent standard and libraries for most programming languages.
+JSON supports plain objects, arrays, strings, numbers, booleans, and null.
+JavaScript provides methods JSON.stringify to serialize into JSON and JSON.parse to read from JSON.
+Both methods support transformer functions for smart reading/writing.
+If an object has toJSON, then it is called by JSON.stringify.

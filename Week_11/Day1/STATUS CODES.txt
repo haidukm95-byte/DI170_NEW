@@ -1,0 +1,13 @@
+Status codes
+
+Status codes are representing the success of the request; here are a few:
+
+    200 OK : The request has succeeded.
+    400 Bad Request : This response means that server could not understand the request due to invalid syntax.
+    401 Unauthorized : Although the HTTP standard specifies “unauthorized”, semantically this response means “unauthenticated”. That is, the client must authenticate itself to get the requested response.
+    403 Forbidden: The client does not have access rights to the content, i.e., unauthorized, so the server rejects giving proper response. Unlike 401, the client’s identity is known to the server.
+    404 Not Found: The server can not find the requested resource. In the browser, this means the URL is not recognized.
+    500 Internal Server Error: The server has encountered a situation it doesn’t know how to handle.
+
+MORE:
+https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status

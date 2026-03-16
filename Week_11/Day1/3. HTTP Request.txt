@@ -1,0 +1,82 @@
+HTTP Request
+
+There are two types of HTTP messages: requests and responses.
+
+HTTP requests are messages sent by the client to initiate an action on the server.
+The HTTP request contains three elements:
+
+    A start line, designed to give basic information on the message
+    A header, that adds some information to the message
+    A body, which contains the content of the message.
+
+
+Start line
+
+The start line provides critical information about the message and helps the receiver understand how to read this message.
+
+Here is an example of a start line:
+
+GET /background.png HTTP/1.0
+
+This line can be split into three elements:
+
+    The HTTP method used to send the message (GET), there are several HTTP message types, as we described above.
+    The request-target (/background.png) is the path of the file the sender wants to receive.
+    The HTTP version (HTTP/1.0), each HTTP version is a bit different; the receiver needs to know this to read the whole message.
+
+The request-target can be both absolute and relative path.
+
+
+Headers
+
+Headers are designed to provide more information about the request; unlike the start line, this information won’t be used to read the message and understand it.
+
+Headers are just a list of key-values pairs, in a syntax similar to JSON:
+
+header_name: value
+
+
+Each header has its own applications; here is an example of the header section of an HTTP message:
+
+Host: net.tutsplus.com 
+User-Agent: Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US; rv:1.9.1.5) Gecko/20091102 Firefox/3.5.5 (.NET CLR 3.5.30729) 
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8 
+Accept-Language: en-us,en;q=0.5 
+Accept-Encoding: gzip,deflate 
+Accept-Charset: ISO-8859-1,utf-8;q=0.7,*;q=0.7 
+Keep-Alive: 300 
+Connection: keep-alive 
+Cookie: PHPSESSID=r2t5uvjq435r4q7ib3vtdjq120 
+Pragma: no-cache 
+Cache-Control: no-cache
+
+
+More on headers
+
+
+Body
+
+The body is the content of the request. It’s not required, and not every request has a body.
+But if you want to send an HTTP message with a body, you need to provide those two headers: Content-Type and Content-Length.
+
+The body can be any data type (HTML, Text, JSON etc..).
+Bodies can be broadly divided into two categories:
+
+    Single-resource bodies, consisting of one single file, defined by the two headers: Content-Type and Content-Length.
+    Multiple-resource bodies, consisting of a multipart body, each containing a different bit of information. This is typically associated with HTML Forms.
+
+For example, when a user is connecting to a site, he is requesting from the user an HTML code; this code is provided through the body.
+
+Example of a full HTTP request:
+
+GET /hello.htm HTTP/1.1 
+User-Agent: Mozilla/4.0 (compatible; MSIE5.01; Windows NT) 
+Host: www.tutorialspoint.com 
+Accept-Language: en-us 
+Accept-Encoding: gzip, deflate 
+Connection: Keep-AliveHTTP/1.1 200 OK 
+Accept-Ranges: bytes 
+Content-Length: 12 
+Content-Type: text/html 
+
+Hello world

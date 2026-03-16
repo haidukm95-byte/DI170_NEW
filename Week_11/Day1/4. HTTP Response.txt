@@ -1,0 +1,42 @@
+HTTP Response
+
+Only the start line is different in an HTTP response. Here is an example of the response start line:
+
+HTTP/1.1 404 Not Found.
+
+The start line of an HTTP response (called the status line) contains the following information:
+
+    The protocol or HTTP version, usually HTTP/1.1.
+    A status code, indicating the success or failure of the request. Common status codes are 200, 404, or 302
+    A status text. A brief, purely informational, textual description of the status code to help a human understand the HTTP message.
+
+The message is then a normal HTTP message, with headers and a body section.
+
+
+Status codes
+
+Status codes are representing the success of the request; here are a few:
+
+    200 OK : The request has succeeded.
+    400 Bad Request : This response means that server could not understand the request due to invalid syntax.
+    401 Unauthorized : Although the HTTP standard specifies “unauthorized”, semantically this response means “unauthenticated”. That is, the client must authenticate itself to get the requested response.
+    403 Forbidden: The client does not have access rights to the content, i.e., unauthorized, so the server rejects giving proper response. Unlike 401, the client’s identity is known to the server.
+    404 Not Found: The server can not find the requested resource. In the browser, this means the URL is not recognized.
+    500 Internal Server Error: The server has encountered a situation it doesn’t know how to handle.
+
+More on status codes
+
+Example of an HTTP response:
+
+HTTP/1.1 400 Bad Request 
+Date: Sun, 18 Oct 2012 10:36:20 GMT 
+Server: Apache/2.2.14 (Win32) 
+Content-Length: 230 
+Content-Type: text/html; 
+charset=iso-8859-1 
+Connection: Closed
+
+
+Conclusion
+
+HTTP messages are the key in using HTTP; their structure is simple, and they are highly extensible. The HTTP/2 framing mechanism adds a new intermediate layer between the HTTP/1.x syntax and the underlying transport protocol without fundamentally modifying it: building upon proven means.
