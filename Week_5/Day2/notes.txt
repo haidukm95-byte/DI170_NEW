@@ -1,0 +1,28 @@
+#To run SQL from the CMD:
+psql -U postgres -h localhost
+
+SET CLIENT_ENCODING TO 'UTF8';
+-- Then run your import command, e.g.,
+\copy table_name FROM 'path/to/file' ENCODING 'UTF8' CSV;
+
+#to create a table
+CREATE TABLE users(name text, age smallint, birthday date);
+
+#to insert data to the table
+INSERT INTO users(name, age, birthday) VALUE ('Marko', 31, '1995-08-30');
+
+#to select data from the table
+SELECT name, age, birthday FROM 
+
+#conditional selections
+SELECT FROM users WHERE name LIKE 'A%';
+#sort in descending order
+SELECT FROM users ORDER BY score DESC;
+#sort in ascending order
+SELECT FROM users ORDER BY score ASC;
+
+
+SELECT film.film_id, film.title, inventory.film_id, inventory.inventory_id
+FROM inventory
+INNER JOIN film
+ON film.film_id!=inventory.film_id

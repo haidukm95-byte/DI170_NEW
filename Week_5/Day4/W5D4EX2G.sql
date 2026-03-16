@@ -1,0 +1,22 @@
+--SELECT * FROM students
+--UPDATE students
+--SET last_name='Benichou' WHERE last_name='Lea'
+--UPDATE students
+--SET last_name = 'Guez' WHERE last_name = 'Grez'
+--DELETE FROM students WHERE first_name = 'Lea' AND last_name='Benichou'
+--INSERT INTO students (first_name, last_name, birth_date) VALUES
+--	('Benichou', 'Lea', '1998-11-02')
+--ALTER TABLE students
+--RENAME COLUMN marks TO math_grade
+
+--Add 80 to the student which id is 1.
+--Add 90 to the students which have ids of 2 or 4.
+--Add 40 to the student which id is 6.
+--UPDATE students
+--SET math_grade=40 WHERE id in(6)
+--SELECT COUNT(id) FROM students WHERE math_grade>=83 
+--INSERT INTO students(last_name, first_name, birth_date, math_grade) VALUES
+--	('Simpson', 'Omer', '1980-10-03', 70)
+--SELECT last_name, first_name, COUNT(math_grade) AS total_grade FROM students 
+--GROUP BY last_name, first_name
+--SELECT sum(math_grade) AS sum_of_grades FROM students
