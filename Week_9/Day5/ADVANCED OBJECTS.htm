@@ -1,0 +1,3161 @@
+<!DOCTYPE html>
+<html lang="en" class=""><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+    <!-- Basic Page Needs
+    ================================================== -->
+    <title>Developers Institute</title>
+    
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Developers Institute - Global Software Development Bootcamp">
+
+    <!-- Favicon -->
+    
+    <link href="ADVANCED%20OBJECTS_files/logo_di.png" rel="icon" type="image/png"> 
+    
+    
+    <!-- CSS 
+    ================================================== -->
+    <link rel="stylesheet" href="ADVANCED%20OBJECTS_files/framework.css">
+    <link rel="stylesheet" href="ADVANCED%20OBJECTS_files/style.css">
+    <link rel="stylesheet" href="ADVANCED%20OBJECTS_files/night-mode.css">
+    
+    <link rel="stylesheet" href="ADVANCED%20OBJECTS_files/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="ADVANCED%20OBJECTS_files/font-awesome.min.css">
+
+    <link href="ADVANCED%20OBJECTS_files/tom-select.css" rel="stylesheet">
+    <script src="ADVANCED%20OBJECTS_files/tom-select.complete.min.js"></script>
+
+
+    <!-- Added TomSelect Customize CSS -->
+    <style>
+        /* Align Tom Select dropdown flush with the control */
+        .ts-wrapper{
+            width: 100%;
+            margin-bottom: 0.75rem; /* Add breathing room below each select */
+        }
+        .ts-wrapper.single .ts-control{
+            border-radius: 0.25rem; /* Match Bootstrap radius */
+            border-color: #ced4da;
+            min-height: 42px; /* Slightly taller control */
+            height: 42px;
+            display: flex;
+            align-items: center;
+            padding: 0 2.25rem 0 0.75rem; /* Reserve space for dropdown arrow */
+            position: relative;
+        }
+        .js-tom-select ~ .ts-dropdown .dropdown-input,
+        .js-tom-select + .ts-dropdown .dropdown-input,
+        .js-tom-select-multiple ~ .ts-dropdown .dropdown-input,
+        .js-tom-select-multiple + .ts-dropdown .dropdown-input,
+        .ts-wrapper .dropdown-input {
+            width: 100%;
+            text-align: left;
+            font-weight: 600;
+            color: #6c757d;
+        }
+            width: 100%;
+            text-align: left;
+            font-weight: 600;
+            color: #6c757d;
+        }
+        /* Add left padding to TomSelect placeholder and input */
+        .ts-control .items-placeholder,
+        .ts-control input {
+            padding-left: 15px !important;
+        }
+        .ts-wrapper.single .ts-control input{
+            height: 20px;
+            font-size: 0.95rem;
+        }
+        .ts-wrapper.single.input-active .ts-control{
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+        .ts-wrapper.single .ts-dropdown{
+            margin-top: 0;
+            top: 100% !important; /* Remove visual gap */
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+            border-color: #ced4da;
+            border-top-width: 0;
+        }
+        .ts-dropdown .dropdown-input{
+            border-bottom: 0;
+            padding: 0;
+            margin: 0;
+        }
+        .ts-dropdown .dropdown-input input{
+            border: 0;
+            height: 1.25rem;
+            padding: 0.2rem 0.5rem;
+            font-size: 0.85rem;
+        }
+        .ts-dropdown .option,
+        .ts-dropdown .no-results{
+            font-size: 1rem;
+            line-height: 1.6;
+            padding: 0.7rem 1rem;
+            text-align: left;
+        }
+        .ts-wrapper.single .ts-control::after{
+            content: "";
+            position: absolute;
+            top: 50%;
+            right: 0.9rem;
+            width: 0.45rem;
+            height: 0.45rem;
+            border-right: 2px solid #6c757d;
+            border-bottom: 2px solid #6c757d;
+            transform: translateY(-50%) rotate(45deg);
+            pointer-events: none;
+            transition: transform 0.2s ease;
+        }
+        .ts-wrapper.multi .ts-control::after{
+            content: "";
+            position: absolute;
+            top: 50%;
+            right: 0.9rem;
+            width: 0.45rem;
+            height: 0.45rem;
+            border-right: 2px solid #6c757d;
+            border-bottom: 2px solid #6c757d;
+            transform: translateY(-50%) rotate(45deg);
+            pointer-events: none;
+            transition: transform 0.2s ease;
+        }
+        .ts-wrapper.single.input-active .ts-control::after{
+            transform: translateY(-50%) rotate(-135deg);
+        }
+        .ts-wrapper.multi.input-active .ts-control::after{
+            transform: translateY(-50%) rotate(-135deg);
+        }
+        .ts-dropdown .option[aria-disabled="true"],
+        .ts-dropdown .option.disabled,
+        .ts-dropdown .ts-placeholder{
+            text-align: center;
+            font-weight: 600;
+            color: #6c757d;
+            cursor: not-allowed;
+            padding-left: 15px;
+        }
+        /* Add left padding to TomSelect search dropdown placeholder */
+        .ts-dropdown .ts-placeholder,
+        .ts-dropdown .dropdown-input {
+            padding-left: 15px !important;
+        }
+        .js-tom-select-multiple ~ .ts-wrapper .ts-control,
+        .js-tom-select-multiple + .ts-wrapper .ts-control,
+        .ts-wrapper.multi .ts-control {
+            padding-top: 0.5rem;
+            padding-bottom: 0;
+            padding-left: 0.5rem;
+            padding-right: 2.25rem;
+        }
+    </style>
+    
+
+<link rel="stylesheet" href="ADVANCED%20OBJECTS_files/courses_app.css">
+<link rel="stylesheet" href="ADVANCED%20OBJECTS_files/prism.css">
+<link rel="stylesheet" href="ADVANCED%20OBJECTS_files/color-brewer.min.css">
+<link rel="stylesheet" href="ADVANCED%20OBJECTS_files/slider.css"> 
+<link rel="stylesheet" href="ADVANCED%20OBJECTS_files/code-editor.css">
+<link rel="stylesheet" href="ADVANCED%20OBJECTS_files/emoji-mart.css">
+<script src="ADVANCED%20OBJECTS_files/emoji-mart@3.0.0"></script>
+<!-- Include jQuery UI library -->
+<script src="ADVANCED%20OBJECTS_files/jquery-3.6.0.min.js"></script>
+
+
+ <!-- Include jQuery UI -->
+ <script src="ADVANCED%20OBJECTS_files/jquery-ui.js"></script>
+    
+ <!-- Include jQuery UI CSS for styling -->
+ <link rel="stylesheet" href="ADVANCED%20OBJECTS_files/jquery-ui.css">
+
+ <style>
+   .btn-secondary{
+    background-color: #FFBE33;
+   }
+ </style>
+
+
+
+
+    <!-- icons
+    ================================================== -->
+    <link rel="stylesheet" href="ADVANCED%20OBJECTS_files/icons.css">
+
+    
+<!-- Syntax Highlighter -->
+<link rel="stylesheet" type="text/css" href="ADVANCED%20OBJECTS_files/shCore.css" media="all">
+<link rel="stylesheet" type="text/css" href="ADVANCED%20OBJECTS_files/shCoreMidnight.css" media="all">
+<style>
+  b,
+  strong {
+    font-weight: bold;
+  }
+  
+ 
+ /* Updated Styles */
+ .resizable {
+    resize: horizontal;
+    overflow: auto;
+    border: 1px solid #ccc;
+    padding: 5px;
+    min-width: 100px;
+    min-height: 100px;
+    z-index: 9999;
+ 
+  }
+  
+  .editor-container {
+    position: relative;
+    display: flex;
+    overflow: auto;
+    width: 100%;
+    white-space: nowrap; 
+  }
+
+  .editor-container-2 {
+    position: relative;
+    overflow: auto;
+    max-width: 100%;
+    white-space: nowrap; 
+  }
+  .python-editor,
+  .js-editor,
+  .html-editor,
+  .css-editor{
+    width:100%;
+    height:100%;
+    
+  }
+
+  /* Set initial width of the wrappers to 100% */
+  .python-wrapper,
+  .js-wrapper,
+  .html-wrapper,
+  .css-wrapper
+ {
+    width: 100%;
+  }
+  
+ 
+
+  .python-label{
+    background-color: #003946;
+    color:white;
+  }
+  .js-label{
+    background-color: #565454;
+    color:white;
+  }
+
+  .html-label{
+    background-color: #025656;
+    color:white;
+  }
+  .css-label{
+    background-color: #035449;
+    color:white;
+  }
+
+  
+
+  .editor {
+    flex: 1;
+    height: 500px;
+  }
+
+
+
+
+
+  /* Style the Shell container */
+  .shell {
+    border: 1px solid #ccc;
+    background-color: #f5f5f5;
+    padding: 10px;
+    width:100%;
+  }
+
+  /* Style the Shell header */
+  .shell-header {
+    background-color: #222;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color:#D4D4D4;
+    font-size: 12px;
+  }
+
+  /* Style the Clear Shell link */
+  .shell-link {
+    color:#2dd3d3;
+    cursor: pointer;
+    font-size: 12px;
+    text-decoration: underline;
+    margin-left: 10px;
+  }
+
+  .shell-link:hover {
+    text-decoration: underline;
+  }
+
+  /* Style the Output area */
+  .output {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    height: 480px;
+    border: 1px solid #ccc;
+    width: 100%;
+  }
+
+  .dark-mode {
+    background-color: #000; /* Dark black background */
+    color: #fff; /* White text */
+    cursor: pointer;
+  }
+  
+  /* Styles for bright mode */
+  .shell:not(.dark-mode) {
+    background-color: #fff; /* White background */
+    color: #000; /* Dark black text */
+    cursor: pointer;
+  }
+
+
+ 
+
+ 
+
+
+  
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+  }
+  
+  .editor-container.overlay-active .overlay {
+    display: flex;
+  }
+  
+  .overlay-buttons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+   
+  }
+  
+  
+  .button-container {
+    display: flex;
+    flex-direction: row;
+    gap: 10px; /* Adjust the gap as needed */
+    margin-bottom:10px;
+    align-items: baseline;
+  }
+  .button-container button {
+    height: 40px; /* Set a fixed height for buttons */
+    /* Add top margin to buttons */
+  }
+ 
+ 
+  
+
+  .iframe-output {
+    flex: 1;
+    height: 600px;
+    border: 1px solid #ccc;
+    display: block;
+    width:100%;
+    margin-left: 0;
+    margin-top: 20px;
+    
+  }
+
+  .fullscreen {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background-color: aliceblue;
+    overflow: auto;
+  }
+  .console {
+    color: #D4D4D4;
+    font-family: monospace;
+    font-size: 14px;
+    border: 1px solid #333;
+    border-radius: 1px;
+    padding: 0;
+    overflow: hidden;
+    margin-top: 35px;
+    margin-bottom: 35px;
+  }
+  
+  .console-header {
+    background-color: #222;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .console-link {
+    color:#2dd3d3;
+    cursor: pointer;
+    font-size: 14px;
+    text-decoration: underline;
+    margin-left: 10px; /* Add some space between the links */
+  }
+  
+  .console-link:hover {
+    text-decoration: underline;
+  }
+  
+  .output-console {
+    background-color:#222221;
+    padding: 10px;
+    white-space: pre-wrap;
+    overflow-x: hidden;
+    height: 350px;
+  }
+  
+  .log {
+    padding-left: 5px;
+    display:block;
+    width:100%;
+    color: black;
+    background-color: lightgreen;
+    margin-bottom: -15px;
+  }
+  
+  .warn {
+    padding-left: 5px;
+    display:block;
+    width:100%;
+    color: #ef6503;
+    background-color: #5a4e3a;
+    margin-bottom: -15px;
+  }
+  
+  .info {
+    padding-left: 5px;
+    display:block;
+    width:100%;
+    color: blue;
+    background-color: lightblue;
+    margin-bottom: -15px;
+  }
+  
+  .error {
+    padding-left: 5px;
+    display:block;
+    width:100%;
+    color: white;
+    background-color: #c7073733;
+    margin-bottom: -15px;
+  }
+
+  .console-icons{
+    display: flex;
+    gap: 25px;
+  }
+
+
+
+
+    .reply-content {
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+        line-height: 1.5;
+        color: #333;
+        background-color: #ffffff;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        padding: 8px;
+        transition: border-color 0.3s ease;
+    }
+    
+    .comment-content {
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      line-height: 1.5;
+      color: #333;
+      background-color: #ffffff;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      padding: 8px;
+      transition: border-color 0.3s ease;
+    }
+    
+    
+    
+        .gutter,
+        .toolbar {
+            display: none
+        }
+    
+        .syntaxhighlighter {
+            padding: 15px 20px;
+        }
+    
+        .syntaxhighlighter {
+            margin-top: 0 !important;
+            margin-bottom: 0 !important;
+            padding: 0 !important;
+            padding-top: 18px !important;
+        }
+        .form-check-input{
+            display:inline-block;
+    
+        }
+        .form-check-input[type="checkbox"]{
+            width: auto;
+            height: auto;
+        }
+        .exercise {
+            margin-bottom: 20px;
+            background-color: beige;
+          }
+    
+      
+          .select-width {
+            width: 200px;
+            /* Adjust the width as needed */
+          }
+        
+          
+          ol.no-numbering {
+            list-style-type: none;
+          }
+          .alert {
+           
+            margin-bottom: 0;
+         
+        }
+    
+         
+        .exercise-title {
+            display:  -webkit-inline-box;
+            align-items: center;
+        }
+    
+        .tick-mark {
+            color: green; /* Change the color to green */
+            font-size: 30px; /* Adjust the font size as desired */
+            float:right;
+        }
+        .star {
+            color: gold;
+            font-size: 25px;
+        }
+    
+    
+        .comment-container {
+            margin-bottom: 20px;
+          }
+          
+          .comment {
+            border: 1px solid #ddd;
+            padding: 10px;
+            background-color: #f9f9f9;
+            margin-bottom: 10px;
+          }
+          
+          .user-info {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+          }
+          
+          .profile-picture {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            margin-right: 10px;
+          }
+          
+          .user-name {
+            font-weight: bold;
+          }
+          
+          .comment-text {
+            margin-bottom: 10px;
+          }
+          
+          .comment-footer {
+            display: flex;
+            
+            align-items: center;
+            margin-top: 10px;
+          }
+          
+          .comment-date {
+            font-size: 12px;
+          }
+          
+          .reply-button,
+          .nested-reply-button {
+            background-color: transparent;
+            border: none;
+            color: blue;
+            cursor: pointer;
+            font-size: 12px;
+            margin-left: 10px;
+          }
+          
+          .reply-button:hover,
+          .nested-reply-button:hover {
+            text-decoration: underline;
+          }
+          
+          .reply-form-container {
+            margin-top: 10px;
+          }
+          
+          .reply-text {
+            width: 100%;
+          }
+          
+          .reply,
+          .nested-reply {
+            border: 1px solid #ddd;
+            padding: 5px;
+            background-color: #f9f9f9;
+            margin-top: 5px;
+            margin-left:50px;
+          }
+          
+          .reply-footer,
+          .nested-reply-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 5px;
+          }
+          
+          .reply-date,
+          .nested-reply-date {
+            font-size: 12px;
+          }
+          
+          .nested-replies-container {
+            margin-left: 40px;
+          }
+    
+          .dot {
+            display: inline-block;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background-color: #000;
+            margin: 0 5px;
+            margin-top: 12px
+          }
+          .delete-reply-button {
+            background: #f0f4fa;
+            border: 1px solid #dae7f9;
+            padding: 4px 8px;
+            border-radius: 4px;
+            color: #ed0303;
+            cursor: pointer;
+            margin-right: 4px;
+            font-size: 11px;
+        }
+
+        .blinking {
+          animation: blink 1s infinite;
+        }
+        
+        @keyframes blink {
+          0% {
+              opacity: 0.75;
+          }
+          50% {
+              opacity: 1;
+          }
+          100% {
+              opacity: 0.75;
+          }
+        }
+       
+</style>
+
+<link rel="stylesheet" href="ADVANCED%20OBJECTS_files/github-dark.min.css">
+<script src="ADVANCED%20OBJECTS_files/marked.min.js"></script>
+<script src="ADVANCED%20OBJECTS_files/highlight.min_002.js"></script>
+
+<style>
+  .custom-chat-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 16px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    z-index: 1000; /* Ensure it's on top */
+  }
+
+  .custom-chat-button:hover {
+      background: #0056b3;
+  }
+
+  .custom-chat-container {
+      display: none;
+      position: fixed;
+      bottom: 50px;
+      right: 20px;
+      width: 700px;
+      height: 600px;
+      background: white;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
+      flex-direction: column;
+      z-index: 999; /* Ensure it's below the button */
+  }
+
+  .custom-chat-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #007bff;
+  }
+
+  .custom-chat-header h2 {
+      margin: 0;
+      font-size: 18px;
+      color: #007bff;
+  }
+
+  .custom-chat-header button {
+      background: red;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+  }
+
+  .custom-quick-messages {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 10px;
+      padding: 10px 0;
+  }
+
+  .custom-quick-messages button {
+      padding: 10px;
+      border: none;
+      background: #007bff;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+      text-align: left;
+      width: 100%;
+  }
+
+  .custom-quick-messages button:hover {
+      background: #0056b3;
+  }
+
+  .custom-chat-box {
+      flex: 1;
+      overflow-y: auto;
+      border: 1px solid #ddd;
+      padding: 10px;
+      border-radius: 5px;
+      background: #fff;
+  }
+
+  .custom-message {
+      margin: 10px 0;
+      padding: 8px 12px;
+      border-radius: 5px;
+      word-wrap: break-word;
+      white-space: pre-wrap;
+  }
+
+  .custom-user-message {
+      background: #007bff;
+      color: white;
+      align-self: flex-end;
+  }
+
+  .custom-bot-message {
+      background: #e9ecef;
+      padding: 12px;
+      border: 1px solid #ccc;
+  }
+
+  .custom-input-area {
+      display: flex;
+      margin-top: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      padding: 5px;
+      background: white;
+      align-items: center;
+  }
+
+  .custom-textarea {
+      flex: 1;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      resize: none;
+      height: 50px;
+      outline: none;
+      font-size: 14px;
+  }
+
+  .custom-button {
+      padding: 8px 15px;
+      border: none;
+      background: #007bff;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+      margin-left: -70px;
+  }
+
+  .custom-button:disabled {
+      background: #ccc;
+      cursor: not-allowed;
+  }
+
+  .custom-button:hover {
+      background: #0056b3;
+  }
+
+  .custom-loading {
+      font-style: italic;
+      color: gray;
+  }
+  pre {
+    background-color: #2d2d2d; /* Dark background for code blocks */
+    color: #f8f8f2; /* Light text color for code */
+    padding: 10px;
+    border-radius: 5px;
+    overflow: auto;
+  }
+  code {
+      color: #66d9ef; /* Color for inline code */
+  }
+</style>
+
+
+    </head>
+
+<body>
+    <div id="wrapper">
+
+        
+<!-- To clear the header loaded in base -->
+
+
+        
+            
+
+
+    <style>
+   
+    </style>
+
+<div class="side-nav uk-animation-slide-left-medium">
+
+    <div class="side-nav-bg"></div>
+
+    <!-- logo -->
+    <div class="logo uk-visible@s">
+        <ul>
+            <li>
+                <a href="https://octopus.developers.institute/courses"><img src="ADVANCED%20OBJECTS_files/logo_di.png" alt=""> <span class="tooltips"> My Courses</span> </a>
+            </li>
+        </ul>
+    </div>
+
+    <ul>
+        
+        <li><a href="https://octopus.developers.institute/calendar"> <i class="icon-feather-calendar"></i> <span class="tooltips">Calendar</span></a></li>
+        
+        
+        <li><a href="https://octopus.developers.institute/leaderboards"> <i class="icon-feather-star"></i> <span class="tooltips">Leaderboard</span></a></li>
+        
+        
+            
+            <li><a href="https://octopus.developers.institute/octocareer/job-list/"><i class="icon-feather-file-text"></i> <span class="tooltips">Job Offers</span></a></li>
+            
+        
+        
+        
+            
+            
+        
+         
+        <li>
+            <a href="#"><i class="uil-question-circle"></i></a>
+            <div class="side-menu-slide">
+                <div class="side-menu-slide-content">
+                    <ul uk-accordion="" class="uk-accordion">
+                        <li style="padding-top: 15px;">
+                                <a><h6>About DI</h6></a>
+                                
+                                
+                                <a href="https://octopus.developers.institute/terms">Terms &amp; Conditions</a>
+                                <a href="https://octopus.developers.institute/privacy">Privacy</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </li>
+
+  
+  
+    
+    
+        <li>
+            <a href="#"> <i class="fa-solid fa-bars"></i> </a>
+            <div class="side-menu-slide">
+                <div class="side-menu-slide-content">
+                    <ul uk-accordion="" class="uk-accordion">
+                        <li style="padding-top: 15px;">
+                            <a><h6>Menu</h6></a>
+                            <!-- Wrap your menu items in a div with a fixed height and overflow:auto -->
+                           
+                                </li><li><a href="https://octopus.developers.institute/courses/my_courses_list"><i class="uil-layers"></i>My Courses</a></li>
+                                <li><a href="https://octopus.developers.institute/profile/project"><i class="uil-folder-check"></i>My Achievements</a></li>
+                                <li><a href="https://octopus.developers.institute/check-list/my_trophy"><i class="fa fa-trophy"></i> My Trophy</a></li>
+                                
+                                <li><a href="https://octopus.developers.institute/courses/student_certificate_list/"><i class="fas fa-user-graduate"></i>My Diploma</a></li>
+                                <li><a href="https://octopus.developers.institute/courses/reffer_friend" class="title-word title-word-1">
+                                    <i class="fa fa-user-plus small-icon"></i>
+                                    <span class="title">Refer Friend</span>
+                                </a></li>
+                                <li><a href="https://octopus.developers.institute/check-list/my_payment_details"><i class="fa fa-money-bill"></i> My Payment</a></li>
+                                <li><a href="https://www.resumematcher.fyi/"><i class="fa fa-file"></i>Resume Matcher</a></li>
+                                <li><a href="https://octopus.developers.institute/rooms/room_list"><i class="fa fa-users"></i> P2P Rooms</a></li>
+                                <li><a href="https://octopus.developers.institute/exercise/playground/"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-code-slash" viewBox="0 0 16 16">  <path d="M10.478 1.647a.5.5 0 1 0-.956-.294l-4 13a.5.5 0 0 0 .956.294zM4.854 4.146a.5.5 0 0 1 0 .708L1.707 8l3.147 3.146a.5.5 0 0 1-.708.708l-3.5-3.5a.5.5 0 0 1 0-.708l3.5-3.5a.5.5 0 0 1 .708 0m6.292 0a.5.5 0 0 0 0 .708L14.293 8l-3.147 3.146a.5.5 0 0 0 .708.708l3.5-3.5a.5.5 0 0 0 0-.708l-3.5-3.5a.5.5 0 0 0-.708 0"></path></svg> Playground</a></li>
+                                <li><a href="https://octopus.developers.institute/octohelp/ckeck_octohelp_account/"><i class="fa fa-comment-dots"></i>My OctoHelp</a></li>
+                          
+                        
+                    </ul>
+                </div>
+            </div>
+        </li>
+    
+    
+  
+    
+
+
+
+
+
+
+
+
+
+
+
+    </ul>
+    
+</div>
+        
+        
+        
+<div class="page-content">
+    
+  
+  
+  
+  <button class="custom-chat-button" id="chat-button" onclick="toggleChat()">✨ AI Assistant</button>
+
+
+  <div class="custom-chat-container" id="chat-container">
+      <div class="custom-chat-header">
+          <h2>AI Assistant</h2>
+          <a href="https://octopus.developers.institute/courses/chatbot" target="_blank"> Click to expand 🢂</a>
+          <button onclick="toggleChat()">✖</button>
+      </div>
+
+      
+      <div class="custom-quick-messages" id="quick-messages">
+        
+        <button onclick="sendQuickMessage('🎓 Help me find something to learn')">🎓 Help me find something to learn</button>
+        
+        <button onclick="sendQuickMessage('🚨 I have an issue / need some help')">🚨 I have an issue / need some help</button>
+        
+           
+      </div>
+      
+      <div class="custom-chat-box" id="chat-box"></div>
+      
+      <div class="custom-input-area">
+          <textarea class="custom-textarea" id="user-input" placeholder="Ask something..." onkeypress="handleKeyPress(event)"></textarea>
+          <button class="custom-button" id="send-button" onclick="sendMessage()">Send</button>
+      </div>
+  </div>
+
+  <script>
+      function toggleChat() {
+          let chatContainer = document.getElementById("chat-container");
+          let chatButton = document.getElementById("chat-button");
+
+          if (chatContainer.style.display === "none" || chatContainer.style.display === "") {
+              chatContainer.style.display = "flex"; // Show chat container
+              chatButton.style.display = "none"; // Hide chat button
+          } else {
+              chatContainer.style.display = "none"; // Hide chat container
+              chatButton.style.display = "block"; // Show chat button
+          }
+      }
+
+      async function sendMessage() {
+          let userInputElement = document.getElementById("user-input");
+          let userInput = userInputElement.value.trim();
+          let sendButton = document.getElementById("send-button");
+          let chatBox = document.getElementById("chat-box");
+
+          if (!userInput) return;
+
+          hideQuickMessages();
+
+          sendButton.disabled = true;
+          sendButton.innerText = "Analyzing...";
+          userInputElement.value = "";
+
+          let userMessageDiv = document.createElement("div");
+          userMessageDiv.className = "custom-message custom-user-message";
+          userMessageDiv.innerText = userInput;
+          chatBox.appendChild(userMessageDiv);
+
+          let loadingDiv = document.createElement("div");
+          loadingDiv.className = "custom-message custom-bot-message custom-loading";
+          loadingDiv.innerText = "⏳ Analyzing...";
+          chatBox.appendChild(loadingDiv);
+          chatBox.scrollTop = chatBox.scrollHeight;
+
+          try {
+              let response = await fetch("/octohelp/generate_code/", {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify({ message: userInput })
+              });
+
+              let data = await response.json();
+              let aiResponse = marked.parse(data.response || "Error: No response received.");
+
+              chatBox.removeChild(loadingDiv); // Remove loading message
+
+              let botMessageDiv = document.createElement("div");
+              botMessageDiv.className = "custom-message custom-bot-message";
+              botMessageDiv.innerHTML = aiResponse;
+              chatBox.appendChild(botMessageDiv);
+
+              // Ensure the button is enabled again
+              sendButton.disabled = false;
+              sendButton.innerText = "Send"; // Reset button text
+              console.log("Response received and button reset.");
+          } catch (error) {
+              chatBox.removeChild(loadingDiv); // Remove loading message
+              let errorMessage = document.createElement("div");
+              errorMessage.className = "custom-message custom-bot-message";
+              errorMessage.innerText = "⚠️ Error fetching response.";
+              chatBox.appendChild(errorMessage);
+
+              // Ensure the button is enabled again
+              sendButton.disabled = false;
+              sendButton.innerText = "Send"; // Reset button text
+              console.error("Error fetching response:", error);
+          }
+      }
+
+      function sendQuickMessage(message) {
+          document.getElementById("user-input").value = message;
+          sendMessage();
+      }
+
+      function hideQuickMessages() {
+          document.getElementById("quick-messages").style.display = "none";
+      }
+
+      function handleKeyPress(event) {
+          if (event.key === "Enter" && !event.shiftKey) {
+              event.preventDefault();
+              sendMessage();
+          }
+      }
+  </script>
+
+
+
+    
+    <div class="uk-grid-collapse uk-grid" uk-grid="">
+      
+        <div class="uk-width-3-4@m bg-white uk-first-column">
+            
+            <!-- video description contents -->
+            <div class="p-lg-5 p-3" style="width:100%; margin:auto;">
+                
+                <div style="margin-top:-27px; margin-bottom:23px;">
+                    
+<nav id="breadcrumbs">
+    <ul>
+        <li><a href="https://octopus.developers.institute/courses"><i class="icon-feather-home"></i></a></li>
+        <li><a href="https://octopus.developers.institute/courses/collection/103">Full-Stack Coding Bootcamp - Javascript &amp; Python - Part Time 2025</a></li>
+        <li><a href="https://octopus.developers.institute/courses/collection/103/course/509">Adv &amp; Asynchronous Javascript</a></li>
+        <li><a href="https://octopus.developers.institute/courses/collection/103/course/509/section/1345">Advanced Object Methods</a></li>
+        <li><a href="https://octopus.developers.institute/courses/collection/103/course/509/section/1345/chapter/624">Advanced Objects</a></li>
+    </ul>
+</nav>
+
+                </div>
+                
+
+                <div style="display: flex;">
+                    <div style="width: 80%;">
+                        
+                        <h2>Advanced Objects</h2>
+                        
+                    </div>
+                    
+                    
+                            <div section-id="1345" style="width: 30%; display: flex; justify-content: flex-end; align-items: center;">
+                                
+                                  
+                                    
+                                    <span class="btn btn-secondary" id="chapter-done" chapter-id="624" done="0" style="">Click here to Complete</span>
+                                    
+                                  
+                                
+                            </div>
+                    
+                </div>
+                
+                <div style="width: 20%;">
+                    
+                </div>
+                
+
+                <hr class="my-2">
+                <div uk-toggle="cls: uk-flex uk-flex-between@m uk-flex-middle; mode: media; media: @m" class="uk-flex uk-flex-between@m uk-flex-middle"><div>
+            </div>
+        </div>
+
+        <div>
+            
+            
+            <div id="toc">
+                <h3>Table of Contents</h3>
+            <ul><ul><li><a href="#What_you_will_learn:">What you will learn:</a></li><ul><li><a href="#I._Methods_of_the_Object_constructor">I. Methods of the Object constructor</a></li><ul><li><a href="#1._Object.keys()">1. Object.keys()</a></li><li><a href="#2._Object.values()">2. Object.values()</a></li><li><a href="#3._Object.entries()">3. Object.entries()</a></li><li><a href="#4._Object.fromEntries()">4. Object.fromEntries()</a></li></ul><li><a href="#II._Object_Destructuring">II. Object Destructuring</a></li><ul><li><a href="#Property_value_shorthand:">Property value shorthand:</a></li><li><a href="#Nested_object_destructuring">Nested object destructuring</a></li><li><a href="#Object_destructuring_used_as_an_assignment_to_a_function">Object destructuring used as an assignment to a function</a></li><li><a href="#Spreading">Spreading</a></li></ul></ul></ul></ul></div>
+            <hr>
+            
+
+            <div id="chapter-contents">
+
+                
+                    
+                    
+                    <p><span style="font-weight: bold;">Last Updated: September 22nd, 2023</span></p>
+
+                    <hr>
+                     <p class="lead"></p><h2><a name="What_you_will_learn:">What you will learn:</a></h2>
+<ul>
+<li>Object methods</li>
+<li>Object destructuring</li>
+<li>Cloning an Object</li>
+</ul>
+<p><br></p>
+<hr>
+<h3><a name="I._Methods_of_the_Object_constructor">I. Methods of the Object constructor</a></h3>
+<ul>
+<li><code>Object.keys(obj)</code>– returns an array of keys.</li>
+<li><code>Object.values(obj)</code> – returns an array of values.</li>
+<li><code>Object.entries(obj)</code>– returns an array of <code>[key, value]</code> pairs.</li>
+<li><code>Object.fromEntries(array)</code>– returns an object of <code>{key: value}</code> pairs.</li>
+</ul>
+<p><br></p>
+<hr>
+<h4><a name="1._Object.keys()">1. Object.keys()</a></h4>
+<pre><code class="javascript hljs"><span class="hljs-keyword">const</span> object1 = {
+  <span class="hljs-attr">a</span>: <span class="hljs-string">'somestring'</span>,
+  <span class="hljs-attr">b</span>: <span class="hljs-number">42</span>,
+  <span class="hljs-attr">c</span>: <span class="hljs-literal">false</span>
+};
+
+<span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">Object</span>.keys(object1));
+<span class="hljs-comment">// expected output: ["a", "b", "c"]</span>
+</code></pre>
+
+<p><br></p>
+<hr>
+<h4><a name="2._Object.values()">2. Object.values()</a></h4>
+<pre><code class="javascript hljs"><span class="hljs-keyword">const</span> object1 = {
+  <span class="hljs-attr">a</span>: <span class="hljs-string">'somestring'</span>,
+  <span class="hljs-attr">b</span>: <span class="hljs-number">42</span>,
+  <span class="hljs-attr">c</span>: <span class="hljs-literal">false</span>
+};
+
+<span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">Object</span>.values(object1));
+<span class="hljs-comment">// expected output: ["somestring", 42, false]</span>
+</code></pre>
+
+<p><br></p>
+<hr>
+<h4><a name="3._Object.entries()">3. Object.entries()</a></h4>
+<pre><code class="javascript hljs"><span class="hljs-keyword">const</span> object1 = {
+  <span class="hljs-attr">a</span>: <span class="hljs-string">'somestring'</span>,
+  <span class="hljs-attr">b</span>: <span class="hljs-number">42</span>,
+  <span class="hljs-attr">c</span>: <span class="hljs-literal">false</span>
+};
+
+<span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">Object</span>.entries(object1));
+<span class="hljs-comment">// expected output: </span>
+<span class="hljs-comment">// [ [ 'a', 'somestring' ], [ 'b', 42 ], [ 'c', false ] ]</span>
+
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> [key, value] <span class="hljs-keyword">of</span> <span class="hljs-built_in">Object</span>.entries(object1)) {
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`<span class="hljs-subst">${key}</span>: <span class="hljs-subst">${value}</span>`</span>);
+}
+
+<span class="hljs-comment">// expected output:</span>
+<span class="hljs-comment">// a: somestring</span>
+<span class="hljs-comment">// b: 42</span>
+<span class="hljs-comment">// c: false</span>
+</code></pre>
+
+<p><br></p>
+<hr>
+<h4><a name="4._Object.fromEntries()">4. Object.fromEntries()</a></h4>
+<p>The <code>Object.fromEntries()</code> method allows you to convert a list of key-value pairs into an object quickly.</p>
+<p><em>Syntax</em> : <br>
+<code>Object.fromEntries(iterable)</code> </p>
+<ul>
+<li>it accepts a parameter, more specifically an <code>iterable</code> such as Array or Map.</li>
+<li>it returns a new object whose properties are given by the entries of the iterable.</li>
+</ul>
+<p>Example:</p>
+<pre><code class="javascript hljs"><span class="hljs-keyword">const</span> shopping = [
+  [<span class="hljs-string">"apple"</span>, <span class="hljs-string">"$2"</span>],
+  [<span class="hljs-string">"pear"</span>, <span class="hljs-string">"$1"</span>],
+  [<span class="hljs-string">"banana"</span>, <span class="hljs-string">"$0.77"</span>],
+];
+
+<span class="hljs-keyword">const</span> shoppingObject = <span class="hljs-built_in">Object</span>.fromEntries(shopping);
+<span class="hljs-built_in">console</span>.log(shoppingObject); <span class="hljs-comment">// { apple: '$2', pear: '$1', banana: '$0.77' }</span>
+
+</code></pre>
+
+<ul>
+<li><strong><a class="hi-vis" href="https://medium.com/better-programming/how-to-convert-objects-to-arrays-and-vice-versa-in-javascript-7776b5843948" target="_blank">Tutorial on How to convert objects to arrays and vice versa in javascript</a></strong></li>
+</ul>
+<p><br></p>
+<hr>
+<h4><span style="color: #27C76B">Exercise</span></h4>
+<div style="background-color:#C0F7D7; border-color:#27C76B; border-style:ridge; padding: 30px"><p>Use the methods above to :</p>
+    <p></p><ul>
+    <li>Count how many keys and values are in the object below</li>
+    <li>Display : "The x# key is : --- The x# value is : ---".</li>
+    </ul><p></p>
+</div>
+
+<pre><code class="javascript hljs"><span class="hljs-keyword">let</span> myObj = {
+    <span class="hljs-attr">name</span> : <span class="hljs-string">"John"</span>,
+    <span class="hljs-attr">lastName</span> : <span class="hljs-string">"Doe"</span>,
+    <span class="hljs-attr">age</span> : <span class="hljs-number">25</span>,
+    <span class="hljs-attr">friends</span> : [<span class="hljs-string">"Mark"</span>, <span class="hljs-string">"Lucie"</span>, <span class="hljs-string">"Ana"</span>]
+}
+</code></pre>
+
+<p><br></p>
+<hr>
+<h3><a name="II._Object_Destructuring">II. Object Destructuring</a></h3>
+<p><strong>Destructuring implies breaking down a complex structure into simpler parts.</strong> <br>
+In JavaScript, this complex structure is usually an object or an array. </p>
+<pre><code class="javascript hljs"><span class="hljs-keyword">const</span> address = {
+  <span class="hljs-attr">street</span>: <span class="hljs-string">'Evergreen Terrace'</span>,
+  <span class="hljs-attr">number</span>: <span class="hljs-string">'742'</span>,
+  <span class="hljs-attr">city</span>: <span class="hljs-string">'Springfield'</span>,
+  <span class="hljs-attr">state</span>: <span class="hljs-string">'NT'</span>,
+  <span class="hljs-attr">zip</span>: <span class="hljs-string">'49007'</span>,
+};
+
+<span class="hljs-keyword">const</span> { <span class="hljs-attr">street</span>: s, <span class="hljs-attr">city</span>: c } = address;
+<span class="hljs-built_in">console</span>.log(s) <span class="hljs-comment">//Evergreen Terrace</span>
+<span class="hljs-built_in">console</span>.log(c) <span class="hljs-comment">//Springfield</span>
+</code></pre>
+
+<p>The key <code>'street'</code> has a match in the data <code>address</code>. Therefore, the data value <code>'Evergreen Terrace'</code> is assigned to the variable <code>s</code>.</p>
+<p><br></p>
+<hr>
+<h4><a name="Property_value_shorthand:">Property value shorthand:</a></h4>
+<pre><code class="javascript hljs"><span class="hljs-keyword">const</span> address = {
+  <span class="hljs-attr">street</span>: <span class="hljs-string">'Evergreen Terrace'</span>,
+  <span class="hljs-attr">number</span>: <span class="hljs-string">'742'</span>,
+  <span class="hljs-attr">city</span>: <span class="hljs-string">'Springfield'</span>,
+  <span class="hljs-attr">state</span>: <span class="hljs-string">'NT'</span>,
+  <span class="hljs-attr">zip</span>: <span class="hljs-string">'49007'</span>,
+};
+
+<span class="hljs-keyword">const</span> { street, city } = address;
+<span class="hljs-built_in">console</span>.log(street) <span class="hljs-comment">//Evergreen Terrace</span>
+<span class="hljs-built_in">console</span>.log(city) <span class="hljs-comment">//Springfield</span>
+
+<span class="hljs-comment">//Other Example</span>
+<span class="hljs-keyword">let</span> {e, f} = { <span class="hljs-attr">e</span>: <span class="hljs-number">10</span>, <span class="hljs-attr">f</span>: <span class="hljs-number">20</span> };
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">'e: '</span>,e); <span class="hljs-comment">// e: 10</span>
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">'f: '</span>,f); <span class="hljs-comment">// f: 20</span>
+</code></pre>
+
+<p><br></p>
+<hr>
+<h4><a name="Nested_object_destructuring">Nested object destructuring</a></h4>
+<pre><code class="javascript hljs"><span class="hljs-keyword">const</span> student = {
+    <span class="hljs-attr">name</span>: <span class="hljs-string">'John Doe'</span>,
+    <span class="hljs-attr">age</span>: <span class="hljs-number">16</span>,
+    <span class="hljs-attr">scores</span>: {
+        <span class="hljs-attr">maths</span>: <span class="hljs-number">74</span>,
+        <span class="hljs-attr">english</span>: <span class="hljs-number">63</span>
+    }
+};
+
+<span class="hljs-comment">// We define 3 local variables: name, maths, science</span>
+<span class="hljs-comment">// Default value to the variable science, in case the key doesn't exist in the object student</span>
+<span class="hljs-keyword">const</span> { name, <span class="hljs-attr">scores</span>: {maths, science = <span class="hljs-number">50</span>} } = student;
+
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">`<span class="hljs-subst">${name}</span> scored <span class="hljs-subst">${maths}</span> in Maths and <span class="hljs-subst">${science}</span> in Elementary Science.`</span>);
+<span class="hljs-comment">// John Doe scored 74 in Maths and 50 in Elementary Science.</span>
+</code></pre>
+
+<p><code>scores</code> are not defined as a variable. Instead, we use <strong>nested destructuring</strong> to extract the <code>maths</code> and <code>science</code> values from the nested<code>scores</code> object.</p>
+<p><br></p>
+<hr>
+<h4><a name="Object_destructuring_used_as_an_assignment_to_a_function">Object destructuring used as an assignment to a function</a></h4>
+<p>Destructuring can also be applied to function parameters to extract values and assign them to local variables.</p>
+<pre><code class="javascript hljs"><span class="hljs-keyword">const</span> student = {
+    <span class="hljs-attr">name</span>: <span class="hljs-string">'John Doe'</span>,
+    <span class="hljs-attr">age</span>: <span class="hljs-number">16</span>,
+    <span class="hljs-attr">scores</span>: {
+        <span class="hljs-attr">maths</span>: <span class="hljs-number">74</span>,
+        <span class="hljs-attr">english</span>: <span class="hljs-number">63</span>,
+        <span class="hljs-attr">science</span>: <span class="hljs-number">85</span>
+    }
+};
+
+<span class="hljs-comment">// Without Destructuring</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">displaySummary</span>(<span class="hljs-params">student</span>) </span>{
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Hello, '</span> + student.name);
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Your Maths score is '</span> + (student.scores.maths || <span class="hljs-number">0</span>));
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Your English score is '</span> + (student.scores.english || <span class="hljs-number">0</span>));
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Your Science score is '</span> + (student.scores.science || <span class="hljs-number">0</span>));
+}
+
+<span class="hljs-comment">// With Destructuring</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">displaySummary</span>(<span class="hljs-params">{name, scores: { maths = <span class="hljs-number">0</span>, english = <span class="hljs-number">0</span>, science = <span class="hljs-number">0</span> }}</span>) </span>{
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Hello, '</span> + name);
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Your Maths score is '</span> + maths);
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Your English score is '</span> + english);
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Your Science score is '</span> + science);
+}
+
+displaySummary(student);
+</code></pre>
+
+<p><br></p>
+<hr>
+<h4><a name="Spreading">Spreading</a></h4>
+<pre><code class="javascript hljs"><span class="hljs-keyword">let</span> obj = {<span class="hljs-attr">foo</span>: <span class="hljs-number">1</span>, <span class="hljs-attr">bar</span>: <span class="hljs-number">2</span>};
+<span class="hljs-keyword">let</span> newObj = {...obj, <span class="hljs-attr">baz</span>: <span class="hljs-number">3</span>}
+<span class="hljs-built_in">console</span>.log(newObj) <span class="hljs-comment">//{ foo: 1, bar: 2, baz: 3 }</span>
+
+<span class="hljs-comment">// If property keys clash, the property that is mentioned last “wins”:</span>
+<span class="hljs-keyword">let</span> obj = {<span class="hljs-attr">foo</span>: <span class="hljs-number">1</span>, <span class="hljs-attr">bar</span>: <span class="hljs-number">2</span>, <span class="hljs-attr">baz</span>: <span class="hljs-number">3</span>};
+<span class="hljs-keyword">let</span> newObj = {...obj, <span class="hljs-attr">foo</span>: <span class="hljs-literal">true</span>}
+<span class="hljs-built_in">console</span>.log(newObj) <span class="hljs-comment">//{ foo: true, bar: 2, baz: 3 }</span>
+
+<span class="hljs-keyword">let</span> newObj =  {<span class="hljs-attr">foo</span>: <span class="hljs-literal">true</span>, ...obj}
+<span class="hljs-built_in">console</span>.log(newObj) <span class="hljs-comment">//{ foo: 1, bar: 2, baz: 3 }</span>
+</code></pre>
+
+<p><br></p>
+<pre><code class="javascript hljs"><span class="hljs-keyword">let</span> newObj = {...<span class="hljs-string">'abc'</span>}
+<span class="hljs-built_in">console</span>.log(newObj) <span class="hljs-comment">//{ '0': 'a', '1': 'b', '2': 'c' }</span>
+
+<span class="hljs-keyword">let</span> newObj = {...[<span class="hljs-string">'a'</span>, <span class="hljs-string">'b'</span>]}
+<span class="hljs-built_in">console</span>.log(newObj) <span class="hljs-comment">//{ '0': 'a', '1': 'b' }</span>
+</code></pre>
+
+<p><br></p>
+<hr>
+<h4><span style="color: #27C76B">Exercise</span></h4>
+<div style="background-color:#C0F7D7; border-color:#27C76B; border-style:ridge; padding: 30px"><p>Analyse this code before executing it. What will be the output ?</p></div>
+
+<pre><code class="javascript hljs"><span class="hljs-keyword">const</span> user = { <span class="hljs-attr">name</span>: <span class="hljs-string">'Lydia'</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">21</span> };
+<span class="hljs-keyword">const</span> admin = { <span class="hljs-attr">admin</span>: <span class="hljs-literal">true</span>, ...user };
+<span class="hljs-built_in">console</span>.log(admin);
+</code></pre>
+
+<p><br></p>
+<hr>
+<h3>III. How to copy an object : <a class="hi-vis" href="https://javascript.info/object#cloning-and-merging-object-assign" target="_blank">Cloning and merging, Object.assign</a></h3>
+<ul>
+<li>
+<p><strong><a class="hi-vis" href="https://scotch.io/bar-talk/copying-objects-in-javascript" target="_blank">Useful Resources</a></strong></p>
+</li>
+<li>
+<p><strong><a class="hi-vis" href="https://www.youtube.com/watch?v=H1NmJIv1A2Y" target="_blank">Mandatory video to see</a></strong></p>
+</li>
+</ul>
+<pre><code class="javascript hljs"><span class="hljs-keyword">let</span> myCar = {
+  <span class="hljs-attr">color</span> : <span class="hljs-string">'blue'</span>,
+  <span class="hljs-attr">details</span> : {
+    <span class="hljs-attr">plateNumber</span>: <span class="hljs-number">123</span>,
+    <span class="hljs-attr">name</span> : <span class="hljs-string">"Ford"</span>
+  }
+}
+
+<span class="hljs-keyword">let</span> myNewCar = {...myCar}
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">"myNewCar : "</span>, myNewCar) 
+<span class="hljs-comment">// myNewCar :  </span>
+<span class="hljs-comment">// { </span>
+<span class="hljs-comment">//      color: 'blue', </span>
+<span class="hljs-comment">//      details: { plateNumber: 123, name: 'Ford' } </span>
+<span class="hljs-comment">// }</span>
+
+<span class="hljs-comment">// SHALLOW COPYING</span>
+myCar.color = <span class="hljs-string">"red"</span>
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">"myNewCar.color :"</span>, myNewCar.color)
+<span class="hljs-comment">// myNewCar.color : blue -- UNCHANGED</span>
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">"myCar.color :"</span>, myCar.color)
+<span class="hljs-comment">// myCar.color : red -- CHANGED</span>
+
+<span class="hljs-comment">// DEEP COPYING</span>
+myCar.details.plateNumber = <span class="hljs-number">345</span>
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">"myNewCar.details.plateNumber :"</span>, myNewCar.details.plateNumber)
+<span class="hljs-comment">// myNewCar.details.plateNumber : 345 -- CHANGED</span>
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">"myCar.details.plateNumber :"</span>, myCar.details.plateNumber)
+<span class="hljs-comment">// myCar.details.plateNumber : 345 : red -- CHANGED</span>
+</code></pre><p></p><br> 
+                     
+
+
+                    
+                  
+
+
+
+<input type="hidden" id="is_iframe_usernameInput" name="is_iframe_usernameInput" value="avg9999">
+<script> 
+  document.addEventListener("DOMContentLoaded", function() {
+      // Check if the iframe with id "is_iframe" exists
+      var iframeElement = document.getElementById("is_iframe_username");
+      var my_username = document.getElementById("is_iframe_usernameInput").value;
+      if (iframeElement) {
+          var existingSrc = iframeElement.src;
+          iframeElement.src = existingSrc + "?username="+my_username;
+      }
+  });
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    <div style="display: flex; justify-content: flex-end; align-items: center;">
+                        <a href="#breadcrumbs" class="btn btn-info mb-2">Back to Top</a>
+                    </div>
+
+                    
+       
+                    
+                
+
+
+
+
+
+                
+
+
+
+            </div>
+        </div>
+    </div>
+
+
+   <!-- Add the comment deletion modal markup -->
+<div class="modal fade" id="commentDeleteModal" tabindex="-1" role="dialog" aria-labelledby="commentDeleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="commentDeleteModalLabel">Confirmation</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Are you sure you want to delete this comment?</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-danger" id="confirmDeleteCommentBtn">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Add the reply deletion modal markup -->
+  <div class="modal fade" id="replyDeleteModal" tabindex="-1" role="dialog" aria-labelledby="replyDeleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="replyDeleteModalLabel">Confirmation</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Are you sure you want to delete this reply?</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-danger" id="confirmDeleteReplyBtn">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+
+
+
+  
+    
+    
+  
+  <div class="footer">
+    <div class="uk-grid-collapse uk-grid" uk-grid="">
+        <div class="uk-width-expand@s uk-first-column">
+            <p>© 2026 <strong>Developers Institute</strong>. All Rights Reserved. </p>
+        </div>
+        <div class="uk-width-auto@s">
+            <nav class="footer-nav-icon">
+                <ul>
+    <li><a href="https://www.facebook.com/developers.institute/" target="_blank"><i class="icon-brand-facebook"></i></a></li>
+    <li><a href="https://www.instagram.com/developers.institute/" target="_blank"><i class="icon-brand-instagram"></i></a></li>
+    <li><a href="https://www.youtube.com/channel/UC-qcXcEsoBSSpYvj5DqoMDQ/featured" target="_blank"><i class="icon-brand-youtube"></i></a></li>
+    <li><a href="https://twitter.com/devtlv" target="_blank"><i class="icon-brand-twitter"></i></a></li>
+</ul>
+                
+            </nav>
+        </div>
+    </div>
+</div>
+  
+</div>
+
+<div class="uk-width-1-4@m uk-overflow-hidden vidlist-3-container  resize-bar">
+    <div uk-sticky="" class="uk-sticky uk-sticky-fixed" style="position: fixed; top: 0px; width: 320px;">
+        <h5 class="bg-gradient-grey text-white py-4 p-3 mb-0">Advanced Object Methods</h5>
+        
+
+        <ul class="uk-child-width-expand mb-0 uk-tab" uk-switcher="animation: uk-animation-slide-right-small, uk-animation-slide-left-small" uk-tab="">
+            <li class="uk-active"></li>
+        </ul>
+
+        <ul class="uk-switcher uk-overflow-hidden" style="touch-action: pan-y pinch-zoom;">
+            <li class="uk-active">
+                <div class="vidlist-3-content" data-simplebar="init"><div class="simplebar-wrapper" style="margin: 0px;"><div class="simplebar-height-auto-observer-wrapper"><div class="simplebar-height-auto-observer"></div></div><div class="simplebar-mask"><div class="simplebar-offset" style="right: 0px; bottom: 0px;"><div class="simplebar-content" style="padding: 0px; height: 100%; overflow: hidden;">
+                    <ul class="vidlist-3-section uk-accordion" uk-accordion="">
+
+                        <li>
+                            <a class="uk-accordion-title" href="#"> Coding Daily Digest </a>
+                            <div class="uk-accordion-content" hidden="" aria-hidden="true">
+                                <ul class="vidlist-3">
+                                    
+                                    
+                                    
+                                    
+                                    <li>
+                                        <a class="chapter_notes" href="https://octopus.developers.institute/courses/collection/103/course/509/section/1345/chapter/1204">
+                                            <div id="chapter_id_1204" class="chapter-title">What is object destructuring in JS</div>
+                                            <div class="chapter-attributes">
+                                                <span class="badge"> </span>
+                                                
+                                                
+                                                
+                                                <span id="status_chapter_id_1204" class="badge badge-outline-success" data-toggle="tooltip" title="Done"><i class="fa fa-check-circle" aria-hidden="true"></i></span>
+                                                
+                                                <span class="badge badge-outline-info" data-toggle="tooltip" title="Self Learning"><i class="fa fa-graduation-cap" aria-hidden="true"></i></span>
+                                                
+                                            </div> 
+                                        </a>
+                                    </li>
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                </ul>
+                            </div>
+                        </li>
+
+                        <li class="uk-open">
+                            <a class="uk-accordion-title" href="#"> Course Notes </a>
+                            <div class="uk-accordion-content" aria-hidden="false">
+                                <ul class="vidlist-3">
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    <li class="chapter-active">
+                                        <a class="chapter_notes" href="https://octopus.developers.institute/courses/collection/103/course/509/section/1345/chapter/624">
+                                            <div id="chapter_id_624" class="chapter-title">Advanced Objects</div>
+                                            <div class="chapter-attributes">
+                                                <span class="badge"> </span>
+                                                
+                                                
+                                                
+                                                <span id="status_chapter_id_624" class="badge badge-outline-secondary" data-toggle="tooltip" title="Click here to Complete"><i class="fa fa-check-circle" aria-hidden="true"></i></span>
+                                                
+                                                
+                                                
+                                            </div> 
+                                        </a>
+                                    </li>
+                                    
+                                    
+                                    
+                                    <li>
+                                        <a class="chapter_notes" href="https://octopus.developers.institute/courses/collection/103/course/509/section/1345/chapter/625">
+                                            <div id="chapter_id_625" class="chapter-title">Object and Classes</div>
+                                            <div class="chapter-attributes">
+                                                <span class="badge"> </span>
+                                                
+                                                
+                                                
+                                                <span id="status_chapter_id_625" class="badge badge-outline-secondary" data-toggle="tooltip" title="Click here to Complete"><i class="fa fa-check-circle" aria-hidden="true"></i></span>
+                                                
+                                                
+                                                
+                                            </div> 
+                                        </a>
+                                    </li>
+                                    
+                                    
+                                    
+                                    <li>
+                                        <a class="chapter_notes" href="https://octopus.developers.institute/courses/collection/103/course/509/section/1345/chapter/1330">
+                                            <div id="chapter_id_1330" class="chapter-title">Date Object examples</div>
+                                            <div class="chapter-attributes">
+                                                <span class="badge"> </span>
+                                                
+                                                
+                                                
+                                                <span id="status_chapter_id_1330" class="badge badge-outline-secondary" data-toggle="tooltip" title="Click here to Complete"><i class="fa fa-check-circle" aria-hidden="true"></i></span>
+                                                
+                                                <span class="badge badge-outline-info" data-toggle="tooltip" title="Self Learning"><i class="fa fa-graduation-cap" aria-hidden="true"></i></span>
+                                                
+                                            </div> 
+                                        </a>
+                                    </li>
+                                    
+                                    
+                                    
+                                    <li>
+                                        <a class="chapter_notes" href="https://octopus.developers.institute/courses/collection/103/course/509/section/1345/chapter/2066">
+                                            <div id="chapter_id_2066" class="chapter-title">📺  Class Recordings</div>
+                                            <div class="chapter-attributes">
+                                                <span class="badge"> </span>
+                                                
+                                                
+                                                
+                                                <span id="status_chapter_id_2066" class="badge badge-outline-secondary" data-toggle="tooltip" title="Click here to Complete"><i class="fa fa-check-circle" aria-hidden="true"></i></span>
+                                                
+                                                
+                                                
+                                            </div> 
+                                        </a>
+                                    </li>
+                                    
+                                    
+                                </ul>
+                            </div>
+                        </li>
+                        
+                        
+
+                        
+
+                        
+
+                        
+
+                        <li>
+                            <a class="uk-accordion-title" href="#"> Survey </a>
+                            <div class="uk-accordion-content" hidden="" aria-hidden="true">
+                                <ul class="vidlist-3">
+                                    
+                                    
+                                    <li>
+                                        <a class="chapter_notes" href="https://octopus.developers.institute/courses/collection/103/course/509/section/1345/chapter/3225">
+                                            <div id="chapter_id_3225" class="chapter-title">Weekly feedback</div>
+                                            <div class="chapter-attributes">
+                                                <span class="badge"> </span>
+                                                
+                                                
+                                                
+                                                <span id="status_chapter_id_3225" class="badge badge-outline-secondary" data-toggle="tooltip" title="Click here to Complete"><i class="fa fa-check-circle" aria-hidden="true"></i></span>
+                                                
+                                                
+                                                
+                                            </div> 
+                                        </a>
+                                    </li>
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                </ul>
+                            </div>
+                        </li>
+
+                        
+                        
+                        
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        
+
+                        
+                    </ul>
+                </div></div></div><div class="simplebar-placeholder" style="width: 320px; height: 547px;"></div></div><div class="simplebar-track simplebar-horizontal" style="visibility: hidden;"><div class="simplebar-scrollbar" style="transform: translate3d(0px, 0px, 0px); visibility: hidden;"></div></div><div class="simplebar-track simplebar-vertical" style="visibility: hidden;"><div class="simplebar-scrollbar" style="transform: translate3d(0px, 0px, 0px); visibility: hidden;"></div></div></div>
+            </li>
+        </ul>
+    </div><div class="uk-sticky-placeholder" style="height: 618px; margin: 0px;"></div>
+</div>
+
+<div class="modal fade" id="popupCard" tabindex="-1" aria-labelledby="popupCardLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="popupCardLabel">Quiz</h5>
+        <button type="button" class="btn btn-secondary" id="CloseButton">Close</button>
+      </div>
+      <div class="modal-body" id="modalBody">
+        <!-- Content will be loaded dynamically using jQuery -->
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+
+
+<!-- javascript for student form -->
+<script>
+  $(document).ready(function() {
+    $('#myButton').on('click', function() {
+      // button for close card here...
+      $('#CloseButton').on('click', function() {
+        $('#popupCard').modal('hide');
+      });
+      // Your existing code here...
+
+      // Create the form content and append it to the modal body
+      var modalBody = $('#modalBody');
+      modalBody.empty(); // Clear previous content
+
+      $.ajax({
+        url: '/courses/quiz_result_check/103/624', 
+        type: 'GET',
+        dataType: 'json',
+        success: function(data) {
+
+          //$('#apiResponse').text(data.message);
+          //console.log(data.text);
+          if (data.is_present == true && data.is_passed == true) {
+            modalBody.append('<p>You already passed this QUIZ.</p>');
+            modalBody.append('<p style="color:red;">So, If you continue with the same quiz, your previous quiz data will be removed.</p>');
+            modalBody.append('<a class="btn btn-info blinking" href="/courses/quiz/collection/103/course/509/section/1345/chapter/624" role="button">PLAY QUIZ AGAIN</a>');
+          }
+          else if (data.is_present == true && data.is_passed == false) {
+            //console.log('present & not passed');
+            modalBody.append('<p>You have not qualified your previous QUIZ attempt.</p>');
+            modalBody.append('<p>Please Retry again to qualify.</p>');
+            modalBody.append('<a class="btn btn-warning blinking" href="/courses/quiz/collection/103/course/509/section/1345/chapter/624" role="button">RETRY QUIZ AGAIN</a>');
+          }
+          else{ 
+            modalBody.append('<p>Start your Quiz by clicking the following button: </p>');
+            modalBody.append('<a class="btn btn-success blinking" href="/courses/quiz/collection/103/course/509/section/1345/chapter/624" role="button">START QUIZ</a>');
+          }
+          //const redirectUrl = "/courses/quiz_result/collection/103/course/509/section/1345/chapter/624";
+          //window.location.href = redirectUrl;
+        },
+        error: function(xhr, status, error) {
+            //$('#apiResponse').text('Error occurred while calling the API.');
+            console.error(error);
+        }
+      });
+
+
+
+      // Your form creation code here...
+
+      // Show the modal popup
+      $('#popupCard').modal('show');
+    });
+  });
+</script>
+
+
+<script>
+  $(document).ready(function() {
+    $('#chapter-done-QZ').click(function() {
+      alert('Chapter automatically Done after Qualifying the QUIZ!');
+    });
+  })
+</script>
+
+
+
+
+
+
+
+<script>
+    let refer1 = 0;
+
+  function rowTemplate5(refer1) {
+    return `<tr style="text-align: center;" data-index=${refer1}>
+        <th scope="row">${refer1+2}</th>
+        <td>
+            <input type="text" class="form-control" name="task_description" placeholder="Enter task details" value="">
+        </td>
+        
+        <td>
+            <a class="btn btn-warning" href="javascript:void(0);" onclick="removeRow5(${refer1})" >Remove-</a>
+        </td>
+        
+    </tr>
+    `;
+  
+  }
+  for (refer1 = 0; refer1 < 1; refer1 ++) {
+    $('.add_row0').append(rowTemplate6(refer1));
+    }
+    
+    function removeRow5(refer1) {
+    $(".add_row0").find(`tr[data-index='${refer1}']`).remove();
+    }
+    
+    function addRow5() {
+    $('.add_row0').append(rowTemplate5(refer1));
+    refer1++;
+    }
+
+</script>
+
+
+
+<script>
+    let refer = 0;
+
+  function rowTemplate6(refer) {
+    return `<tr style="text-align: center;" class="add_more" data-index=${refer}>
+        <th scope="row">${refer+2}</th>
+        <td>
+            <input type="text" class="form-control" name="minimum_viable_feature" placeholder="Enter task details">
+        </td>
+        <th scope="row">${refer+2}</th>
+        <td>
+            <input type="text" class="form-control" name="additional_feature" placeholder="Enter task details">
+        </td>
+        <td>
+            <a class="btn btn-warning" href="javascript:void(0);" onclick="removeRow6(${refer})" >Remove-</a>
+        </td>
+    </tr>
+    `;
+  
+  }
+  for (refer = 0; refer < 1; refer ++) {
+    $('.add_row').append(rowTemplate6(refer));
+    }
+    
+    function removeRow6(refer) {
+    $(".add_row").find(`tr[data-index='${refer}']`).remove();
+    }
+    
+    function addRow6() {
+    $('.add_row').append(rowTemplate6(refer));
+    refer++;
+    }
+
+</script> 
+
+<script>
+    let refer2 = 0;
+
+    function rowTemplate4(refer2) {
+      return `<tr style="text-align: center;" data-index=${refer2}>
+            <th scope="row">${refer2+2}</th>
+            <td>
+                <input type="url" class="form-control" name="article_links" placeholder="Enter article link">
+            </td>
+            <td>
+                <a class="btn btn-warning" href="javascript:void(0);" onclick="removeRow4(${refer2})" >Remove-</a>
+            </td>
+        </tr>
+      `;
+    }
+    for (refer2 = 0; refer2 < 1; refer2 ++) {
+      $('.add_row2').append(rowTemplate4(refer2));
+      }
+      
+      function removeRow4(refer2) {
+      $(".add_row2").find(`tr[data-index='${refer2}']`).remove();
+      }
+      
+      function addRow4() {
+      $('.add_row2').append(rowTemplate4(refer2));
+      refer2++;
+      }
+
+</script>
+
+<script>
+    let refer3 = 0;
+
+  function rowTemplate3(refer3) {
+    return `<tr style="text-align: center;" data-index=${refer3}>
+        <td style="width:10%">
+            Other Tools
+        </td>
+        <td>
+            <input type="text" class="form-control" name="tools_others_add_text" placeholder="Enter task details" value="" required>
+        </td>
+        <td>
+            <input class="form-check-input" type="radio" name="tools_others${refer3+2}" value=1 required>
+        </td>
+        <td>
+            <input class="form-check-input" type="radio" name="tools_others${refer3+2}" value=2 required>
+        </td>
+        <td>
+            <input class="form-check-input" type="radio" name="tools_others${refer3+2}" value=3 required>
+        </td>
+        <td>
+            <a class="btn btn-warning" href="javascript:void(0);" onclick="removeRow3(${refer3})" >Remove-</a>
+        </td>
+        <input type="hidden" name="tools_others_name" value="${refer3+2}">
+    </tr>`;
+    }
+    for (refer3 = 0; refer3 < 1; refer3 ++) {
+      $('.add_row3').append(rowTemplate3(refer3));
+      }
+      
+      function removeRow3(refer3) {
+      $(".add_row3").find(`tr[data-index='${refer3}']`).remove();
+      }
+      
+      function addRow3() {
+      $('.add_row3').append(rowTemplate3(refer3));
+      refer3++;
+      }
+</script>
+
+<script>
+    function handleFileUpload(e) {
+        var fileInput = e.target;
+        var file = fileInput.files[0];
+        var fileSize = file.size; // File size in bytes
+        var maxSize = 5 * 1024 * 1024; // 2MB in bytes
+      
+        if (fileSize > maxSize) {
+          alert("File size exceeds the limit of 5MB");
+      
+          // Create a new file input element
+          var newFileInput = document.createElement("input");
+          newFileInput.type = "file";
+          newFileInput.classList.add("form-control");
+          newFileInput.name = "cv";
+          newFileInput.onchange = handleFileUpload;
+          newFileInput.required = true;
+      
+          // Replace the existing file input with the new one
+          fileInput.parentNode.replaceChild(newFileInput, fileInput);
+        } else {
+          // File size is within the limit
+          console.log("File size: " + fileSize + " bytes");
+        }
+      } 
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="ADVANCED%20OBJECTS_files/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="ADVANCED%20OBJECTS_files/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="ADVANCED%20OBJECTS_files/bootstrap.min_002.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+<!-- javascript for student form end here -->
+
+
+
+
+<!-- small device icon video sidebar -->
+<span class="btn-vidlist-3" uk-toggle="target: #wrapper; cls: is-open"></span>
+
+<script>
+    // Removes empty accordians in right sidebar
+    let accordion_contents = document.getElementsByClassName("uk-accordion-content");
+    //Can't loop through and remove elements from array without controlling for length change
+    for(let i = 0; i < accordion_contents.length; i++){
+        content = accordion_contents[i].getElementsByTagName("li")
+        if (!content.length) {
+            accordion_contents[i].parentNode.remove();
+            i--;  
+        }
+    }
+</script>
+
+<script>
+    // Update Markdown Tables to Bootstrap Tables - Jonathan
+    [].forEach.call(document.getElementsByTagName("table"), function (el) {el.className += "table table-striped table-bordered"});
+</script>
+
+<script>
+    // Auto Build TOC from H1 - H6 Components in 'chapter-contents' div - Jonathan
+    let make_toc = function(){
+        var toc = "";
+        var level = 0;
+
+        document.getElementById("chapter-contents").innerHTML =
+            document.getElementById("chapter-contents").innerHTML.replace(
+                /<h([\d])>([^<]+)<\/h([\d])>/gi,
+                function (str, openLevel, titleText, closeLevel) {
+                    if (openLevel != closeLevel) {
+                        return str;
+                    }
+
+                    if (openLevel > level) {
+                        toc += (new Array(openLevel - level + 1)).join("<ul>");
+                    } else if (openLevel < level) {
+                        toc += (new Array(level - openLevel + 1)).join("</ul>");
+                    }
+
+                    level = parseInt(openLevel);
+
+                    var anchor = titleText.replace(/ /g, "_");
+                    toc += "<li><a href=\"#" + anchor + "\">" + titleText
+                        + "</a></li>";
+
+                    return "<h" + openLevel + "><a name=\"" + anchor + "\">"
+                        + titleText + "</a></h" + closeLevel + ">";
+                }
+            );
+
+        if (level) {
+            toc += (new Array(level + 1)).join("</ul>");
+        }
+
+        document.getElementById("toc").innerHTML += toc;
+    };
+    window.setTimeout(function(){make_toc()}, 0)
+    
+</script>
+
+<!-- Success Confirmation Modal -->
+<div class="modal fade" id="successforExersiseModal" tabindex="-1" role="dialog" aria-labelledby="successModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document"> <!-- Centered -->
+    <div class="modal-content">
+      <div class="modal-header bg-success text-white">
+        <h5 class="modal-title" id="successModalLabel">Success</h5>
+        <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Exercises submitted successfully!
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success" data-dismiss="modal">OK</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+  // Check if the submission_data object is properly passed into the JavaScript
+  const checkerType = "";  // Access FLD_checker_type directly from Django context
+  const submissionStatus = ""; // Access submission status directly from Django context
+
+  // Check if the checker type is 'manual_ai' and the status is 'Pending'
+  if (checkerType === 'manual_ai' && submissionStatus === 'Pending') {
+    
+    // Function to make a GET request to check the submission status
+    function checkSubmissionStatus() {
+      // Replace with the appropriate URL for checking the submission status
+      const url = '/courses/submission-status//'; 
+
+      // Use fetch API to make a GET request
+      fetch(url, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          // You can add authorization or other headers here if needed
+        }
+      })
+      .then(response => response.json())  // Assuming the response is in JSON format
+      .then(data => {
+        // Handle the response here
+        // Check if the status has changed to something like 'Passed' or 'Redo'
+        if (data.status === 'Passed' || data.status === 'Redo') {
+          // Alert the user about the new status
+          alert('New Status has arrived! Refresh to check now!');
+          
+          // Reload the page to reflect the updated status
+          window.location.reload();
+        }
+      })
+      .catch(error => {
+        console.error('Error fetching submission status:', error);
+      });
+    }
+
+    // Call the checkSubmissionStatus function immediately once when the page loads
+    checkSubmissionStatus();
+
+    // Set an interval to call the function every 15 seconds (15000ms)
+    setInterval(checkSubmissionStatus, 15000);
+  }
+  else {
+    console.log('Submission data is not available or checker type is not "manual_ai".');
+  }
+</script>
+
+
+
+
+
+<script>
+    // Typeform element hijacks focus when it loads. No way to control it. 
+    // So we hide it until it has fully loaded, then display it.
+    // let load_feedback = function(){
+    //     document.getElementById("feedback").removeAttribute("hidden")
+    // }
+
+    $(document).ready(function(){
+      // Handle click event on the "Pending" button
+      $('#chapter-pending').on('click', function() {
+        // Get the tooltip's title (message)
+        var tooltipMessage = $(this).attr('title');
+        
+        // Show an alert with the same message
+        alert(tooltipMessage);
+      });
+    });
+
+    // To trigger a click on the correct chapter. This will open the accordion to correct location.
+    let run_target = function(){
+        chapter_id="624"
+        if (chapter_id == "") {
+            let accordion = document.querySelector(".vidlist-3-section > li > a")
+            accordion.click()
+            return;
+        }
+        click_target = document.getElementById('chapter_id_'+chapter_id)
+        click_target.closest("li").classList.add('chapter-active');
+        click_target.closest(".uk-accordion-content").previousElementSibling.click();
+    }    
+
+    // window.addEventListener('load',function(){
+    //     load_feedback()
+    // })
+
+    // JMS HACK: DOMContentLoaded isn't reliable here. Probably because of this weird template renders.
+    // And load event is too slow for good UX.
+    // So... fudging it using a setTimeout 0.  Thoughts?
+    window.setTimeout(function(){run_target()}, 0)
+
+
+
+  /*
+  Checking Course
+  */
+  window.addEventListener('load',function(){
+
+    // Cookie is supposed to be added before every ajax request
+    // This happens in lib/js/script.js in the Ajax setup "beforSend"
+    // But its buggy and doesn't always send. I tested it by making the target view csrf exempt
+    //... so I'm explicitly adding the cookie in the ajax data body
+    function getCookie(name) {
+      var cookieValue = null;
+      if (document.cookie && document.cookie != '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+          var cookie = jQuery.trim(cookies[i]);
+          if (cookie.substring(0, name.length + 1) == (name + '=')) {
+            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+            break;
+          }
+        }
+      }
+      return cookieValue;
+    }
+    var csrftoken = getCookie('csrftoken');
+
+    configure_modal()
+
+    const submit_button = document.getElementById('chapter-submit');
+    const pending_button = document.getElementById('chapter-pending');
+    if (submit_button) {
+        submit_button.addEventListener('click', ()=>{
+            modal_get_submission()
+        })
+    }
+
+    /*
+    function configure_modal(){
+        const modal_id = 'submit_exercise'
+        const modal = build_modal({
+            header  : "<h5 class='modal-title'>Mandatory Exercise Submission</h5>", 
+            body    : "<strong>Code Url:</strong>\
+                       <input class='form-control' id='exercise_url' name='exercise_url' placeholder='Enter Github link to your code'> \
+                        <div class='row clearfix justify-content-center mt-4'>\
+                            <div class='col-12'>\
+                                <strong>Difficulty</strong>\
+                                <p class='text-muted'>Was this exercise at the appropriate level for your skillset?</p>\
+                                <div class='slider-container '>\
+                                    <div style='display:flex; justify-content:space-evenly; margin: 0 -15px;'>\
+                                        <span>0</span><span>ı</span><span>ı</span><span>ı</span><span>ı</span><span>5</span><span>ı</span><span>ı</span><span>ı</span><span>ı</span><span>10</span>\
+                                    </div>\
+                                    <input type='range' id='difficulty' name='difficulty' class='slider' min='0' max='10' value='0'>\
+                                </div>\
+                            </div>\
+                        </div>\
+                        <div class='row clearfix justify-content-center mt-4'>\
+                            <div class='col-12'>\
+                                <strong>Clarity</strong>\
+                                <p class='text-muted'>Were the instructions and language understandable?</p>\
+                                <div class='slider-container '>\
+                                    <div style='display:flex; justify-content:space-evenly; margin: 0 -15px;'>\
+                                        <span>0</span><span>ı</span><span>ı</span><span>ı</span><span>ı</span><span>5</span><span>ı</span><span>ı</span><span>ı</span><span>ı</span><span>10</span>\
+                                    </div>\
+                                    <input type='range' id='clarity' name='clarity' class='slider' min='0' max='10' value='0'>\
+                                </div>\
+                            </div>\
+                        </div>\
+                        <div class='row clearfix justify-content-center mt-4'>\
+                            <div class='col-12'>\
+                                <strong>Relevance</strong>\
+                                <p class='text-muted'>Did this exercise reinforce ideas from today's lesson?</p>\
+                                <div class='slider-container '>\
+                                    <div style='display:flex; justify-content:space-evenly; margin: 0 -15px;'>\
+                                        <span>0</span><span>ı</span><span>ı</span><span>ı</span><span>ı</span><span>5</span><span>ı</span><span>ı</span><span>ı</span><span>ı</span><span>10</span>\
+                                    </div>\
+                                    <input type='range' id='relevance' name='relevance' class='slider' min='0' max='10' value='0'>\
+                                </div>\
+                            </div>\
+                        </div>\
+                        <div class='row clearfix justify-content-center mt-4'>\
+                            <div class='col-12'>\
+                                <strong>Time Taken</strong>\
+                                <p class='text-muted'>Approximately how long did you spend on this exercise?</p>\
+                                <select class='form-control' id='time_taken' name='time_taken'>\
+                                    <option value='< 0'>Select Time</option>\
+                                    <option value='< 10'>Less than 10 minutes</option>\
+                                    <option value='10-20'>10 - 20 minutes</option>\
+                                    <option value='20-30'>20 - 30 minutes</option>\
+                                    <option value='30-40'>30 - 40 minutes</option>\
+                                    <option value='40-50'>40 - 50 minutes</option>\
+                                    <option value='50-60'>50 minutes to 1 hour</option>\
+                                    <option value='> 60'>More than 1 hour</option>\
+                                </select>\
+                            </div>\
+                        </div>\
+                        <div class='row clearfix  mt-4'>\
+                            <div class='col-12'>\
+                                <strong>Comments</strong>\
+                                <p class='text-muted'>Let us know your thoughts about this exercise. What did you like? What did you dislike? What can we improve??</p>\
+                                <div class='slider-container '>\
+                                    <textarea id='comment' name='comment' rows='4' maxlength='250' style='resize: none;' class='form-control'></textarea>\
+                                </div>\
+                            </div>\
+                        </div>",
+            footer  : "<button id='modal_btn_cancel' class='btn btn-secondary' data-dismiss='modal'>Cancel</button>\
+                    <button id='modal_btn_submit' class='btn btn-success'>Submit</button>", 
+            new_id  : modal_id 
+        })
+
+        */
+        
+
+        function configure_modal(){
+          const modal_id = 'submit_exercise'
+          const modal = build_modal({
+              header  : "<h5 class='modal-title'>Mandatory Exercise Submission</h5>", 
+              body    : "<strong>Submission Type:</strong>\
+                          <p style='font-style: italic;color: #3e416d;'></p>\
+                          <div class='mb-3'>\
+                            <div class='form-check form-check-inline'>\
+                                <input class='form-check-input mt-3' type='radio' name='url_type' id='url_type_all' value='all' checked>\
+                                <label class='form-check-label' for='url_type_all'>All Files</label>\
+                            </div>\
+                            <div class='form-check form-check-inline' style='display:none;'>\
+                                <input class='form-check-input mt-3' type='radio' name='url_type' id='url_type_specific' value='specific'>\
+                                <label class='form-check-label' for='url_type_specific'>Specific Files</label>\
+                            </div>\
+                          </div>\
+                          <div id='url_inputs_wrapper'>\
+                              <strong>Code URL:</strong>\
+                              <input class='form-control mb-2' id='exercise_url' name='exercise_url' placeholder='Enter link to your code'>\
+                          </div>\
+                          <button id='add_url_button' class='btn btn-outline-primary btn-sm mb-3' style='display:none;'>+ Add More</button>\
+                          <div class='row clearfix justify-content-center mt-4'>\
+                              <div class='col-12'>\
+                                  <strong>Difficulty</strong>\
+                                  <p class='text-muted'>Was this exercise at the appropriate level for your skillset?</p>\
+                                  <div class='slider-container '>\
+                                      <div style='display:flex; justify-content:space-evenly; margin: 0 -15px;'>\
+                                          <span>0</span><span>ı</span><span>ı</span><span>ı</span><span>ı</span><span>5</span><span>ı</span><span>ı</span><span>ı</span><span>ı</span><span>10</span>\
+                                      </div>\
+                                      <input type='range' id='difficulty' name='difficulty' class='slider' min='0' max='10' value='0'>\
+                                  </div>\
+                              </div>\
+                          </div>\
+                          <div class='row clearfix justify-content-center mt-4'>\
+                              <div class='col-12'>\
+                                  <strong>Clarity</strong>\
+                                  <p class='text-muted'>Were the instructions and language understandable?</p>\
+                                  <div class='slider-container '>\
+                                      <div style='display:flex; justify-content:space-evenly; margin: 0 -15px;'>\
+                                          <span>0</span><span>ı</span><span>ı</span><span>ı</span><span>ı</span><span>5</span><span>ı</span><span>ı</span><span>ı</span><span>ı</span><span>10</span>\
+                                      </div>\
+                                      <input type='range' id='clarity' name='clarity' class='slider' min='0' max='10' value='0'>\
+                                  </div>\
+                              </div>\
+                          </div>\
+                          <div class='row clearfix justify-content-center mt-4'>\
+                              <div class='col-12'>\
+                                  <strong>Relevance</strong>\
+                                  <p class='text-muted'>Did this exercise reinforce ideas from today's lesson?</p>\
+                                  <div class='slider-container '>\
+                                      <div style='display:flex; justify-content:space-evenly; margin: 0 -15px;'>\
+                                          <span>0</span><span>ı</span><span>ı</span><span>ı</span><span>ı</span><span>5</span><span>ı</span><span>ı</span><span>ı</span><span>ı</span><span>10</span>\
+                                      </div>\
+                                      <input type='range' id='relevance' name='relevance' class='slider' min='0' max='10' value='0'>\
+                                  </div>\
+                              </div>\
+                          </div>\
+                          <div class='row clearfix justify-content-center mt-4'>\
+                              <div class='col-12'>\
+                                  <strong>Time Taken</strong>\
+                                  <p class='text-muted'>Approximately how long did you spend on this exercise?</p>\
+                                  <select class='form-control' id='time_taken' name='time_taken'>\
+                                      <option value='< 0'>Select Time</option>\
+                                      <option value='< 10'>Less than 10 minutes</option>\
+                                      <option value='10-20'>10 - 20 minutes</option>\
+                                      <option value='20-30'>20 - 30 minutes</option>\
+                                      <option value='30-40'>30 - 40 minutes</option>\
+                                      <option value='40-50'>40 - 50 minutes</option>\
+                                      <option value='50-60'>50 minutes to 1 hour</option>\
+                                      <option value='> 60'>More than 1 hour</option>\
+                                  </select>\
+                              </div>\
+                          </div>\
+                          <div class='row clearfix  mt-4'>\
+                              <div class='col-12'>\
+                                  <strong>Comments</strong>\
+                                  <p class='text-muted'>Let us know your thoughts about this exercise. What did you like? What did you dislike? What can we improve??</p>\
+                                  <div class='slider-container '>\
+                                      <textarea id='comment' name='comment' rows='4' maxlength='250' style='resize: none;' class='form-control'></textarea>\
+                                  </div>\
+                              </div>\
+                          </div>",
+              footer  : "<button id='modal_btn_cancel' class='btn btn-secondary' data-dismiss='modal'>Cancel</button>\
+                      <button id='modal_btn_submit' class='btn btn-success'>Submit</button>", 
+              new_id  : modal_id 
+          })
+
+        modal_get_submission = () => {
+          modal.modal('show');
+          handleUrlInputMode();
+        }
+
+        let urlAddHandlerAttached = false;  // guard flag
+
+        function handleUrlInputMode() {
+          const allRadio = document.getElementById('url_type_all');
+          const specificRadio = document.getElementById('url_type_specific');
+          const addButton = document.getElementById('add_url_button');
+          const wrapper = document.getElementById('url_inputs_wrapper');
+
+          // Radio button: All
+          allRadio.addEventListener('change', () => {
+            if (allRadio.checked) {
+              addButton.style.display = 'none';
+              wrapper.innerHTML = "<strong>Code URL:</strong>\
+                <input class='form-control mb-2' id='exercise_url' name='exercise_url' placeholder='Enter GitHub link to your code'>";
+            }
+          });
+
+          // Radio button: Specific
+          specificRadio.addEventListener('change', () => {
+            if (specificRadio.checked) {
+              addButton.style.display = 'inline-block';
+              wrapper.innerHTML = `
+                <strong>Code URL(s):</strong>
+                <div class="input-group mb-2 exercise_url_group">
+                  <input class='form-control exercise_url' name='exercise_url_0' placeholder='Enter GitHub link to specific file'>
+                </div>
+              `;
+            }
+          });
+
+          // Attach 'Add More' click handler only once
+          if (!urlAddHandlerAttached) {
+            addButton.addEventListener('click', () => {
+              const count = wrapper.querySelectorAll('.exercise_url_group').length;
+
+              const groupDiv = document.createElement('div');
+              groupDiv.className = 'input-group mb-2 exercise_url_group';
+              groupDiv.innerHTML = `
+                <input class='form-control exercise_url' name='exercise_url_${count}' placeholder='Enter another GitHub file URL'>
+                <div class="input-group-append">
+                  <button class='btn btn-danger btn-sm remove-url-button' type='button'>&times;</button>
+                </div>
+              `;
+
+              wrapper.appendChild(groupDiv);
+
+              // Remove button inside input group
+              const deleteBtn = groupDiv.querySelector('.remove-url-button');
+              deleteBtn.addEventListener('click', () => {
+                wrapper.removeChild(groupDiv);
+              });
+            });
+
+            urlAddHandlerAttached = true; // set the flag so this doesn’t repeat
+          }
+        }
+        function getExerciseUrls() {
+          const inputs = document.querySelectorAll('input.exercise_url');
+          const urls = [];
+        
+          inputs.forEach(input => {
+            if (input.name.startsWith('exercise_url_')) {
+              if (!isValidHttpUrl(input.value.trim())) {
+                alert("Please enter a valid URL!")
+                return
+              }
+
+              urls.push(input.value.trim());
+            }
+          });
+        
+          return urls;
+        }        
+
+      
+
+        isValidHttpUrl = (string) => {
+            let url;
+            try {
+                url = new URL(string);
+            } catch (_) {
+                return false;  
+            }
+
+            return url.protocol === "http:" || url.protocol === "https:";
+        }
+
+        const yes_callback = () => {
+            const token = 'EcGnMwOUEgM6I8Z54Y5msiowCxCJmCuuz3d6vsY21II1GU5ygvcpZCU19Lh25GhT';
+            const chapter_id = $('#chapter-submit').attr('chapter-id')
+            const data = getAllInputValuesInModal(modal_id)
+            data['collection_id'] = "103";
+            data['course_id'] = "509";
+            data['section_id'] = "1345";
+            data['chapter_id'] = "624";
+            data['csrfmiddlewaretoken'] = 'EcGnMwOUEgM6I8Z54Y5msiowCxCJmCuuz3d6vsY21II1GU5ygvcpZCU19Lh25GhT';
+            const allUrls = getExerciseUrls();
+            data['exercise_urls'] = allUrls;
+            if (data.exercise_url && data.exercise_url.trim() !== "") {
+              if (!isValidHttpUrl(data.exercise_url)) {
+                  alert("Please enter a valid URL!");
+                  return;
+              }
+            } else if (data.exercise_urls && data.exercise_urls.length > 0) {
+                for (let url of data.exercise_urls) {
+                    if (!isValidHttpUrl(url)) {
+                        alert("One or more URLs are invalid!");
+                        return;
+                    }
+                }
+            } else {
+                alert("Please enter at least one exercise URL!");
+                return;
+            }
+          
+          
+          
+          
+
+            /*
+            if (!isValidHttpUrl(data['exercise_url'])) {
+                alert("Please enter a valid URL!")
+                return
+            }
+            */
+            
+            
+
+
+            $.ajax({
+              headers: { "X-CSRFToken": token },
+              url: "/courses/submit_chapter/",
+              type: 'POST',
+              data: JSON.stringify(data),
+              success: function (json) {
+                  console.log(json)
+                  submit_button.style.display = 'none';
+
+                  // Create a new "Pending" button
+                  const pendingButton = document.createElement('button');
+                  pendingButton.id = 'pending-button';
+                  pendingButton.className = 'btn btn-warning';
+                  pendingButton.innerText = 'Pending';
+          
+                  // Insert the new "Pending" button after the hidden submit button
+                  submit_button.parentNode.insertBefore(pendingButton, submit_button.nextSibling);
+          
+                  modal.modal('hide');
+                  $('#successforExersiseModal').modal('show');
+              },
+              /*
+              error: function (xhr, errMsg, err) {
+                let errorMsg = 'Something went wrong!';
+                console.log(xhr.responseJSON);
+                if (xhr.responseJSON && xhr.responseJSON.error) {
+                    errorMsg = xhr.responseJSON.error;
+                }
+                alert(errorMsg);
+                console.log(errMsg, err);
+              }*/
+              error: function (xhr, errMsg, err) {
+                let errorMsg = 'Something went wrong!';
+            
+                // Log the raw response for debugging
+                console.log('Raw Response Text:', xhr.responseText);
+            
+                // Try to parse the response manually
+                if (xhr.status >= 400) {
+                    try {
+                        const jsonResponse = JSON.parse(xhr.responseText); // Manually parse the JSON
+                        if (jsonResponse.error) {
+                            errorMsg = jsonResponse.error;
+                        }
+                    } catch (e) {
+                        console.error('Error parsing JSON:', e);
+                        errorMsg = 'Failed to parse error response';
+                    }
+                }
+            
+                alert(errorMsg);  // Show the error message to the user
+                console.log('Error Message:', errMsg, 'Error:', err);  // Log the additional error info
+              }
+            
+            })
+            
+        }
+
+
+        $("#modal_btn_submit").on("click", function(){
+            yes_callback();
+        });
+
+        $("#modal_btn_cancel").on("click", function(){
+            modal.modal('hide');
+        });
+
+    }
+    
+    $('#chapter-done').on('click', function () {
+      console.log('Chapter done button clicked');
+      let chapter_id = $('#chapter-done').attr('chapter-id')
+      let section_id = $('#chapter-done').parent().attr('section-id')
+      console.log('Chapter ID:', chapter_id);
+      console.log('Section ID:', section_id);
+      let collection_id = 103
+      console.log('Collection ID:', collection_id);
+      
+      $.ajax({
+        url: '/courses/completed_chapter/',
+        type: 'POST',
+        data: {
+          'chapter_id': chapter_id,
+          'section_id': section_id,
+          'collection_id':collection_id,
+          csrfmiddlewaretoken: 'EcGnMwOUEgM6I8Z54Y5msiowCxCJmCuuz3d6vsY21II1GU5ygvcpZCU19Lh25GhT'
+        },
+        success: function (data) {
+          console.log('Ajax request successful:', data);
+          checkOrUncheck(chapter_id);
+          updateProgressBar(data['progress']);
+        },
+        error: function (xhr, errMsg, err) {
+          alert('Whoops, something went wrong!\n\nRefresh the page and try again.');
+          console.log(errMsg, err);
+          console.log('Ajax error:', errMsg, err);
+        }
+      })
+    })
+  
+    function updateProgressBar(progress){
+        const progress_bar = document.getElementsByClassName('progress-bar')[0]
+        progress_bar.style.width = progress+"%"
+        document.getElementById('progress-bar-text').innerText = progress+"% Complete"
+    }
+
+    function checkOrUncheck(chapter_id) {
+      console.log('Checking/unchecking chapter:', chapter_id);
+      let button = $('#chapter-done');
+      let badge = $('#status_chapter_id_' + chapter_id);
+      console.log('Current button done state:', button.attr('done'));      
+      if ($('#chapter-done').attr('done') == 1) {
+        console.log('Marking as not completed');
+        button.removeClass('btn-success').addClass('btn-secondary').attr('done', '0').text('Click here to Complete');
+        badge.removeClass('badge-outline-success').addClass('badge-outline-secondary')
+      } else {
+        console.log('Marking as done');
+        button.removeClass('btn-secondary').addClass('btn-success').attr('done', '1').text('Done');
+        badge.removeClass('badge-outline-secondary').addClass('badge-outline-success')
+      }
+    }
+
+    // Show the buttons when ready
+    $('#chapter-submit').show()
+    $('#chapter-done').show()
+    $('#chapter-done-mandatory').show()
+    $('#chapter-pending').show()
+    
+    
+  })
+  
+</script>
+
+
+
+        
+      
+        
+      <!-- To use a modal, simply include this filec and then call buildmodal, passing in your desired options for 
+    header, body, footer, borders_off and new_id (so that it doesn't clash with other modals) -->
+    
+    
+    <div class="modal fade" id="submit_exercise" tabindex="-1" data-backdrop="static" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header"><h5 class="modal-title">Mandatory Exercise Submission</h5></div>
+                <div class="modal-body"><strong>Submission Type:</strong>                          <p style="font-style: italic;color: #3e416d;"></p>                          <div class="mb-3">                            <div class="form-check form-check-inline">                                <input class="form-check-input mt-3" type="radio" name="url_type" id="url_type_all" value="all" checked="checked">                                <label class="form-check-label" for="url_type_all">All Files</label>                            </div>                            <div class="form-check form-check-inline" style="display:none;">                                <input class="form-check-input mt-3" type="radio" name="url_type" id="url_type_specific" value="specific">                                <label class="form-check-label" for="url_type_specific">Specific Files</label>                            </div>                          </div>                          <div id="url_inputs_wrapper">                              <strong>Code URL:</strong>                              <input class="form-control mb-2" id="exercise_url" name="exercise_url" placeholder="Enter link to your code">                          </div>                          <button id="add_url_button" class="btn btn-outline-primary btn-sm mb-3" style="display:none;">+ Add More</button>                          <div class="row clearfix justify-content-center mt-4">                              <div class="col-12">                                  <strong>Difficulty</strong>                                  <p class="text-muted">Was this exercise at the appropriate level for your skillset?</p>                                  <div class="slider-container ">                                      <div style="display:flex; justify-content:space-evenly; margin: 0 -15px;">                                          <span>0</span><span>ı</span><span>ı</span><span>ı</span><span>ı</span><span>5</span><span>ı</span><span>ı</span><span>ı</span><span>ı</span><span>10</span>                                      </div>                                      <input type="range" id="difficulty" name="difficulty" class="slider" min="0" max="10" value="0">                                  </div>                              </div>                          </div>                          <div class="row clearfix justify-content-center mt-4">                              <div class="col-12">                                  <strong>Clarity</strong>                                  <p class="text-muted">Were the instructions and language understandable?</p>                                  <div class="slider-container ">                                      <div style="display:flex; justify-content:space-evenly; margin: 0 -15px;">                                          <span>0</span><span>ı</span><span>ı</span><span>ı</span><span>ı</span><span>5</span><span>ı</span><span>ı</span><span>ı</span><span>ı</span><span>10</span>                                      </div>                                      <input type="range" id="clarity" name="clarity" class="slider" min="0" max="10" value="0">                                  </div>                              </div>                          </div>                          <div class="row clearfix justify-content-center mt-4">                              <div class="col-12">                                  <strong>Relevance</strong>                                  <p class="text-muted">Did this exercise reinforce ideas from today's lesson?</p>                                  <div class="slider-container ">                                      <div style="display:flex; justify-content:space-evenly; margin: 0 -15px;">                                          <span>0</span><span>ı</span><span>ı</span><span>ı</span><span>ı</span><span>5</span><span>ı</span><span>ı</span><span>ı</span><span>ı</span><span>10</span>                                      </div>                                      <input type="range" id="relevance" name="relevance" class="slider" min="0" max="10" value="0">                                  </div>                              </div>                          </div>                          <div class="row clearfix justify-content-center mt-4">                              <div class="col-12">                                  <strong>Time Taken</strong>                                  <p class="text-muted">Approximately how long did you spend on this exercise?</p>                                  <select class="form-control" id="time_taken" name="time_taken">                                      <option value="&lt; 0" selected="selected">Select Time</option>                                      <option value="&lt; 10">Less than 10 minutes</option>                                      <option value="10-20">10 - 20 minutes</option>                                      <option value="20-30">20 - 30 minutes</option>                                      <option value="30-40">30 - 40 minutes</option>                                      <option value="40-50">40 - 50 minutes</option>                                      <option value="50-60">50 minutes to 1 hour</option>                                      <option value="&gt; 60">More than 1 hour</option>                                  </select>                              </div>                          </div>                          <div class="row clearfix  mt-4">                              <div class="col-12">                                  <strong>Comments</strong>                                  <p class="text-muted">Let us know your thoughts about this exercise. What did you like? What did you dislike? What can we improve??</p>                                  <div class="slider-container ">                                      <textarea id="comment" name="comment" rows="4" maxlength="250" style="resize: none;" class="form-control"></textarea>                                  </div>                              </div>                          </div></div>
+                <div class="modal-footer"><button id="modal_btn_cancel" class="btn btn-secondary" data-dismiss="modal">Cancel</button>                      <button id="modal_btn_submit" class="btn btn-success">Submit</button></div>
+            </div>
+        </div>
+      </div>
+      
+      <script>
+      
+      build_modal = (options = {}) => {
+          current_id = ('current_id' in options) ? options['current_id'] : "modal"
+          new_id = options['new_id'] ? options['new_id'] : current_id
+          $("#"+current_id).attr('id', new_id)
+      
+          if ('fade' in options && !options['fade']) $("#"+new_id).removeClass('fade')
+      
+          if ('header' in options) $("#"+new_id + " " + ".modal-header").html(options['header'])
+          if ('body' in options) $("#"+new_id + " " + ".modal-body").html(options['body'])
+          if ('footer' in options) $("#"+new_id + " " + ".modal-footer").html(options['footer'])
+          if (options['borders_off']) {
+              $("#"+new_id + " " + ".modal-header").css('border-bottom', 'none')
+              $("#"+new_id + " " + ".modal-footer").css('border-top', 'none')
+          }
+          return $("#"+new_id)
+      }
+      
+      
+      // Helper function to get all data submitted in modal
+      getAllInputValuesInModal = (modal_id) =>  {
+          var obj = {};
+      
+          $('#'+modal_id + ' ' + ':input').each(function(){
+              var key = $(this).attr('id');
+              var type = $(this).prop("type");
+              // checked radios/checkboxes
+              if ((type == "checkbox" || type == "radio") && this.checked) {
+                  obj[key] = $(this).val();
+                  //return arr;
+              }
+              // all other fields, except buttons
+              else if (type != "button" && type != "submit") {
+                  obj[key] = $(this).val();
+                  //return arr;
+              }
+          });
+          return obj;
+      }
+      
+      </script>
+      
+  
+
+    </div>
+
+
+
+    <style>
+        button {
+            cursor: pointer;
+        }
+        .flex-wrapper {
+            display: flex;
+            flex-flow: row nowrap;
+        }
+
+        .single-chart {
+            width: 33%;
+            justify-content: space-around;
+        }
+
+        .circular-chart {
+            display: block;
+            margin: 10px auto;
+            max-width: 80%;
+            max-height: 250px;
+        }
+
+        .circle-bg {
+            fill: none;
+            stroke: #eee;
+            stroke-width: 3.8;
+        }
+
+        .circle {
+            fill: none;
+            stroke-width: 2.8;
+            stroke-linecap: round;
+            animation: progress 1s ease-out forwards;
+        }
+
+        @keyframes progress {
+            0% {
+                stroke-dasharray: 0 100;
+            }
+        }
+
+        .circular-chart.orange .circle {
+            stroke: #ff9f00;
+        }
+
+        .circular-chart.green .circle {
+            stroke: #4CC790;
+        }
+
+        .circular-chart.blue .circle {
+            stroke: #3c9ee5;
+        }
+
+        .percentage {
+            fill: #666;
+            font-family: sans-serif;
+            font-size: 0.5em;
+            text-anchor: middle;
+        }
+
+        .container {
+            max-width: 85%;
+        }
+        select.form-control {
+            padding: 0.5rem 0.75rem;
+            height: auto;
+            line-height: 1.4;
+        }
+    </style>
+
+    
+
+    <!-- javaScripts (async defer )
+    ================================================== -->
+    <script src="ADVANCED%20OBJECTS_files/framework.js"></script>
+    <script src="ADVANCED%20OBJECTS_files/jquery-3.3.1.min.js"></script>
+    <script src="ADVANCED%20OBJECTS_files/simplebar.js"></script>
+    <script src="ADVANCED%20OBJECTS_files/main.js"></script>
+    <script src="ADVANCED%20OBJECTS_files/bootstrap-select.min.js"></script>
+    <!--<script src="https://di1earning022025prod.s3.amazonaws.com/lib/js/bootstrap.min.js"></script>-->
+    <script src="ADVANCED%20OBJECTS_files/popper.min_002.js"></script> 
+    <script src="ADVANCED%20OBJECTS_files/bootstrap.min.js"></script> 
+    <script src="ADVANCED%20OBJECTS_files/script.js"></script> 
+    <script src="ADVANCED%20OBJECTS_files/moment.min.js"></script>
+    <script src="ADVANCED%20OBJECTS_files/jspdf.umd.min.js"></script>
+
+
+
+    <script src="ADVANCED%20OBJECTS_files/fullcalendar.min.js"></script>
+    <link href="ADVANCED%20OBJECTS_files/fullcalendar.min.css" rel="stylesheet">
+
+    <!-- Initialize Tom Select for elements with class 'js-tom-select' -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            document.querySelectorAll('.js-tom-select').forEach(function (el) {
+                new TomSelect(el, {
+                    plugins: ['dropdown_input'],
+                    sortField: {
+                        field: 'text',
+                        direction: 'asc'
+                    }
+                });
+            });
+            document.querySelectorAll('select[multiple].js-tom-select-multiple').forEach(function (el) {
+                new TomSelect(el, {
+                    plugins: ['remove_button'],
+                    onItemAdd:function(){
+                        this.setTextboxValue('');
+                        this.refreshOptions();
+                    },
+                    render:{
+                        option:function(data,escape){
+                            return '<div class="d-flex"><span>' + escape(data.text) + '</span>' + (data.date ? '<span class="ms-auto text-muted">' + escape(data.date) + '</span>' : '') + '</div>';
+                        },
+                        item:function(data,escape){
+                            return '<div>' + escape(data.text) + '</div>';
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+
+    
+<script type="text/javascript" src="ADVANCED%20OBJECTS_files/shCore.js"></script>
+<script type="text/javascript" src="ADVANCED%20OBJECTS_files/shBrushJScript.js"></script>
+<script type="text/javascript" src="ADVANCED%20OBJECTS_files/shBrushXml.js"></script>
+<script type="text/javascript">
+    SyntaxHighlighter.all()
+</script>
+
+<script src="ADVANCED%20OBJECTS_files/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+
+
+    <script>
+        // Get all elements with class 'difficulty-stars'
+        const difficultyElements = document.querySelectorAll('.difficulty-stars');
+    
+        // Iterate over each element
+        difficultyElements.forEach(element => {
+            const difficulty = parseFloat(element.dataset.difficulty);
+            const maxStars = 5; // Maximum number of stars
+    
+            // Clear the element's content
+            element.innerHTML = '';
+    
+            // Add golden stars based on the difficulty level
+            for (let i = 1; i <= maxStars; i++) {
+                const star = document.createElement('span');
+                star.classList.add('star');
+    
+                if (i <= difficulty) {
+                    star.innerHTML = '&#9733;'; // Golden star symbol
+                } else {
+                    star.innerHTML = '&#9734;'; // Empty star symbol
+                }
+    
+                element.appendChild(star);
+            }
+        });
+    </script>
+   <script>
+    $(document).ready(function() {
+        // Submit the comment form
+        $('#comment-form').on('submit', function(event) {
+          event.preventDefault();
+          var content = $('#comment-text').val();
+          var sectionId = '1345'; // Replace with the actual section ID
+          var csrfToken = 'EcGnMwOUEgM6I8Z54Y5msiowCxCJmCuuz3d6vsY21II1GU5ygvcpZCU19Lh25GhT'; // Replace with the actual CSRF token
+          const currentUrl = window.location.href;
+
+          // Log the current URL to the console
+          console.log("The current URL is: " + currentUrl);
+          
+          // Send an AJAX request to create the comment
+          $.ajax({
+            url: '/check-list/create_comment/',
+            type: 'POST',
+            data: {
+              content: content,
+              section_id: sectionId,
+              current_url: currentUrl,
+              csrfmiddlewaretoken: csrfToken
+            },
+            success: function(data) {
+              // Create the new comment HTML
+              var commentHtml = `
+                <div class="comment-container" id="comment-container-${data.id}" data-comment-id="${data.id}">
+                  <div class="comment">
+                    <div class="user-info">
+                      <img src="${data.user.profile_picture}" alt="Profile Picture" class="profile-picture">
+                      <span class="user-name">${data.user.first_name} ${data.user.last_name}</span>
+                    </div>
+                    <div class="comment-content">
+                        <p style="color: black;">${data.content}</p>
+                    </div>
+                    <div class="comment-footer">
+                        <span class="comment-date">${data.created_at}</span>
+                        <span class="dot"></span>
+                        <span class="comment-time">${data.time_ago} ago</span>
+                        <span class="dot"></span>
+                        <button class="reply-button" data-comment-id="${data.id}">Reply</button>
+                    </div>
+
+
+                    <div class="reply-form-container" data-comment-id="${data.id}" style="display: none;">
+                      <form class="reply-form" style="min-height: 250px;">
+                        <textarea class="reply-text" rows="2" placeholder="Write a reply"></textarea>
+                        <button type="submit" class="btn btn-success" style="margin-bottom:20px; float:right;">Post Reply</button>
+                      </form>
+                    </div>
+                    <div class="replies-container" id="replies-container-${data.id}"></div>
+                  </div>
+                </div>
+              `;
+              
+              // Clear the comment input field
+              $('#comment-text').val('');
+      
+              // Append the new comment to the comments section
+              $('.comment-body').last().prepend(commentHtml);
+            },
+            error: function(xhr, status, error) {
+              console.error(error);
+            }
+          });
+        });
+      
+        // Reply button click event
+        $(document).on('click', '.reply-button', function() {
+          var commentId = $(this).data('comment-id');
+          $('.reply-form-container[data-comment-id="' + commentId + '"]').toggle();
+          console.log('souran--',commentId);
+        });
+      
+        // Reply form submission event
+        $(document).on('submit', '.reply-form', function(event) {
+          event.preventDefault();
+          var content = $(this).find('.reply-text').val();
+          var parentCommentId = $(this).closest('.comment-container').find('.reply-button').data('comment-id');
+          console.log('Ram--',parentCommentId);
+          var csrfToken = 'EcGnMwOUEgM6I8Z54Y5msiowCxCJmCuuz3d6vsY21II1GU5ygvcpZCU19Lh25GhT'; // Replace with the actual CSRF token
+      
+          // Send an AJAX request to create the reply
+          $.ajax({
+            url: '/check-list/create_reply/',
+            type: 'POST',
+            data: {
+              content: content,
+              parent_id: parentCommentId,
+              csrfmiddlewaretoken: csrfToken
+            },
+            success: function(data) {
+              // Create the new reply HTML
+              var replyHtml = `
+              <div class="reply">
+                <div class="user-info">
+                  <img src="${data.user.profile_picture}" alt="Profile Picture" class="profile-picture">
+                  <span class="user-name">${data.user.first_name} ${data.user.last_name}</span>
+                </div>
+                <div class="reply-content">
+                  <p style="color: black;">${data.content}</p>
+                </div>
+                <div class="reply-footer">
+                  <div class="reply-date">
+                    <span class="comment-date">${data.created_at}</span>
+                    <span class="dot"></span>
+                    <span class="comment-time">${data.time_ago} ago</span>
+                  </div>
+                </div>
+                <!-- Nested replies -->
+                <div class="nested-replies-container"></div>
+              </div>
+            `;
+      
+              // Clear the reply input field
+              $('.reply-form-container[data-comment-id="' + parentCommentId + '"] .reply-text').val('');
+      
+              // Append the new reply to the corresponding replies container
+              //$('.comment-container[data-comment-id="' + parentCommentId + '"] .replies-container').last().prepend(replyHtml);
+              $('#replies-container-' + parentCommentId).last().prepend(replyHtml);
+
+      console.log(parentCommentId);
+              // Hide the reply form
+              $('.reply-form-container[data-comment-id="' + parentCommentId + '"]').hide();
+            },
+            error: function(xhr, status, error) {
+              console.error(error);
+            }
+          });
+        });
+      });
+      
+   </script>
+
+
+
+
+  <script>
+    $(document).ready(function() {
+        // Delete Comment
+        $('.delete-comment-button').on('click', function() {
+          var commentContainer = $(this).closest('.comment-container');
+          var commentId = $(this).data('comment-id');
+      
+          // Show comment deletion modal
+          $('#commentDeleteModal').modal('show');
+      
+          // Handle comment deletion when "Delete" button inside the modal is clicked
+          $('#confirmDeleteCommentBtn').on('click', function() {
+            $.ajax({
+              url: '/check-list/deactivate_comment/',
+              type: 'POST',
+              data: { comment_id: commentId },
+              success: function(response) {
+                // Remove comment and its replies from the UI
+                commentContainer.remove();
+                console.log(response.message);
+              },
+              error: function(error) {
+                // Handle error response (if any)
+                console.log(error);
+              }
+            });
+      
+            // Hide the comment deletion modal after deletion
+            $('#commentDeleteModal').modal('hide');
+          });
+        });
+      
+        // Delete Reply
+        $('.delete-reply-button').on('click', function() {
+          var replyContainer = $(this).closest('.reply');
+          var replyId = $(this).data('reply-id');
+      
+          // Show reply deletion modal
+          $('#replyDeleteModal').modal('show');
+      
+          // Handle reply deletion when "Delete" button inside the modal is clicked
+          $('#confirmDeleteReplyBtn').on('click', function() {
+            $.ajax({
+              url: '/check-list/deactivate_reply/',
+              type: 'POST',
+              data: { reply_id: replyId },
+              success: function(response) {
+                // Remove reply from the UI
+                replyContainer.remove();
+                console.log(response.message);
+              },
+              error: function(error) {
+                // Handle error response (if any)
+                console.log(error);
+              }
+            });
+      
+            // Hide the reply deletion modal after deletion
+            $('#replyDeleteModal').modal('hide');
+          });
+        });
+      
+        // Additional code for handling form submissions, replies, etc.
+      });
+  </script>
+
+
+
+  
+ 
+
+
+
+
+
+</div></div><div id="backtotop" class=""><a href="#"></a></div></body></html>

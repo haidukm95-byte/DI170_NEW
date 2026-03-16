@@ -1,0 +1,24 @@
+<html>
+    <body>
+        <script>
+        //Exercise 5 : Composing
+
+        //Analyse the code below, and before executing it, predict the outcome of the 
+        // last line.
+
+        const compose = (f, g) => (a) => f(g(a));
+        const add1 = (num) => num + 1;
+        const add5 = (num) => num + 5;
+        console.log(compose(add1, add5)(10))
+        // f is represented as add1, g as add2, 10 as a
+        // f is not stated = 0
+        // g is not stated = 0
+        // a is 10
+        // none arithmetic operation links (add1,add5) and (10) 
+        // predicted output if it adds: 0+1+0+5+10=16
+        // real output: 16
+
+
+        </script>
+    </body>
+</html>

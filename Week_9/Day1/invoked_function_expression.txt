@@ -1,0 +1,24 @@
+What is immediately invoked function expression?
+
+As the name says, this shot is what happens when a function is invoked immediately, even without the instantiation, like below:
+
+IIFE
+
+// Declaration and Invocation
+(function greeting(){
+    console.log('Hiya!')
+})()
+
+NormalFunction
+
+// Invocation
+greeting();
+//display 'Hiya'
+
+function greeting(){
+    console.log('Hiya!')
+}
+
+Did you notice the difference between the two functions?
+
+–>> It was the brackets(parentheses)!

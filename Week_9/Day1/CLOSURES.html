@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+  <body>
+    <script type="text/javascript">
+      function outside(x) {
+        function inside(y) {
+          return x + y;
+        }
+        return inside;
+      }
+      
+    let fnInside = outside(3);
+    console.log(fnInside);
+    console.dir(fnInside);
+    let result = fnInside(5); s
+    console.log(result)
+
+    </script>
+  </body>
+</html>
+>

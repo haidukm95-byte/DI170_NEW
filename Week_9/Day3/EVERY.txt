@@ -1,0 +1,27 @@
+Array every method
+
+The every() method determines whether all elements of the array match the predicate.
+
+As soon as every() finds an array element that doesn’t match the predicate, it immediately returns false and doesn’t iterate over the remaining elements.
+
+
+Example:
+
+//1st example
+const myArr = [1, 2, 3, 4, 5, 6, 7, 8];
+myArr.every((value)=> { return (value > 0); });
+//output : true 
+//because all the elements of the array are positive
+
+//2nd example
+myArr.every(value => value == 5 );
+//output : false 
+//because not all the elements of the array are equal to 5
+
+//3rd example
+myArr.every((value) => { 
+    console.log(value); 
+    return (value != 4); 
+});
+//output 1 2 3 4 false
+//because as soon as an element in the array is equal to 4, the method every() stops iterating 

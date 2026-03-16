@@ -1,0 +1,17 @@
+<html>
+    <body>
+        <script>
+//Exercise 2 : Closure
+//Instructions
+//Analyse the code below, and before executing it, predict the outcome of the last line.
+
+
+        const addTo = x => y => x + y;
+        const addToTen = addTo(10);
+        console.log(addToTen(3));
+        //addTo is defined by x; x is closed by y, which will define addToTenw
+        //Expected ouptut: 13
+
+        </script>
+    </body>
+</html>

@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+  <body>
+    <script type="text/javascript">
+      // Exercise
+      // Analyse this code before executing it. Write explanatory comments. What will be the output ?
+
+      let add2 = (function () {
+        let counter = 0;
+        function calculus() {
+          counter += 1;
+          return counter;
+        }
+        return calculus;
+      })();
+
+      add2();
+      add2();
+      console.log(add2())
+    </script>
+  </body>
+</html>
+

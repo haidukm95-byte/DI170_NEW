@@ -1,0 +1,44 @@
+Array filter : Filtering
+
+The filter() method creates a new array with all elements that passed the test implemented by the provided function.
+
+Rather than deleting elements from the existing array, it builds up a new array with only the elements that pass the test.
+
+What is happening behind the curtain ?
+
+function filter(array, test) { //pass an array as an argument, and the test (ie. the condition)
+    let passed = []; //creates a new array
+    for (let element of array) { 
+        if (test(element)) { 
+            passed.push(element); //push the elements inside the new array if the condition is true
+        } 
+    } 
+    return passed; //return the new array
+}
+
+
+Syntax
+
+let newArr = oldArr.filter(callback);
+
+    newArr — the new array that is returned
+    oldArr — the array to run the filter function on
+    callback — the function used to test each element of the oldArr.
+
+Our callback function can take three arguments:
+
+    element — the current element of the array
+    index — the current index of the value being processed
+    arr — the original array
+
+
+Example:
+
+const words = ['spray', 'limit', 'elite', 'exuberant', 'destruction', 'present'];
+
+const result = words.filter(word => word.length > 6);
+// array passed : words
+// test passed : word.length > 6
+
+console.log(result);
+// expected output: ["exuberant", "destruction", "present"]

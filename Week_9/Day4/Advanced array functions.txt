@@ -1,0 +1,43 @@
+ADVANCED ARRAY FUNCTIONS
+WAYS TO OUTPUT AN ARRAY WITH MULTIPLIED VALUES (OR ANY OTHER OPERATION)
+const array = [1,2,10,16];
+//undefined 
+
+const double=[]
+const newArray=array.forEach(num=>{
+   double.push(num*2)	
+})
+
+const mapArray=array.map((num)=>{
+  return num*2
+})
+mapArray
+//[2,4,20,32]
+
+const arrayPrint=array.map((num)=>{
+  return num
+})
+//undefined
+arrayPrint
+//Array(4) [ 1, 2, 10, 16 ]
+
+const mapArray2=array.map(num=>num*2);
+//undefined
+mapArray2
+//Array(4) [ 2, 4, 20, 32 ]
+
+FILTERING THE NUMBERS OF ARRAY
+const filterArray=array.filter(num=>num>5);
+undefined
+console.log('filter', filterArray)
+fliter 
+Array [ 10, 16 ]
+
+REDUCING ARRAY NUMBERS (comliling all the values into a single value after some arithmetic operation)
+const reduceArray=array.reduce((accumulator, num)=>{
+//accumulator is something where we can store the information than happens in the body of the function
+    return accumulator+num
+}, 0 //0 is accumulator value)
+
+console.log('reduce', reduceArray);
+//reduce 29 (0+2+3+10+16)

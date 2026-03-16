@@ -1,0 +1,54 @@
+Array map : Transforming
+
+The map() method creates a new array by calling a provided function on every element in the calling array.
+
+The map() method transforms an array by applying a function to all of its elements and building a new array from the returned values.
+
+What is happening behind the curtain ?
+
+function map(array, transform) { //pass an array as an argument, and the way of transforming the array
+    let mapped = []; //creates a new array
+    for (let element of array) {
+        mapped.push(transform(element)); //push the transformed element of the initial array into the new array
+    }
+    return mapped;//return the new array
+}
+
+
+Syntax
+
+let newArr = oldArr.map((val, index, arr) => {
+  // return element to new Array
+});
+
+    newArr — the new array that is returned
+    oldArr — the array to run the map function on
+    val — the current value being processed
+    index — the current index of the value being processed
+    arr — the original array
+
+
+Example:
+
+const firstArr = [1, 4, 9, 16];
+
+// pass a function to map
+const secondArr = firstArr.map((value, index) => value * 2);
+// array passed : firstArr
+// transformation passed : value * 2
+
+console.log(secondArr);
+// expected output: [2, 8, 18, 32]
+
+
+const firstArr = [1, 4, 9, 16];
+
+const secondArr = firstArr.map((value, index, arr) => {
+    console.log(value); // each element
+    console.log(index); // each index
+    console.log(arr); // the firstArr (logged 4 times)
+    return value * index;
+});
+
+console.log(secondArr);
+//expected output : [ 0, 4, 18, 48 ]

@@ -1,0 +1,2 @@
+Week 9 Day 6 
+In Exercise 5, the correct answer is option 2. In a child class constructor (like Labrador), you must call super() before you can use the this keyword. super(name) calls the parent class's (Dog) constructor and passes the name parameter to it, which is a required step when extending a class.

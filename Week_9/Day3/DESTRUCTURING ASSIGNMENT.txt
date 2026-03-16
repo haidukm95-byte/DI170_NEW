@@ -1,0 +1,42 @@
+Destructuring assignment
+
+The destructuring assignment syntax is a JavaScript expression that makes it possible to unpack values from arrays, or properties from objects, into distinct variables.
+Destructuring
+
+let a, b, rest;
+[a, b] = [10, 20];
+rest = [30,40,50]
+
+console.log(a);
+// expected output: 10
+
+console.log(b);
+// expected output: 20
+
+console.log(rest);
+// expected output: [30,40,50]
+
+
+Spread Operator
+
+The spread operator consists of three dots (...) followed by an expression.
+The spread operator unpacks elements elements of an array.
+
+let a = 10;
+let b = 20
+let rest = [30,40,50]
+
+const iterable = [a, b, ...rest] 
+console.log(iterable);
+// expected output: [10, 20, 30, 40, 50];
+
+
+Rest Operator
+
+The rest operator consists of three dots (...) followed by an expression.
+The rest operator packs elements into an array.
+
+let [c, d, ...rest] = [10, 20, 30, 40, 50];
+console.log('c: ',c); // c: 10
+console.log('d: ',d); // d: 20
+console.log('rest: ',rest); // [30, 40, 50]

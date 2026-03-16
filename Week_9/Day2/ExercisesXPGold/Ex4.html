@@ -1,0 +1,18 @@
+<html>
+    <body>
+        <script>
+        //Exercise 4 : Currying
+        //Instructions
+
+        //Analyse the code below, and before executing it, predict the outcome of the 
+        // last line.
+
+        const curriedSum = (a) => (b) => a + b
+        const add5 = curriedSum(5)
+        console.log(add5(12))
+        //curriedSum is defined by a; a is closed by b, which will define add5
+        //Expected output: 17
+
+        </script>
+    </body>
+</html>

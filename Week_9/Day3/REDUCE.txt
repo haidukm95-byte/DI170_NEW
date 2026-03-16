@@ -1,0 +1,74 @@
+Array reduce
+
+The reduce() method executes a reducer function (that you provide) on each array element, resulting in a single output value.
+
+It builds a value by repeatedly taking a single element from the array and combining it with the current value
+
+What is happening behind the curtain ?
+
+function reduce(array, combine, start) { //pass the array, pass the way of combining each element of the array with the current value
+    let current = start;
+    for (let element of array) {
+        current = combine(current, element); 
+    }
+    return current; // return the value
+}
+
+
+Syntax
+
+let result = arr.reduce(callback);
+// Optionally, you can specify an initial value
+let result = arr.reduce(callback, initValue);
+
+    result — the single value that is returned.
+    arr — the array to run the reduce function on.
+    callback — the function to execute on each element in the array.
+    initValue — an optionally supplied initial value. If this value is not supplied, the 0th element is used as the initial value.
+
+Our callback function can take four arguments. You will recognize three of the arguments from the map() and filter() methods. The new argument is the accumulator.
+
+    accumulator — the accumulator accumulates all of the callbacks returned values.
+    val — the current value being processed
+    index — the current index of the value being processed
+    arr — the original array
+
+
+Explanation
+
+const arr = [1, 4, 9, 16];
+
+let sum = arr.reduce((acc, val) => {
+  console.log(`acc: ${acc}`)
+  console.log(`val: ${val}`)
+  console.log(`acc + val: ${acc + val}`);
+  return acc + val;
+});
+
+console.log(sum)
+
+// expected output
+acc: 1
+val: 4
+acc + val: 5
+acc: 5
+val: 9
+acc + val: 14
+acc: 14
+val: 16
+acc + val: 30
+
+
+Example:
+
+const array1 = [1, 2, 3, 4];
+const reducer = (accumulator, currentValue) => accumulator + currentValue;
+
+// 1 + 2 + 3 + 4
+let sum = array1.reduce(reducer);
+// expected output: 10
+
+// 5 + 1 + 2 + 3 + 4
+// the number 5 is the starting point
+let sum1 = array1.reduce(reducer, 5);
+// expected output: 15

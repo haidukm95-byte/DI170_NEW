@@ -1,0 +1,27 @@
+Cloning Arrays
+
+In JavaScript, arrays are reference types; therefore, they are assigned by reference instead of copied.
+
+const rainbow = ['red', 'orange', 'yellow'];
+const rainbowClone = rainbow;
+
+// Both rainbow and rainbowClone point to the same
+// array reference in memory, hence it logs (true)
+console.log(rainbow === rainbowClone); // true
+
+rainbow.push("violet");
+console.log(rainbow); //['red', 'orange', 'yellow', 'violet']
+console.log(rainbowClone); // ['red', 'orange', 'yellow', 'violet']
+
+
+const rainbow = ['red', 'orange', 'yellow'];
+
+// Cloning with array destructuring and spread operator
+const [...rainbowClone] = rainbow;
+
+console.log(rainbow === rainbowClone); // false
+console.log(rainbowClone); // ['red', 'orange', 'yellow']
+
+rainbow.push("violet");
+console.log(rainbow); //['red', 'orange', 'yellow', 'violet']
+console.log(rainbowClone); // ['red', 'orange', 'yellow']
