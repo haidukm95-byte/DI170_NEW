@@ -1,0 +1,42 @@
+To solve your issue, you don't need a specific API link for your subscription. Instead, you use your API key with the appropriate OpenWeather API endpoint to access the data you need. Your API key is what authenticates and authorizes your access to the OpenWeather APIs included in your subscription. You can find documentation on how to use your API key with different OpenWeather APIs, such as the Current Weather API, by visiting their official documentation pages.
+
+For example, to make a call to the Current Weather API, you would use a URL structured like this:
+https://api.openweathermap.org/data/2.5/weather?q={city name}&appid={your api key}
+. Replace
+{city name}
+with the name of the city you're interested in, and
+{your api key}
+with your actual API key.
+
+Remember, your API key can take up to two hours to become active after generation. If you're encountering any errors, ensure that your API key is active and that you're using it correctly in your API request.
+
+For more information on how to use your API key and access different APIs, please visit this link.
+
+
+KEY: 9309ed0533ec12b74a863321350a0567
+LINK: https://api.openweathermap.org/data/2.5/weather?q={city name}&appid=9309ed0533ec12b74a863321350a0567
+
+HOW TO MAKE ONE CALL:
+https://openweathermap.org/api/one-call-3
+
+
+
+DATE & TIME DECRYPTING:
+The numbers you're seeing for sunrise and sunset are likely Unix timestamps. These are a way of tracking time as a running total of seconds. This count starts at the Unix Epoch on January 1st, 1970 at UTC. Therefore, to "decrypt" or convert these timestamps into a human-readable date and time format, you would need to use a programming language or an online converter that can translate Unix timestamps into a standard date and time.
+
+For example, in Python, you could use the
+datetime
+module to convert a Unix timestamp into a readable format like so:
+
+import datetime
+timestamp = 1769056650
+date_time = datetime.datetime.fromtimestamp(timestamp)
+print(date_time.strftime('%Y-%m-%d %H:%M:%S'))
+
+Replace
+1769056650
+
+
+Unix time - Wikipedia
+1 January 1970
+Unix time is a date and time representation widely used in computing. It measures time by the number of non-leap seconds that have elapsed since 00:00:00 UTC on 1 January 1970, the Unix epoch.

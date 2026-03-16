@@ -1,0 +1,74 @@
+6. Weather Dashboard (JS/TS or Python)
+
+Features:
+
+    Fetch real-time weather from an API
+    Display results dynamically
+    Save favorite cities
+    Analyze trends or store history
+
+
+Your 5–7 Minute Presentation
+
+
+STEP 1 : Project name & team (1 min)
+
+Say:
+
+    Your project name
+    The names of all team members
+
+Keep it short and friendly.
+
+
+STEP 2 : Explain the idea (1 min)
+
+In one minute, answer:
+
+    What problem does your project solve?
+    Why did you choose this idea?
+
+Keep it simple and direct.
+
+
+STEP 3 : Show the app working (1.5 min)
+
+Do a quick demo:
+
+    Open the project
+    Show the main features
+    Show what the user can do
+
+Focus on the final result, not on the technical details.
+
+
+STEP 4 : Show the code (1.5 min)
+
+Show only the most important parts:
+
+    The main logic
+    API calls
+    Database interactions
+    Interesting functions or components
+
+Explain briefly what the code does.
+
+
+STEP 5 : What you learned? (1–2 min)
+
+Share:
+
+    What was challenging
+    What new skills you learned
+    What you are proud of
+
+This is one of the most important parts for the judges.
+
+
+Final Tips
+
+    Keep it simple and clear
+    Practice once before presenting
+    Decide who speaks each part
+    Make sure the demo is ready and working
+    Stay calm — you worked hard and it shows!
