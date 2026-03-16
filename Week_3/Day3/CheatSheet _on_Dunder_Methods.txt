@@ -1,0 +1,163 @@
+
+CheatSheet on Dunder Methods
+Table of Contents
+
+    Operators methods
+            Binary Operators
+            Assignment Operators
+            Unary Operators
+            Comparison Operators
+            Example #1
+            Example #2
+
+Last Updated: September 22nd, 2023
+
+Operators methods
+
+When you use operators like + or -, there is no magic, python is only executing methods of the object you want to add/substract. Actually, python use __add__ and __sub__ methods.
+Binary Operators
+Operator 	Method
++ 	object.__add__(self, other)
+- 	object.__sub__(self, other)
+* 	object.__mul__(self, other)
+// 	object.__floordiv__(self, other)
+/ 	object.__div__(self, other)
+% 	object.__mod__(self, other)
+** 	object.__pow__(self, other[, modulo])
+<< 	object.__lshift__(self, other)
+>> 	object.__rshift__(self, other)
+& 	object.__and__(self, other)
+^ 	object.__xor__(self, other)
+
+
+Assignment Operators
+Operator 	Method
++= 	object.__iadd__(self, other)
+-= 	object.__isub__(self, other)
+*= 	object.__imul__(self, other)
+/= 	object.__idiv__(self, other)
+//= 	object.__ifloordiv__(self, other)
+%= 	object.__imod__(self, other)
+**= 	object.__ipow__(self, other[, modulo])
+<<= 	object.__ilshift__(self, other)
+>>= 	object.__irshift__(self, other)
+&= 	object.__iand__(self, other)
+^= 	object.__ixor__(self, other)
+
+
+Unary Operators
+Operator 	Method
+- 	object.__neg__(self)
++ 	object.__pos__(self)
+abs() 	object.__abs__(self)
+~ 	object.__invert__(self)
+complex() 	object.__complex__(self)
+int() 	object.__int__(self)
+long() 	object.__long__(self)
+float() 	object.__float__(self)
+oct() 	object.__oct__(self)
+hex() 	object.__hex__(self)
+
+
+Comparison Operators
+Operator 	Method
+< 	object.__lt__(self, other)
+<= 	object.__le__(self, other)
+== 	object.__eq__(self, other)
+!= 	object.__ne__(self, other)
+>= 	object.__ge__(self, other)
+> 	object.__gt__(self, other)
+
+
+Example #1
+
+ class Racecar():
+    def __init__(self, model, reg_no, top_speed=0, nitros=False):
+        self.model = model
+        self.reg_no = reg_no
+        self.top_speed = top_speed
+        self.nitros = nitros
+
+        if self.nitros:
+            self.top_speed += 50
+
+    def __str__(self):
+        return self.model.capitalize()
+
+    def __repr__(self):
+        return f"This is a Racecar with registration: {self.reg_no}"
+
+    def __call__(self):
+        print(f"Vroom Vroom. The {self.model} Engines Started")
+
+    def __gt__(self, other):
+        if self.top_speed > other.top_speed:
+            return True
+        else:
+            return False
+
+    def drive(self, km):
+        print(f"You drove the {self.model} {km} km in {km / self.top_speed} hours.")
+
+    def race(self, other_car):
+        if self > other_car:
+            print(f"I am the winner")
+        else:
+            print(f"The {other_car.model} is the winner")
+
+class PrintList():
+
+    def __init__(self, my_list):
+        self.mylist = my_list
+
+    def __repr__(self):
+        return str(self.mylist)
+
+# printlist = PrintList(["a", "b", "c"])
+# print(printlist.__repr__())
+# printlist
+
+
+Example #2
+
+from random import choice, randint
+class Dog:
+
+    def __init__(self, name, age, weight, breed, gender):
+        self.name = name
+        self.age = age
+        self.weight = weight
+        self.breed = breed
+        self.gender = gender
+
+    def __str__(self):
+        return "I'm a DOG called " + self.name
+
+    def __repr__(self):
+        return f"Dog: name = {self.name}"
+
+    def __len__(self):
+        if breed == "dachshund":
+            return self.weight * 5
+        else:
+            return self.weight * 3
+
+    def __gt__(self, other):
+        return "All dogs are created equal"
+
+    def __ge__(self, other):
+        return self.age >= other.age
+
+    def __add__(self, other):
+        if self.gender == other.gender:
+            return None
+        if self.breed != other.breed:
+            breed = self.breed + "-" + other.breed
+        else:
+            breed = self.breed
+        age = 0
+        weight = (self.weight + other.weight)/20
+        return [Dog(f"Puppy {i+1}", age, weight, breed, choice(["M", "F"])) for i in range(randint(1, 6))]
+
+    def __mul__(self, other):
+        return self.__add__(other)

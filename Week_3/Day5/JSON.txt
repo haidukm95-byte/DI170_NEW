@@ -1,0 +1,160 @@
+JSON databases
+
+JSON stands for “JavaScript Object Notation” .
+
+In two words, it’s a text file that stores a python dictionary.
+
+For example:
+
+{
+    "firstName": "Jane",
+    "lastName": "Doe",
+    "hobbies": ["running", "sky diving", "singing"],
+    "age": 35,
+    "children": [
+        {
+            "firstName": "Alice",
+            "age": 6
+        },
+        {
+            "firstName": "Bob",
+            "age": 8
+        }
+    ]
+}
+
+
+Python & JSON
+
+
+
+
+
+Python supports json natively, you don’t need to install anything to import the json module, just add this line in your code:
+
+import json
+
+
+Now you can easily save and read JSON data.
+
+
+Conversion between Python to JSON
+
+
+
+
+
+Write a Python dictionary into a JSON file
+
+    First, let’s create a python dictionary :
+
+my_family = {
+    "parents":['Beth', 'Jerry'],
+    "children":['Summer', 'Morty']
+}
+
+Only Strings,Numbers, Booleans, Dictionaries, Lists, Tuples or None can be converted to JSON.
+
+Here, my_family is a dictionary with two entries, children and parents, which are both assigned to lists.
+
+
+    We want to save this python dictionary into a json file.
+
+To save it, you first need a destination file (remember that JSON is stored in a text file, most of the time extended by .json).
+
+Let’s take my_file.json as example.
+
+The python function to save an object into a file is :
+
+    json.dump(object_to_save, destination_file)
+
+
+This function accept two arguments, the object to save and the destination file object.
+
+Careful! The destination file should be a file object and not a filename.
+To get a file object, use the open function.
+
+import json
+
+my_family = {
+    "parents":['Beth', 'Jerry'],
+    "children":['Summer', 'Morty']
+}
+
+json_file = "my_file.json"
+
+with open(json_file, 'w') as file_obj:
+    json.dump(my_family, file_obj)
+   #json.dump(obj2save , destination_file)
+
+
+json.dump() transforms my_family to a JSON string which will be saved in the my_file.json file.
+
+Now my_file.json looks like:
+
+{"parents": ["Beth", "Jerry"], "children": ["Summer", "Morty"]}
+
+
+Convert a Python dictionary to JSON string
+
+You can also write the dictionary to a native Python str object, with the json.dumps function.
+
+import json
+
+my_family = {
+    "parents" :['Beth', 'Jerry'],
+    "children" :['Summer', 'Morty']
+}
+
+json_my_family = json.dumps(my_family)
+print(json_my_family)
+# >> {"parents": ["Beth", "Jerry"], "children": ["Summer", "Morty"]}
+
+
+Convert a Python dictionary to JSON string : Pretty Print
+
+You saw in the two notions above (json.dump and json.dumps) that it convert a python dictionary into a JSON string. But the result is not really pretty and hard to understand because it writes the dictionary in one single line. What should we do to make it more readable ?
+
+We can use the parameters indent and sort_keys:
+
+import json
+
+my_family = {
+    "parents" :['Beth', 'Jerry'],
+    "children" :['Summer', 'Morty']
+}
+
+json_file = "index.json"
+
+with open(json_file, 'w') as file_obj:
+    json.dump(my_family, file_obj, indent = 2, sort_keys=True)
+
+
+Now my_file.json looks like this. Each key is indented by 2 and the keys are sorted alphabetically.
+
+{
+  "children": [
+    "Summer",
+    "Morty"
+  ],
+  "parents": [
+    "Beth",
+    "Jerry"
+  ]
+}
+
+
+Retrieve JSON data
+
+Retrieving JSON data is done by the opposite function: json.load(source_file). It only accepts a JSON file in argument:
+
+import json
+
+json_file = 'my_file.json'
+with open(json_file, 'r') as file_obj:
+    my_family = json.load(file_obj)
+
+print(my_family)
+#>> {'children': ['Summer', 'Morty'], 'parents': ['Beth', 'Jerry']} 
+
+

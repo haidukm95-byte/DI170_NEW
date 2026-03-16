@@ -1,0 +1,91 @@
+Welcome back.
+
+What I haven’t told you is that when learning about object oriented programming again and not just in
+
+Python but in any programming language that supports O P paradigm is this idea of four pillars of all
+
+p the four things that object oriented programming does really really well.
+
+And as a matter of fact we’ve actually learned the first one and that is the idea of encapsulation.
+
+What is encapsulation encapsulation is the binding of data and functions that manipulate that data and
+
+we encapsulate into one big object so that we keep everything in this box that users or code or other
+
+machines can interact with in this data and functions are what we call attributes and methods right.
+
+We’re able to encapsulate the functionality over player character by having name and age data or attributes
+
+and also have functions that can act upon this name and age.
+
+So for example I can have a method in here that says shout or speak and this speak method can now use
+
+the name in age.
+
+I can say my name is self dog named and I am self dot age years called so that if I do player one dot
+
+speak and I run this My name is Andre and I am 100 years old I’m encapsulating the functionality if
+
+I didn’t have this class I would have well some variables and then two functions but by using encapsulation
+
+I’ve packaged this up into a blueprint that I can create multiple objects so so that when other people
+
+see my code they know hey this is an entire object that I can interact with I can use in certain ways
+
+that player character describes.
+
+And we’ve also seen this in our built in Python data types right.
+
+When I create a string like this because of the encapsulation I have all this functionality available
+
+to me all these methods that I can access so that if I do let’s say capitalize it will capitalize all
+
+my strings.
+
+I have all this functionality encapsulated for me to use.
+
+Now why do we want to package data and functions into attributes and methods.
+
+Well because this gives us extra power right.
+
+If for example this player character doesn’t have any actions any methods and just had attributes or
+
+in that case this is kind of like a dictionary right.
+
+It’s kind of useless if I print player one here and I click Run I have this player object but I can
+
+access name like this and I can also access h like this but I can’t really do anything to it.
+
+I could have the same dictionary here let’s say Player 2 that is going to equal a dictionary that has
+
+name of Andre and then age of 100 and the only real difference between the two is the way I access this
+
+information instead of the dot notation I use the bracket notation to access the keys
+
+so that when I click Run off to make sure that I do two here for a player to if I click Run Again it’s
+
+the same thing.
+
+Sure I can do it this way but it’s kind of useless why not just create a dictionary if all I want is
+
+data but using this way I’m combining things packaging things up into those instances.
+
+And to those boxes that can be useful and also things that have meaning great because our world is full
+
+of data and actions right.
+
+Even a tree for example if we had a tree class in our real world the tree would have maybe whether it
+
+was an evergreen or a perennial all have whether it has lease or does it how tall it is.
+
+I’ll have all that information but also actions right.
+
+I can cut down a tree.
+
+The tree can grow the tree can extend its roots so this way we’re able to mimic what happens in the
+
+real world with our code.
+
+So that is encapsulation and we’ve seen it.
+
+But let’s talk about our second pillar in the next video.

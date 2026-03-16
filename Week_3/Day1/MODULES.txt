@@ -1,0 +1,143 @@
+Importing an Entire Module
+
+To import an entire module:
+
+    use the import statement,
+    followed by the name of the module (without the extension).
+
+For example, to import the pizza.py file:
+
+import pizza
+
+
+When Python reads this file, import pizza tells Python to open the file pizza.py and copy all the functions from it into this program.
+
+You don’t see code being copied between files because Python copies the code behind the scenes as the program runs.
+
+All you need to know is that any function defined in pizza.py will now be available in making_pizzas.py.
+
+To call a function from an imported module, enter the name of the module you imported, pizza, followed by the name of the function, make_pizza(), separated by a dot.
+
+import pizza
+
+pizza.make_pizza(16, 'pepperoni') 
+pizza.make_pizza(12, 'mushrooms', 'green peppers', 'extra cheese')
+
+
+Importing specific functions
+
+You can also import a specific function from a module. Here’s the general syntax for this approach:
+
+from module_name import function_name
+
+
+You can import as many functions as you want from a module by separating each function’s name with a comma:
+
+from module_name import function_0, function_1, function_2
+
+
+The making_pizzas.py example would look like this if we want to import just the function we’re going to use:
+
+from pizza import make_pizza
+
+make_pizza(16, 'pepperoni') 
+make_pizza(12, 'mushrooms', 'green peppers', 'extra cheese')
+
+
+Using alias
+
+You can give a nickname to each module/function you import. This nickname, a short, unique alias (an alternate name similar to a nickname for the function), is defined as` keyword.
+
+from pizza import make_pizza as mp
+
+
+The general syntax for a function is
+
+from module_name import function_name as alias_name
+
+
+And for a module:
+
+import module_name as alias_name
+
+
+
+
+Exercise
+
+Create a file called operators.py
+
+Create 2 functions : addOperator(x,y) that returns the addition of 2 numbers, and divideOperator(x,y) that returns the division of 2 numbers
+
+Create another file called calculator.py, and import the operators module. Call the 2 functions and display the results
+
+Do this process 3 times :
+
+    once by importing the whole module
+    the second time by importing specific functions
+    the third time by using alias
+
+
+
+Installing an external module
+
+Python has a huge open source community, it means a lot of developers put their source code online.
+
+You can download their modules to be able to use their function.
+
+Python has a built-in modules installer, called pip (sometimes called pip3).
+
+To check your pip installation, enter the following command in a terminal:
+
+    For Linux and Mac OS: pip3 --version
+    For windows: python -m pip --version
+
+Pip has a list of modules that he can download, available on pypi.
+
+To install one of the modules, check its name on pypi and use:
+
+$ pip install module_name
+
+
+Working with a requirements file
+
+A requirements file is used to make it easier for other developers to install the correct versions of the required Python package to run the Python code we’ve written.
+
+Most python programs come with a text file, usually a requirements.txt containing a list of every required module used in your python code and their version.
+It is good practice to generate and share a requirements.txt file when uploading your code to Github
+A requirements.txt file looks like this:
+
+appnope==0.1.0
+backcall==0.1.0
+beautifulsoup4==4.6.3
+bleach==2.1.4
+certifi==2018.8.24
+chardet==3.0.4
+Click==7.0
+cycler==0.10.0
+decorator==4.3.0
+defusedxml==0.5.0
+entrypoints==0.2.3
+Flask==1.0.2
+
+
+You can install every required module from a requirements.txt file with the pip install -r (filename) argument within pip.
+
+pip install -r requirements.txt
+
+
+You can generate a requirements file for your python project with pipreqs, install it with:
+
+$ pip install pipreqs
+
+
+To generate a requirements file, just run this in your project folder:
+
+$ pipreqs .
+
+There is also an alternate way to do this using pip freeze inside your project folder:
+
+$ pip freeze > requirements.txt
+
+
+This command creates the requirements.txt in the same way pipreqs would write the file.

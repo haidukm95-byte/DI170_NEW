@@ -1,0 +1,105 @@
+We know that there’s four pillars of OOP.
+
+And we learned about encapsulation.
+
+What’s the second one.
+
+Well it’s called abstraction and abstraction means hiding of information or abstracting away information
+
+and giving access to only what’s necessary.
+
+So whatever the user or the programmer or the machine is interested in that’s the only thing we give
+
+access to everything else.
+
+We kind of hide it in a blanket underneath the hood because our users don’t have to worry about it.
+
+Let me show you what I mean.
+
+If I go back to our old example here if so instead of having a dictionary we actually have a player
+
+character with a bunch of methods.
+
+Now abstraction can actually be seen here right.
+
+When I do player one dot speak you’re seeing abstraction in action because when I click Run I get this
+
+string but when I call speak I don’t really care how Speek is implemented.
+
+All I know is that player 1 has access to the speak method and I can use it.
+
+Same with when I’m using something like a couple.
+
+Right.
+
+If I have one two three and I do dot here I can do count to count how many items are in the couple.
+
+So if I do print and click Run well I have to give it a thing that we’re looking for in our case let’s
+
+look at one and let’s add another one in here.
+
+If I click Run I get two.
+
+Now do I need to know how the count method was implemented.
+
+No I mean I can go look into it.
+
+I can look at the python documentation maybe the python code and understand how it’s actually counting
+
+this but I don’t really need to write.
+
+If we try to understand every single little piece our heads gonna explode sometimes all we need is a
+
+method or an attribute and just get access to it without having to worry about how it’s being implemented
+
+which is really really nice.
+
+The same goes with built in functions right.
+
+If I do a length here and I click Run I get a length of 4 but I don’t really need to know how length
+
+was implemented in Python.
+
+It’s abstracted away from us and this is the power of O P it abstracts away things that we don’t need
+
+to care about or at least it makes us more efficient so that we know that a works a certain way and
+
+we’re not wasting our time learning or coding from scratch.
+
+If we had our iPhone for example well the camera feature on an iPhone it’ll be nice for an app that
+
+we built to use it but we don’t need to actually know exactly how the iPhone camera is coded on an iPhone.
+
+No.
+
+Instead the iPhone usually gives us a way to say camera dot take
+
+to actually allow us to take a picture without knowing how the Apple engineers actually coded the camera.
+
+So it’s a very powerful concept.
+
+OK.
+
+So you’re thinking I think I get a distraction but let me ask you this.
+
+Could I just do player one dot.
+
+Name equals two let’s say exclamation marks and then player dot run or you know what.
+
+Let’s two speak equals two to make sure it’s player 1 Well if I now print and do Player 1 dot speak
+
+and I try to run this function let’s see I get String object is not callable because speak has been
+
+modified speak has been modified to a string value instead of this actual function that we would have
+
+needed so that if I run just checking the speak attribute I get bu Mm hmm I mean abstraction is good
+
+but hold on a second here this is bad if I have a class that I’ve abstracted away but anybody can come
+
+along.
+
+Any programmer can come along and just remove all my hard work and overwrite it like that.
+
+Isn’t that bad.
+
+Let’s take a break and explore this topic a little bit more in the next video.

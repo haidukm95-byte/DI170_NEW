@@ -1,0 +1,11 @@
+{
+  "children": [
+    "Summer",
+    "Morty"
+  ],
+  "dysfunctional": true,
+  "parents": [
+    "Beth",
+    "Jerry"
+  ]
+}

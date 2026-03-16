@@ -1,0 +1,65 @@
+Installing an external module
+
+Python has a huge open source community, it means a lot of developers put their source code online.
+
+You can download their modules to be able to use their function.
+
+Python has a built-in modules installer, called pip (sometimes called pip3).
+
+To check your pip installation, enter the following command in a terminal:
+
+    For Linux and Mac OS: pip3 --version
+    For windows: python -m pip --version
+
+Pip has a list of modules that he can download, available on pypi.
+
+To install one of the modules, check its name on pypi and use:
+
+$ pip install module_name
+
+
+Working with a requirements file
+
+A requirements file is used to make it easier for other developers to install the correct versions of the required Python package to run the Python code we’ve written.
+
+Most python programs come with a text file, usually a requirements.txt containing a list of every required module used in your python code and their version.
+It is good practice to generate and share a requirements.txt file when uploading your code to Github
+A requirements.txt file looks like this:
+
+appnope==0.1.0
+backcall==0.1.0
+beautifulsoup4==4.6.3
+bleach==2.1.4
+certifi==2018.8.24
+chardet==3.0.4
+Click==7.0
+cycler==0.10.0
+decorator==4.3.0
+defusedxml==0.5.0
+entrypoints==0.2.3
+Flask==1.0.2
+
+
+You can install every required module from a requirements.txt file with the pip install -r (filename) argument within pip.
+
+pip install -r requirements.txt
+
+
+You can generate a requirements file for your python project with pipreqs, install it with:
+
+$ pip install pipreqs
+
+
+To generate a requirements file, just run this in your project folder:
+
+$ pipreqs .
+
+There is also an alternate way to do this using pip freeze inside your project folder:
+
+$ pip freeze > requirements.txt
+
+
+This command creates the requirements.txt in the same way pipreqs would write the file.
+
+Read about Python virtual environment:
+https://www.w3schools.com/python/python_virtualenv.asp

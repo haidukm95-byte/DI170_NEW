@@ -1,0 +1,137 @@
+Python File I/O
+
+Python file operations : opening a file, reading from it, writing into it, closing it.
+
+File is a named location on disk to store related information. It is used to permanently store data in a non-volatile memory (e.g. hard disk).
+
+
+Example:
+
+f = open('secrets.txt')
+secret_data = f.read()
+# secret_data is a string
+f.close()
+
+Opening a file
+
+f = open('secrets.txt')
+# OR 
+f = open("C:/Python33/secrets.txt")  # specifying full path
+
+
+When we open a file we specify whether we want to read 'r', write 'w' or append 'a' to the file.
+
+Syntax
+
+file_object = open(file_name, access_mode)
+
+
+    file_name : the name of a file including its path.
+    access_mode : an optional parameter which decides the purpose of opening a file, e.g. read, write, append
+
+
+Writing a file
+
+By default, the open() function will only allow us to read the file. We need to pass the argument 'w' to write over the file
+
+# Add a second argument to the function, 'w' which stands for write.
+# Passing 'w+' lets us read and write to the file
+
+f = open('secrets.txt','w+')
+
+
+Opening a file with 'w' or 'w+' truncates the original, meaning that anything that was in the original file is deleted!
+
+# Write to the file
+f.write('This is a new line')
+
+
+Appending to a File
+
+Passing the argument 'a' opens the file and puts the pointer at the end, so anything written is appended. Like 'w+', 'a+' lets us read and write to a file. If the file does not exist, one will be created.
+
+f = open('secrets.txt','a+')
+f.write('\nThis is text being appended to test.txt')
+f.write('\nAnd another line here.')
+
+
+Closing a file
+
+When we are done with operations to the file, we need to properly close the file.
+
+Closing a file will free up the resources that were tied with the file and is done using Python close() method.
+
+f = open('secrets.txt')
+f.close()
+
+
+This method is not entirely safe. If an exception occurs when we are performing some operation with the file, the code exits without closing the file.
+
+A safer way is to use a try…finally block.
+
+try:
+   f = open("secrets.txt",encoding = 'utf-8')
+   # perform file operations
+finally:
+   f.close()
+
+
+This way, we are guaranteed that the file is properly closed even if an exception is raised, causing program flow to stop.
+
+The best way to do this is using the with statement. This ensures that the file is closed when the block inside with is exited.
+
+We don’t need to explicitly call the close() method. It is done internally.
+
+with open("secrets.txt",encoding = 'utf-8') as f:
+   # perform file operations
+# Out of the with : the file is closed
+# f.closed is True
+
+
+Example:
+
+f = open('output.txt', 'w')
+for i in range(10):
+    f.write("this is line: %i\n"%i)
+f.close()
+
+# Same as
+with open('output.txt', 'w') as f:
+    for i in range(10):
+       f.write("this is line: %i\n"%i)
+
+
+Iterating through a File
+
+for line in open('secrets.txt'):
+    print(line)
+
+
+Common methods
+
+f.read() 
+f.readline() # Reads one entire line from the file. Reads a file till the newline
+f.readlines() # Reads a file line by line, returns a list of the lines in the file
+
+f.write(str) 
+f.writelines(seq) # Writes a list of lines to the file.
+# Example : 
+# lines=["Hello world.\n", "Welcome to Paris.\n"]
+# f.writelines(lines)
+
+f.seek(offset)   
+f.tell() # for binary files, mostly
+
+f.close()
+
+
+We can change our current file cursor (position) using the seek() method. Similarly, the tell() method returns our current position (in number of bytes).
+
+>>> f.tell()    # get the current file position
+56
+
+>>> f.seek(0)   # bring file cursor to initial position
+0
+
+>>> f.seek(6)  # bring file cursor to the 6th position
+# If the file contains "Hello World", the cursor will start at "W"

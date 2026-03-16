@@ -1,0 +1,9 @@
+The four pillars of Object Oriented Programming:
+1. Polymorphism
+2. Inheritance
+3. Abstraction
+4. Encapsulation
+
+Encapsulation is the binding of data and functions that manipulate the data and 
+# we encapsulate into one big object so that we keep everything in this box that users or code or other
+# machines can interact with in this data and functions are what we call attributes and methods right.
