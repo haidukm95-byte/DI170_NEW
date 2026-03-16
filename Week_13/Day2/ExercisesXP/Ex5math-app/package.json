@@ -1,0 +1,16 @@
+{
+  "name": "ex5math-app",
+  "version": "1.0.0",
+  "description": "exercise 5",
+  "license": "ISC",
+  "author": "marko",
+  "type": "commonjs",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "lodash": "^4.17.23"
+  },
+  "devDependencies": {}
+}

@@ -1,0 +1,12 @@
+{
+  "name": "ex7file-explorer",
+  "version": "1.0.0",
+  "description": "Exercise 7",
+  "license": "ISC",
+  "author": "Marko",
+  "type": "commonjs",
+  "main": "copy-file.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "name": "ex4todoapp",
+  "version": "1.0.0",
+  "description": "to do app",
+  "license": "ISC",
+  "author": "Marko",
+  "type": "module",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}

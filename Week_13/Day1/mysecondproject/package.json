@@ -1,0 +1,16 @@
+{
+  "name": "my-second-project",
+  "version": "1.0.0",
+  "description": "my second exercise",
+  "license": "ISC",
+  "author": "marko",
+  "type": "commonjs",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "moment": "^2.30.1"
+  }
+}

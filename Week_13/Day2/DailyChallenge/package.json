@@ -1,0 +1,12 @@
+{
+  "name": "dailychallenge",
+  "version": "1.0.0",
+  "description": "Week 13 Day2 Daily Challenge",
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "challenge.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
