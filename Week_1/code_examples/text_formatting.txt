@@ -1,0 +1,17 @@
+Formatting Text in HTML
+
+The next step is to format your text in HTML. This is where you can indicate whether you want your text to come out bold, italicized, underlined, subscripted, superscripted, etc. This is a basic guide, so this section won’t be the be-all-end-all for formatting. Instead, we will only include some basic formatting tags. The process for using other forms of formatting is simple – just find the tag you want and go ahead:
+
+Using bold: <b>He is a boy</b> comes out as He is a boy
+
+Using italics: <i>He is a boy</i> comes out as He is a boy
+
+Underlining text: <u>He is a boy</u> comes out as He is a boy.
+
+It’s worth noting that the <u> tag was deprecated in HTML 4.01 and was redefined to represent stylistically different text in HTML5. As a result, it is recommended to use CSS to indicate text that should be underlined. Since this article is a basic guide, we’re keeping it simple.
+
+Using subscript: <sub>He is a boy</sub> comes out as He is a boy
+
+Using superscript: <sup>He is a boy</sup> comes out as He is a boy
+
+For other tags that can be used to format, take a look at Useful Resources at the beginning of the page.

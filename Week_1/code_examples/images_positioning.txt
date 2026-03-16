@@ -1,0 +1,19 @@
+Using Images
+
+Images are added to an HTML document with the <img> tag. The <img> tag is empty, so it doesn’t need to be closed.
+Example
+
+<img src="heisaboy.jpg" alt="He is a boy">
+
+This is a basic example of telling the browser to display an image titled “heisaboy.jpg” pulled from the same directory as the HTML document.
+
+The “alt” attribute tells the browser to show a text (known as an “alternative text”) called “He is a boy” if, for some reason the browser or internet settings prevents the browser from displaying images. If you want to pull an image in another directory or on an external site, the full address/path needs to be specified.
+
+Going beyond the basics, we could also use other attributes to customize the image better. For example, the “style” attribute can be used to specify the width, the height, or both.
+Example
+
+<img src="IMAGE PATH" alt="YOUR ALTERNATIVE TEXT" style="width:Xpx;height:Ypx;">
+
+(the values “Xpx” and “Ypx” should be replaced with the actual values in “px” (e.g. “20px”) you want for your image.)
+
+

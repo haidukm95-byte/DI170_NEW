@@ -1,0 +1,45 @@
+Creating paragraphs
+
+Paragraphs can be created with the <p> tag.
+Example
+
+<p>This is your first paragraph.</p>
+<p>This is your second paragraph, and you will be creating many more paragraphs.</p>
+
+Keep in mind that writing in HTML is very different from writing in pure text. Therefore, if you break up text inside HTML without starting a new paragraph, it won’t matter when the browser displays the text. Instead, you want to use a line break, represented by the <br> tag.
+Example
+
+    <p>This is a new paragraph.
+    And I want to use a number of new lines.
+    So I’m breaking it up.</p>
+
+This will not come out as the following:
+
+This is a new paragraph.
+And I want to use a number of new lines.
+So I’m breaking it up.
+
+
+Instead, it will come out as this:
+
+This is a new paragraph. And I want to use a number of new lines. So I’m breaking it up.
+
+
+So, how do you break texts into new lines so that it would show like this:
+
+This is a new paragraph.
+And I want to use some new lines.
+So I’m breaking it up.
+
+By using line breaks.
+
+<p>This is a new paragraph.<br>And I want to use several new lines.<br>So I’m breaking it up.</p>
+
+If you want to create a horizontal line, you can use the <hr> tag.
+
+<p>This is a new paragraph.<hr>And I want to create a horizontal line</p>
+
+It will display like this:
+
+This is a new paragraph.
+And I want to create a horizontal line

@@ -1,0 +1,17 @@
+Creating Headings in HTML
+
+Headings play a significant role in the success of a website. Firstly, they make it easy for readers to scan the content of your pages. Secondly, and perhaps more importantly, they communicate your web pages’ structure to search engines and, therefore, often impact how your content is ranked in search engine results.
+
+That said, it is essential to avoid using heading tags to make your text big or bold. Other tags can be used to make your text big (which we’ll get to later in this section). Instead, heading tags should be used solely for structure.
+
+There are six heading tags in HTML: <h1> to <h6>, with the <h1> tag indicating the most important heading and the <h6> tag indicating the least important heading.
+
+    HTML Headings Example:
+
+    Headings are used for titles and big texts
+    h1 heading
+    h2 heading
+    h3 heading
+    h4 heading
+    h5 heading
+    h6 heading

@@ -1,0 +1,30 @@
+Quotations in HTML
+
+There are different types of quotations, and other elements represent these quotations.
+
+For a basic quotation, here’s an example:
+
+<p>This is a sample. And <q>Here is our quote</q></p>
+
+This comes out as:
+
+This is a sample. And "Here is our quote"
+
+When you use the <q> tag, quotation marks are automatically added to what is enclosed within the tag.
+
+You can also use blockquotes, which is done with the <blockquote> tag.
+Example
+
+<p>
+    <blockquote>
+        This is a sample. 
+        And Here is our blockquote. In this example, we try to demonstrate how to format text to indicate a blockquote in HTML. 
+        This is different from ordinary quotes, in that the actual "quote" symbol may or may not be added depending on 
+        CSS styling, but the text is highlighted.
+    </blockquote>
+</p>
+
+It will look like this:
+
+    This is a sample. And Here is our blockquote. In this example, we try to demonstrate how to format text to indicate a blockquote in HTML. This is different from ordinary quotes, in that the actual "quote" symbol may or may not be added depending on CSS styling, but the text is highlighted 
+

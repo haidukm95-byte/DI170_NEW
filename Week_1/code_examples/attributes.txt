@@ -1,0 +1,12 @@
+Introduction to Attributes
+
+While HTML documents use tags for everything, we sometimes want to communicate additional information inside an element. In this case, we use an attribute. The attribute is used to define an element’s characteristics and it’s used inside the opening tag of the element. Attributes are made up of a name and a value.
+
+Note that the value of an attribute is placed inside a quotation mark using the format
+
+<tag attribute="value">Your Text</tag>
+
+Example
+
+<p align="center">He is a boy</p>
+In this example, we instruct that “He is a boy” is aligned in the center of the document.

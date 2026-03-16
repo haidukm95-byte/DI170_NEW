@@ -1,0 +1,32 @@
+body{
+    background-color: silver;
+    background-image: url("https://developers.institute/landing/images/LOGO-DI-BLANC.png");
+}
+h1 {
+            border-style: solid;
+            border-width: 5px; 
+            border-color: green;
+            margin-top: 380px;
+            text-align: center;
+            text-shadow: 2px 2px;
+            color: blue;
+            font-style: italic;
+            font-size: 68px;
+        }
+#flag{
+    display: inline-block;
+    width: 115px;
+    height: 72px;
+}
+#div1{
+    text-transform: uppercase;
+    font-weight: bold;
+    background-color: pink;
+    color: white;
+}
+#div2{
+    background-color: lightblue;
+    margin: 20px;
+    padding: 5px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}

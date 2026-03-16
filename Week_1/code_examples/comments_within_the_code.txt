@@ -1,0 +1,29 @@
+Using Comments in HTML
+
+When doing any form of coding, it is vital to learn how to include comments in your code. Comments are used to make your code more organized. You can include a reminder to yourself or a note to others to make things easier.
+
+Initially, it might not seem important, but when you start writing hundreds or thousands of lines of code, and when things seem to start to get complicated, comments will come in handy.
+
+Comments won’t be shown to the viewer by the browser. Remember that they can be seen in the source code.
+
+Comments can also be used anywhere in the code. They won’t change the function of your code in any way.
+
+You can include a comment by opening a bracket, including a double hyphen, adding your comment, including another double hyphen, and then closing your bracket.
+Example
+
+<!-- This is a comment used to indicate information I want to remember or that I want others to take note of when looking at this code in the future -->
+
+It is also worth noting that, especially when debugging, you can comment out lines of code. This way, the code remains in the document but does not function since you have commented it.
+Example
+
+<!-- <b>He is a boy</b> -->
+
+While “He is a boy” is supposed to come out as bold, we have commented it, and the browser would ignore it. In this scenario, as far as the browser is concerned, we have nothing.
+
+This could also be used this way:
+
+<b>He <!-- is a --> boy</b>
+
+which shows He boy.
+
+This is because we commented out “is a”. We’re just trying to show you that practically anything, within or outside an element, can be commented out. You can include a note in your comment for reference – it doesn’t change the nature of what is displayed.

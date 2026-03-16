@@ -1,0 +1,65 @@
+Ordered and Unordered Lists
+
+Sooner or later, you will have to create lists. Lists could be ordered (i.e., numbered) or unordered (i.e., unnumbered).
+
+Here is an example of an ordered list:
+
+    Item 1
+    Item 2
+    Item 3
+
+Here is how to create it:
+
+<ol>
+    <li>Item 1</li>
+    <li>Item 2</li>
+    <li>Item 3</li>
+</ol>
+
+Here is an example of an unordered list:
+
+    Item 1
+    Item 2
+    Item 3
+
+Here is how to create it:
+
+<ul>
+    <li>Item 1</li>
+    <li>Item 2</li>
+    <li>Item 3</li>
+</ul>
+
+If it is not already obvious. Here’s a breakdown:
+
+The <li> tag is used to indicate each item on the list.
+When making a list, you can use the <ol> tag to indicate an ordered list (“o” = ordered and “l” = list) or the <ul> tag to indicate an unordered list (“u” = unordered and “l” = list).
+
+
+Nested lists
+
+We can also have nested lists or a list within a list.
+Example
+
+    Item 1
+        Item 1 nested
+        Item 2 nested
+        Item 3 nested
+    Item 2
+    Item 3
+
+This can be created with:
+
+<ul>
+    <li>Item 1
+        <ul>
+            <li>Item 1 nested</li>
+            <li>Item 2 nested</li>
+            <li>Item 3 nested</li>
+        </ul>
+    </li>
+    <li>Item 2</li>
+    <li>Item 3</li>
+</ul>
+
+As you can see, you open another listing tag – ordered (<ol>) or unordered (<ul>) – depending on what you want before closing the item you want to be nested.

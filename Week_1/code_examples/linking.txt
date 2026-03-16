@@ -1,0 +1,58 @@
+Hyperlinking
+
+The web is one massively interconnected network of pages. If you create a website – whether internally or externally, or both – you will have to link to other pages. A link to an internal page on your website or an external page on the web is called a hyperlink. While people usually link a text, any HTML element – an image, for example – can be linked.
+
+The <a> tag is used to define links in HTML, while the “href” attribute is used to specify a link’s destination.
+The link is then put into a quote after the “equal to” sign before the tag is closed.
+Example
+
+To create a hyperlink,
+
+this:
+
+<a href="https://websitesetup.org">YOUR LINK TEXT HERE</a>
+
+will come out as: YOUR LINK TEXT HERE.
+
+Now, assume you are linking to a local file in which you have all your HTML pages in the same folder. In this case, you don’t have to include a website URL. Just add the file path.
+
+For example, if linking to a file titled about-page.html, your hyperlink becomes
+
+<a href="about-page.html">YOUR LINK TEXT HERE</a>
+
+which links to the about-page.html file.
+
+If the HTML file you want to link to is local but different from the main folder, you specify the file path.
+For example, if the file is in the “files” folder under the main document where your current document is, your hyperlink goes something like this
+
+<a href="files/about-page.html">YOUR LINK TEXT HERE</a>
+
+You might want to specify how you want the link to be opened e.g., in a new window/tab. You will use the target attribute for that.
+Example
+
+To specify that the link should be opened in a new tab.
+
+<a href="about-page.html" target="_blank">YOUR LINK TEXT HERE</a>
+
+To specify that the link should be opened in the same tab.
+
+<a href="about-page.html" target="_self">YOUR LINK TEXT HERE</a>
+
+Other attributes can be used to communicate different ways a link should be opened:
+
+    _blank – Open in a new tab.
+    _self – Open in the same tab.
+    _parent – Open in the parent frame
+    _top – Open in the full body of the window
+    framename – Open in a named frame
+
+You can also have an image point to a link.
+Example
+
+    <a href="https://websitesetup.org">
+        <img src="heisaboy.jpg" alt="He is a boy">
+    </a>
+
+This tells the browser to display an image pulled from the image file “heisaboy.jpg” and have it linked to https://websitesetup.org.
+
+The “alt” attribute represents what should be shown if the image cannot be displayed (due to browser settings or other stuff that prevents images from showing).
