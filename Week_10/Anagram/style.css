@@ -1,0 +1,99 @@
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    text-align: center;
+    background-color: aquamarine;
+}
+
+header > h1 {
+    margin: auto;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    background-color: green;
+    color: darkred;
+    width: 90%;
+    padding: 15px;
+    border-radius: 15px;
+}
+
+#main{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+    width: 92%;
+}
+
+#main > h2 {
+    margin: auto;
+    margin-bottom: 15px;
+    background-color: green;
+    color: darkred;
+    width: 90%;
+    padding: 15px;
+    border-radius: 15px;
+    flex-basis: 100%;
+}
+
+.phrasecontainer{
+    margin: 15px;
+    padding: 15px;
+    background-color: burlywood;
+    border-radius: 15px;
+    width: 30%;
+}
+
+.submitcontainer{
+    margin: 15px;
+    padding: 15px;
+    background-color: burlywood;
+    border-radius: 15px;
+    width: auto;
+}
+
+#phrase1{
+    margin: auto;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    background-color: darkslateblue;
+    color: antiquewhite;
+    width: 90%;
+    padding: 10px 8px;
+    font-size: 24px;
+}
+
+#phrase2{
+    margin: auto;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    background-color: darkslateblue;
+    color: antiquewhite;
+    width: 90%;
+    padding: 10px 8px;
+    font-size: 24px;
+}
+
+#submit{
+    margin: auto;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    width: 90%;
+    padding: 10px 8px;
+    font-size: 24px;
+    background-color: red;
+    color: antiquewhite;
+    font-weight: bold;
+}
+
+footer{
+    font-style: italic;
+    font-size: 12px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}

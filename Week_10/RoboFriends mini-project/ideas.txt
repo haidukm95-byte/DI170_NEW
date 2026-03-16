@@ -1,0 +1,6 @@
+for tic tac toe: using AI`s API
+
+for robopage:
+css flexbox for css
+DOM for dynamic page
+create a form to add a new robot (typing nickname, full name and email)

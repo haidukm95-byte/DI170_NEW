@@ -1,0 +1,50 @@
+body{
+    background-image: url('https://raw.githubusercontent.com/devtlv/studentsGitHub/refs/heads/master/JS/Week%204/Day5/Mini%20Projects/Mini%20Project%201%20(Robots)/circuit-pattern.png');
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+#header{
+    display: flex;
+    flex-wrap: wrap;
+    font-family: 'SEGA LOGO FONT', sans-serif;
+    background-color: #00cc00;
+    padding: 15px;
+    width: 100%
+}
+#header > h1{
+    margin: auto;
+}
+
+#search{
+    display: flex;
+    margin: auto;
+    height: 100%;
+    width: 40%;
+    font-family: 'Acme';
+    font-size: 1em;
+}
+
+#robotContainer{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    margin: 10px;
+}
+
+.robotSmallContainer{
+    display: block;
+    background-color: #008888;
+    margin: 10px;
+    border-radius: 20px;
+    font-family: 'Acme';
+    justify-content: center;
+    text-align: center;
+    
+}   
+
+.name{
+    font-size: 24px;
+    font-weight: bold;
+}
