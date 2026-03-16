@@ -1,0 +1,25 @@
+What is the class?
+A class is a blueprint or template for creating objects. It defines the properties (attributes) and behaviors (methods/functions) that all objects of that specific type will have.
+
+What is an instance?
+An instance is a specific, individual object created from a class, which acts as a blueprint or template. The process of creating an instance is called instantiation.
+
+What is encapsulation?
+Encapsulation in Python is a fundamental concept in Object-Oriented Programming (OOP) that involves bundling data (attributes) and the methods (functions) that operate on that data into a single unit, typically a class.
+
+What is abstraction?
+Abstraction in Python is
+a core principle of Object-Oriented Programming (OOP) that involves hiding unnecessary implementation details and showing only the essential features or functionality to the user. It allows developers to manage complexity by breaking down systems into more manageable components and focusing on what an object does rather than how it does it.
+
+What is inheritance?
+Inheritance is a core concept of object-oriented programming (OOP) in Python that allows a new class to inherit properties (attributes) and behaviors (methods) from an existing class.
+
+What is multiple inheritance?
+Multiple inheritance in Python is
+an object-oriented programming feature that allows a class to inherit attributes and methods from more than one parent class, thereby combining functionality from multiple sources. This enables a subclass to model complex relationships, such as a hybrid car that inherits capabilities from both electric and gasoline vehicle classes.
+
+What is polymorphism?
+Polymorphism in Python is an object-oriented programming concept that allows a single function, method, or operator to behave differently depending on the data type or class of the object it is acting upon. The word itself means "many forms" (from Greek "poly" for many and "morph" for forms).
+
+What is method resolution order or MRO?
+Method Resolution Order (MRO) is the sequence Python follows to search for methods or attributes in a class hierarchy, particularly in scenarios involving multiple inheritance. It ensures a predictable and consistent search path, resolving potential conflicts that arise when multiple parent classes define a method with the same name.
