@@ -1,0 +1,8 @@
+/* This is a single-line comment */
+body {
+    font-size: 28px;
+    color: navy;
+}
+p, a{
+    color: red;
+}

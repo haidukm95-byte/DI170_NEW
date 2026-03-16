@@ -1,0 +1,12 @@
+div {
+    background-color: pink; 
+    margin: 30px;
+    width: 150px;
+}
+
+p {
+    background-color: yellow; 
+    width:100px;
+    border: 2px solid blue;
+    margin: 30px;
+}

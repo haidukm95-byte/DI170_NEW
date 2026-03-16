@@ -1,0 +1,82 @@
+CSS pseudo-classes are keywords added to selectors that allow the styling of a specific state or condition of an element. They are denoted by a single colon (:) followed by the pseudo-class name. 
+Syntax:
+Код
+
+selector:pseudo-class-name {
+  property: value;
+}
+
+Common Uses and Examples:
+
+    Styling Link States:
+        :link: Styles unvisited links.
+        :visited: Styles visited links.
+        :hover: Styles an element when the mouse pointer is over it.
+        :active: Styles an element when it is activated (e.g., clicked). 
+
+Код
+
+    a:link {
+      color: blue;
+    }
+    a:visited {
+      color: purple;
+    }
+    a:hover {
+      color: red;
+      text-decoration: underline;
+    }
+    a:active {
+      color: green;
+    }
+
+    Styling Form Elements:
+        :focus: Styles an element when it receives focus (e.g., a text input field).
+        :checked: Styles checked radio buttons or checkboxes.
+        :disabled: Styles disabled form elements.
+        :valid, :invalid: Styles form fields based on the validity of their input. 
+
+Код
+
+    input:focus {
+      border: 2px solid blue;
+    }
+    input[type="checkbox"]:checked + label {
+      font-weight: bold;
+    }
+    input:disabled {
+      background-color: lightgray;
+    }
+
+    Structural Pseudo-classes:
+        :first-child: Selects an element that is the first child of its parent. 
+
+        :last-child: Selects an element that is the last child of its parent.
+        :nth-child(n): Selects an element that is the nth child of its parent.
+        :empty: Selects elements that have no children (including text nodes). 
+
+Код
+
+    li:first-child {
+      font-weight: bold;
+    }
+    p:last-child {
+      margin-bottom: 0;
+    }
+    div:nth-child(odd) {
+      background-color: #f0f0f0;
+    }
+
+    Other Useful Pseudo-classes:
+        :not(selector): Selects elements that do not match the specified selector.
+        :has(selector): Selects an element if any of the relative selectors passed as an argument match at least one element when anchored against this element (allows selecting parent or previous sibling based on children/siblings). 
+
+Код
+
+    button:not(.primary) {
+      background-color: lightgray;
+    }
+    div:has(p) {
+      border: 1px solid green;
+    }
+

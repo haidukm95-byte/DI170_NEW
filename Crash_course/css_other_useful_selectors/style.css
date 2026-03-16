@@ -1,0 +1,75 @@
+/*Universal selector
+For ALL the elements on the page */
+/*
+* {
+    color: blue;
+}
+*/
+/* Descendant Selector
+The descendant selector matches all elements that are descendants of a specified element.
+The selector below will find all of the p tags inside of a footer tag (read the selectors from right to left). */
+
+footer p {
+    background-color:red;
+}
+
+/* Adjacent Selector
+
+The adjacent selector finds all elements that are directly adjacent to some other specified element. The selector below will find all the h4 tags that are directly adjacent to an h1 tag. */
+
+h1+h4 {
+    background-color:blue;
+}
+/* Direct child selector
+
+This is commonly confused with the descendant selector. The direct child selector matches all elements that are direct children - not just descendants - of a specified element. The selector below will find all lis which are direct children of a ul. */
+ul > li {
+    background-color:blue;
+}
+/* Attribute Selector
+
+The attribute selector finds elements based on the value of some attribute. The selector below will find all a tags whose href attribute is set to “#”. */
+/*
+a[href="#"] {
+    background-color:blue;
+}
+*/
+
+/* Pseudo Class
+
+A CSS pseudo-class is a keyword added to a selector that specifies a special state of the selected element(s).
+
+For example, it can be used to:
+
+    Style an element when a user mouses over it
+    Style visited and unvisited links differently
+    Style an element when it gets focus
+
+Syntax
+CSS - style.css
+
+selector:pseudo-class {
+  property: value;
+}
+FOR MORE INFORMATION PLEASE OPEN css_pseudo_classes.txt !!!
+
+The example is below: */
+a:link{
+    color:blue;
+}
+a:visited{
+    color: green;
+}
+a:hover{
+    text-decoration: underline;
+}
+button {
+    background-color: red;
+}
+
+button:hover {
+  background-color: blue;
+}
+ul{
+    display: inline-block;
+}

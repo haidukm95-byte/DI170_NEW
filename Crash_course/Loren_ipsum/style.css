@@ -1,0 +1,42 @@
+/*Selector{
+	Property: value;
+}*/
+*{
+	text-align: right;
+}
+body{
+	background-image: url("https://images.unsplash.com/photo-1765126110664-34cbf8f1cd46?q=80&w=388&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+	background-size: cover;
+	cursor: crosshair;
+}
+h2 + p:hover{
+	color: #aa4139;
+	border: 5px solid #ffb0aa;
+	text-align: center;
+	padding: 5px;
+}
+p{
+	color: rgb(255,255,80);
+}
+li{
+	list-style: none;
+	display: inline-block;
+}
+.webtext:first-child{
+	border: 5px dashed green;
+}
+.active{
+	color: red;
+}
+#div1{
+	background: rgba(0, 0, 255, 0.2);
+}
+#div2{
+	background: rgba(255, 0, 0, 0.2);
+
+}
+.gnome{
+	text-transform: uppercase;
+	text-decoration: underline;
+	border: 5px solid #ffb0aa;
+}

@@ -1,0 +1,19 @@
+Cascading Style Sheets at the most basic level it indicates that the order of CSS rules matter.
+
+.class
+#id (one id can be used for the only one element!)
+* (all the elements)
+element
+element, element
+element element
+element > element
+element + element
+:hover
+:last-child (if there is a list of the same elements with the sa,e selector for each, it applies the selector only for the last element)
+:first-child (the same as above but for the first element)
+!important (breaks all the CSS rules, not recommended for use)
+
+What selectors win out in the cascade depends on:
+-Specificity (check out CSS Specificity calculator: https://specificity.keegan.st/)
+-Importance
+-Source Order

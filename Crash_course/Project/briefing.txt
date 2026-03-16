@@ -1,0 +1,14 @@
+The structure of main page:
+ - Order take-away orders
+list of branches to take away:
+ - Tel Aviv (4 branches)
+ - Jerusalem (4 branches)
+ - Mevaseret Zion (1 branch)
+ - Beit Shemesh (1 branch)
+ - Modi'in (2 branches)
+an option to home delivery from  the closest branch
+link to a price list, also including delivery
+branches locations
+conctact form:
+ - hotline
+ - feedback form
