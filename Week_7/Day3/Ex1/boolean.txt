@@ -1,0 +1,23 @@
+Boolean
+JavaScript has a Boolean data type. It can only take the values true or 
+false
+
+They are interpreted as a number: 1 or 0
+
+    The Boolean() method: to find out if an expression (or a variable) 
+    is true
+
+let op = Boolean(10 > 9)   // op returns true
+
+let op = Boolean(10 > 9)
+>>>undefined
+console.log(op)
+>>>true
+
+
+Null
+
+The special null value does not belong to any of the types described above.
+
+It forms a separate type of its own which contains only the null value
+

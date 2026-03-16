@@ -1,0 +1,34 @@
+<html>
+    <body>
+  <div id="elem" about="Elephant" class="foo"></div>
+
+  <script>
+    let div = document.getElementById("elem")
+
+    // remove class : remove('name of class')
+    div.classList.remove("foo");
+
+    // add class : add ('name of class')
+    div.classList.add("anotherclass");
+    //<div id="elem" about="Elephant" class="anotherclass"></div>
+
+    // add or remove multiple classes
+    div.classList.add("foo", "bar", "baz");
+    div.classList.remove("foo", "bar", "baz");
+
+    // replace class "foo" with class "bar"
+    div.classList.replace("foo", "bar");
+
+    // check if the attribute class contains foo : return True or False
+    div.classList.contains("foo");
+
+    // if visible is set remove it, otherwise add it
+    div.classList.toggle("visible");
+
+    // add/remove visible, depending on test conditional, i less than 10
+    div.classList.toggle("visible", i < 10 );   
+
+  </script>
+</body>
+
+</html>

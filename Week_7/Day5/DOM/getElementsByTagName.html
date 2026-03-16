@@ -1,0 +1,30 @@
+2. getElementsByTagName
+
+getElementsByTagName: To access elements and attributes using tag name.
+
+This method will return an array of all the items with the same tag name.
+
+    elements is a collection of all the found elements in the order they appear with the given tag name.
+    name is a string representing the name of the elements. The special string “*”represents all elements.
+
+
+Example:
+
+<html>
+<head>
+    <title>DOM!!!</title>
+</head>
+<body>
+  <h1>Welcome</h1>
+  <p>This is the welcome message.</p>
+  <h2>Technology</h2>
+  <p id="second">This is the technology section.</p>
+
+  <script>
+    let paragraphs = document.getElementsByTagName("p");
+    alert("Content in the second paragraph is " + paragraphs[1].innerHTML);
+    document.getElementById("second").innerHTML = "The orginal message is changed.";
+  </script>
+
+</body>
+</html>

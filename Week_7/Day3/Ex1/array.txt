@@ -1,0 +1,118 @@
+Array
+
+JavaScript arrays are used to store multiple values in a single variable. : it’s a list of values.
+
+If you have many variables, for example, a login page with many users, you can write everything into one variable: an array. Arrays can have many different data types within them, but it’s best to keep consistent data types within one array.
+
+    let user1 = "John"
+    let user2 = "Bill"
+    let user3 = "Nancy"
+
+Instead of that, which will get out of hand quickly, you can use an array:
+
+    let users = ["John", "Bill", "Nancy"]
+
+You place square brackets around the list and separate the items with commas.
+
+Arrays are a particular type of object. The typeof() operator in JavaScript returns “object” for arrays.
+
+Syntax
+
+let arrayName = [item1, item2, ...]; 
+
+let colors = ["blue", "yellow", "green"]; 
+console.log(typeof(colors)) // object
+
+
+Accessing elements in an array
+
+An array is an ordered list; therefore, its elements can be referred to by their index, starting with zero.
+
+You use the index number: starting at 0
+
+let colors = ["blue", "yellow", "green", 54]; 
+let favorite = colors[0];
+let secondFavorite = colors[2];
+console.log(favorite) // blue
+console.log(secondFavorite) // green
+
+You can create an array within an array:
+
+    let sampleArray = [
+        [1, 2, 5],
+        [7, 6, 10, 11, 12],
+        [3]
+    ]
+
+This created an array with a length of 3. If you want to get the number 11, you will access it as sampleArray[1][3].
+
+
+Changing an Array Element
+
+let colors = ["blue", "yellow", "green"]; 
+colors[0] = "pink"
+console.log(colors) // ["pink", "yellow", "green"]; 
+
+
+Array properties
+
+    The length property: returns the length of an array (the number of elements inside the array).
+    The length starts counting at 1 (not at 0 like the index (ie.seen above))
+
+let colors = ["blue", "yellow", "green"]; 
+colors.length // 3
+
+
+Array methods
+
+    The push() method: adds a new element to the end of an array
+
+let colors = ["blue", "yellow", "green" ]; 
+colors.push("orange") 
+console.log(colors) // ["blue", "yellow", "green", "orange"];
+
+    The pop() method : removes the last element from an array:
+
+let colors = ["blue", "yellow", "green" ]; 
+colors.pop() 
+console.log(colors) //["blue", "yellow"];
+
+    The splice() method : adds/remove items to an array
+
+The first parameter defines the position where new elements should be added (spliced in).
+The second parameter defines how many elements should be removed.
+The rest of the parameters define the new elements to be added.
+
+The splice() method returns an array containing the deleted elements :
+
+let colors = ["blue", "yellow", "green" ]; 
+let deletedItem = colors.splice(1, 1, 45, 23);
+console.log(deletedItem) //  ['yellow']
+console.log(colors) //  ["blue", 45, 23, "green"]; 
+
+    The slice() method: slices a piece of an array and starts a new array.
+    The slice() method creates a new array. It does not remove any elements from the source array.
+    The method then selects elements from the start argument and up to (but not including) the end argument.
+
+let colors = ["blue", "yellow", "green", "pink" ]; 
+let favorite = colors.slice(2) 
+console.log(favorite) // ["green" , "pink"]; 
+console.log(colors) // ["blue", "yellow", "green", "pink" ];
+
+let secondFavorite = colors.slice(0,1) 
+console.log(secondFavorite) //[ 'blue' ]
+console.log(colors)// ["blue", "yellow", "green", "pink" ];
+
+    the toString()method: converts an array to a string of (comma separated) array values.
+
+let colors = ["blue", "yellow", "green" ]; 
+let colorstring = colors.toString() 
+console.log(colorstring) // blue,yellow,green
+console.log(colors) // ["blue", "yellow", "green" ];
+
+
+More Array Methods
+
+    You can join all the elements of an array with join() method. Whatever’s within the parentheses will be placed between each item.
+    To remove the first element, use shift()
+    unshift({item}) will add a new element to the list’s head. It will become index 0

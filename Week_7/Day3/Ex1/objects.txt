@@ -1,0 +1,94 @@
+
+Javascript Objects
+Table of Contents
+
+        What you will learn
+            Objects
+                1. Accessing Object properties
+                2. Adding/ Changing Object properties
+                3. Deleting Object properties
+
+Last Updated: January 10th, 2025
+
+What you will learn
+
+    Object
+
+
+Objects
+
+The object type is unique.
+
+All other types are called “primitive” because their values can contain only a single thing (be it a string or a number). In contrast, objects are used to store collections of data and more complex entities.
+
+Objects in JavaScript may be defined as an unordered collection of related data, in the form of
+“key: value” pairs. These keys can be variables or functions and are called properties and methods, respectively, in an object’s context.
+
+Example : A lamp has properties –> height,width, brightness and has methods (an action) –> to shine
+
+Syntax
+
+Empty object :
+let objName = {};
+
+let x = {
+  property: value,
+  property: value,    
+  method: function(){}
+  ...
+};
+
+
+let person = {
+  firstName: "John",
+  lastName: "Doe",
+  age: 50,
+  eyeColor: "blue"
+};
+
+
+1. Accessing Object properties
+
+Syntax
+
+objectName.propertyName
+OR
+objectName["propertyName"]
+
+
+let person = {
+  firstName: "John",
+  lastName: "Doe",
+};
+console.log(person.firstName) // John
+console.log(person["firstName"]) // John
+
+
+2. Adding/ Changing Object properties
+
+let person = {
+  firstName: "John",
+  lastName: "Doe",
+};
+person.firstName = "Sarah"
+person.eyeColor= "blue"
+
+console.log(person) 
+// {
+//   firstName: "Sarah",
+//   lastName: "Doe",
+//   eyeColor: "blue"
+// };
+
+
+3. Deleting Object properties
+
+let person = {
+  firstName: "John",
+  lastName: "Doe",
+};
+delete person.firstName
+console.log(person) 
+// {
+//   lastName: "Doe",
+// };

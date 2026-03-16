@@ -1,0 +1,103 @@
+Reminder on Scopes
+Local scope
+
+function sayHello(){
+    var name = "Sarah"
+}
+console.log(name) // undefined
+
+
+Global scope: Accessible everywhere
+
+var name = "Sarah"
+
+function sayHello(){
+    console.log(name); //  "Sarah"
+    name = "Mark";
+    console.log(name); // "Mark"
+}
+
+sayHello()
+
+console.log(name) // "Mark"
+
+
+The problem with the keyword var
+
+NEW with ES6: Block scope (Everything between curly brackets - if/else or for-loop)
+
+The var keyword make the variable inside a block accessible outside the block
+
+var age = 20
+
+if (age > 18) {
+    var canDrive = true 
+    console.log(canDrive); // true
+} 
+console.log(canDrive);  // true
+
+
+Redeclaration
+
+var name = "Sarah"
+var name = "Dan"
+console.log(name);  // "Dan"  
+
+
+The solution with the keyword let
+
+Support Block scope
+
+let age = 20
+
+if (age > 18) {
+    console.log(age) // 20
+    let canDrive = true 
+    console.log(canDrive); // true
+} 
+console.log(canDrive); //ReferenceError: canDrive is not defined
+
+
+The variable can not be redeclared, but is can be reassigned.
+
+let name = "Sarah"
+let name = "Dan" // SyntaxError: Identifier 'name' has already been declared
+
+name = "David"
+console.log(name)
+
+
+The solution with the keyword const
+
+Support Block scope
+
+let age = 20
+
+if (age > 18) {
+    const canDrive = true 
+    console.log(canDrive); // true
+} 
+console.log(canDrive);  // ReferenceError: canDrive is not defined
+
+
+Doesn’t allow redeclaration, and the value of the variable can not be changed.
+
+const name = "Sarah"
+name = "David" // TypeError: Assignment to constant variable.
+
+
+String and Variable Concatenation
+
+1st Way
+
+let name = "Lea"
+let greetings = "Hello "+ name
+console.log(greetings)
+
+
+2nd Way
+
+let name = "Lea"
+let greetings = `Hello ${name}`;
+console.log(greetings)
+

@@ -1,0 +1,25 @@
+1. getElementById, innerHTML
+
+getElementById: To access elements and attributes whose id is set.
+innerHTML: To access the content of an element.
+
+
+Example:
+
+<html>
+<head>
+    <title>DOM!!!</title>
+</head>
+<body>
+  <h1 id="one">Welcome</h1>
+  <p>This is the welcome message.</p>
+  <h2>Technology</h2>
+  <p>This is the technology section.</p>
+
+  <script>
+        let text = document.getElementById("one").innerHTML;
+        alert("The first heading is " + text); //output : "The first heading is Welcome"
+  </script>
+
+</body>
+</html>

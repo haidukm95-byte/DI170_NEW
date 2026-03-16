@@ -1,0 +1,204 @@
+Javascript Loop
+
+To run the same code / repeat an action some number of times.
+It’s the execution of a set of instructions/functions repeatedly while some condition evaluates to true.
+
+
+For Loop
+
+Syntax
+
+    for (statement 1; statement 2; statement 3) {
+      // code block to be executed
+    }
+
+
+Statement 1: marks the start of a for loops
+Statement 2: defines the condition for executing the code block. Must return a boolean value.
+Statement 3: is executed (every time) after the code block has been executed.
+When the condition becomes false, the loop terminates, marking the end of its life cycle.
+
+
+This will log all the numbers from 0 to 1 (2 is not included).
+
+for (let i = 0; i < 2; i++) {
+    console.log("the current number is " + i)
+}
+
+
+This will log all the numbers from 0 to 10 (10 is included).
+
+for (let i = 0; i <= 10; i++) {
+    console.log(i);
+}
+
+
+To iterate through an array:
+
+    let arr = [1, 4, 7, 10]
+    for (let i=0; i<arr.length; i++) {
+        console.log(arr[i]);
+    }
+
+
+For Loop
+
+
+Exercise 1
+
+Create a structured HTML file linked to a JS file
+
+1. Write a JavaScript for loop that will iterate from 0 to 15. For each iteration, it will check if the current number is odd or even, and display a message to the screen.
+
+Sample Output: //"0 is even" //"1 is odd" //"2 is even"
+
+
+
+For/In Loop
+
+Loops through the properties of an object. This loop continues until all of the properties of the Object are processed.
+
+Loops also through the index of an array. This loop continues until all of the elements of the array are processed.
+
+Syntax
+
+for (variable in object)
+  statement`
+
+
+let person = {fname:"John", lname:"Doe", age:25};
+for (let x in person) {
+  console.log(x) //fname lname age
+  console.log(person[x]) // John Doe 25
+}
+
+
+Syntax
+
+for (variable in array)
+  statement`
+
+let colors = ["blue", "yellow", "red"];
+
+for (let i in colors) {
+   console.log(i); //0 1 2
+   console.log(colors[i]) //blue yellow red
+}
+
+
+For/Of Loop
+
+Loops through the values of an iterable objects such as Arrays and Strings.
+
+Careful: an object is not iterable
+
+Syntax
+
+for (variable of object){
+statement
+}
+
+
+let colors = ["blue", "yellow", "red"];
+
+for (let i of colors) {
+   console.log(i); // logs blue, yellow, red
+}
+
+
+//for of doesn't work for object
+let person = {fname:"John", lname:"Doe", age:25};
+for (let x of person) {
+  console.log(x) 
+} // Error: object is not iterable
+
+
+While Loop
+
+Allows code to be executed repeatedly, based on a given Boolean condition.
+
+Syntax
+
+while (boolean condition)
+{
+   loop statements...
+}
+
+
+While Loop
+
+
+    Checks the condition –> If it is evaluated to true, then the loop body statements are executed; otherwise, the first statement following the loop is executed.
+    When the condition becomes false, the loop terminates, which marks the end of its life cycle.
+
+let n = 0;
+while (n < 3) {
+  n++;
+  console.log(n)
+}
+
+for loops and while loops are called Entry Controlled loops because the condition is tested before entering the loop body.
+
+
+Do while Loop
+
+Similar to while loop, but it checks for condition after executing the statements. This is an of Exit Control Loop.
+The test condition is tested or evaluated at the end of the loop body. Therefore, the loop body will execute whether the test condition is true or false at least once.
+
+Syntax
+
+do
+{
+    statements..
+}
+while (condition);
+
+
+Do While Loop
+
+
+let i = 0;
+do {
+  console.log("The number is " + i)
+  i++;
+}
+while (i < 10);
+
+
+Break Statement
+
+The break statement breaks the loop and continues executing the code after the loop
+
+for (let i = 0; i < 10; i++) {
+  if (i === 3) { 
+      break;
+    }
+  console.log("The number is " + i); // 0 1 2
+}
+
+
+Continue Statement
+
+The continue statement breaks one iteration (in the loop), and continues with the next iteration.
+
+for (let i = 0; i < 10; i++) {
+  if (i === 3) { 
+      continue; 
+  }
+  console.log("The number is " + i); // 0 1 2 4 5 6 7 8 9 
+}
+
+
+Exercise 2
+
+let names= ["john", "sarah", 23, "Rudolf",34]
+
+1. Write a JavaScript for loop that will go through the variable names.
+
+    if the item is not a string, pass.
+    if the item is a string, check if its first letter is in uppercase. If not, change it to uppercase and then display the name.
+
+2. Write a JavaScript for loop that will go through the variable names
+
+    if the item is not a string, go out of the loop.
+    if the item is a string, display it.

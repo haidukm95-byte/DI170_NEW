@@ -1,0 +1,108 @@
+console.log('Whassup?!')
+// let is used to declare the variables 
+// var for the same//
+let UserName;
+let test123;
+string = 'Hello World!';
+let x, y;
+x = 5 + 6;
+y = x * 10;
+
+    let a = "Hello";
+    let b = "World";
+    let c = a+b;
+    console.log(c);
+
+let longString = "This is a very long string which needs " +
+                 "to wrap across multiple lines because " +
+                 "otherwise, my code is unreadable.";
+let lengthTxt = longString.length 
+
+
+
+  //  The indexOf() method: returns the index of (the position of) the first occurrence of a specified text in a string:
+// Return -1 if the text is not found
+
+let str = "Hello Everyone, please say hello to the class";
+let posUppercaseHello = str.indexOf("Hello"); // case sensitive
+let posLowercaseHello = str.indexOf("hello");
+console.log(posUppercaseHello) // 0
+console.log(posLowercaseHello) // 27
+
+let secondstr = "hello Everyone, please say hello to the class";
+let secondStrPosHello = secondstr.indexOf("hello"); 
+console.log(secondStrPosHello) // 0
+
+
+
+Number
+
+It can be either whole numbers (4), negative numbers (-3), or decimal numbers (9.3).
+You can do mathematical operations in the console of JS: + - / *
+
+console.log(5+3) 
+// It will display "8"
+
+
+NaN
+
+In JavaScript, NaN stands for “Not-a-Number.” It is a special value that represents a computational error resulting from an operation that does not produce a valid number.
+
+// Invalid number operations
+let result1 = 0 / 0;         // NaN
+let result2 = Math.sqrt(-1); // NaN
+let result3 = "hello" * 5;   // NaN
+
+console.log(result1); // Output: NaN
+console.log(result2); // Output: NaN
+console.log(result3); // Output: NaN
+
+// Parsing errors: Using parseInt or parseFloat on a string that does not contain a numeric value
+let result4 = parseInt("hello"); // NaN
+let result5 = parseFloat("abc"); // NaN
+
+console.log(result4); // Output: NaN
+console.log(result5); // Output: NaN
+
+// Implicit type coercion
+let result6 = undefined + 5; // NaN
+
+console.log(result6); // Output: NaN
+
+
+Properties of NaN
+The type of NaN is number.
+
+console.log(typeof NaN); // Output: "number"
+
+
+Type coercion
+
+Example
+
+"5" * 3 === 15 //true
+"5" - 3 === 2 //true
+"6"/2 === 3 //true
+
+JavaScript performs type coercion when using the operator (-, +, *, /).
+If one of the operands is a string and the other is a number, JavaScript attempts to convert the string to a number before performing the mathematic operation.
+
+
+Number Methods
+
+    The isNaN(x)method: return true or false
+
+let op = "me";
+isNaN(op);   //returns true because op is Not a Number
+
+    The toString() method: returns a number as a string.
+
+let op = 10;
+op.toString();     //returns "10"
+
+    The toFixed() method: returns a string, with the number written with a specified number of decimals:
+
+let op = 10.6789
+op.toFixed(0);           // returns 11
+op.toFixed(2);           // returns 10.68.
+

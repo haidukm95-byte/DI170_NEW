@@ -1,0 +1,136 @@
+What is a function?
+
+A function is a block of code designed to perform a specific task.
+Functions allow the code to be called several times without repetition –> Avoid code duplication.
+
+
+1. Defining/Declaring a function
+
+A function definition consists of the function keyword, followed by:
+
+    The name of the function.
+    Optional : A list of parameters to the function, enclosed in parentheses and separated by commas.
+    The JavaScript statements that define the function, enclosed in curly brackets, {}.
+
+
+Without parameters
+
+Syntax
+
+function fntName(){
+    //statements
+}
+
+
+Example
+
+function drinkCoffee(){
+    console.log("The user drinks coffee in the morning");
+}
+
+
+With parameters
+
+Parameters are used when defining a function. A comma separate every parameter in the parentheses.
+
+Syntax
+
+function myFunc(param1,param2, ..., paramN){
+    //statement
+}
+
+Parameters are only recognized inside the function ! The parameters behave as local variables.
+
+Example
+
+function userInfo (username, userAge) {
+    console.log("My name is " + username + ", my age is " + userAge);
+}
+
+
+2. Calling/Invoking a function
+
+A function executes when it’s called.
+
+    If the function has no parameter, you invoke (ie. call) it with the function name, followed by empty parentheses.
+
+function calculus () {
+    console.log(1+2);
+}
+
+calculus(); //3
+
+
+    If the function has parameters, you invoke it with the function name, followed by the number of arguments corresponding to the number of parameters (inside the parentheses)
+
+Arguments are the values passed to the parameters, when the function is executed.
+
+function userInfo(userName, userAge) {
+    console.log("My name is " + userName + ", my age is "  + userAge);
+}
+
+userInfo("Sarah", 22); //My name is Sarah, my age is 22
+userInfo("Ben", 40); //My name is Ben, my age is 40
+
+
+function calculusSecond (a,b,c) {
+    console.log(a+b+c);
+}
+
+calculusSecond(2,3,1);//6
+
+
+3. Default values
+
+If a parameter is not provided, then its value becomes undefined.
+
+function userInfo(userName, userAge) {
+    console.log("My name is " + userName + ", my age is " + userAge);
+}
+
+userInfo("Sarah");//My name is Sarah, my age is undefined
+
+A default value will get passed if no argument was given during the invocation of the function.
+
+function userInfo(userName, userAge=20) {
+    console.log("My name is " + userName + ", my age is " + userAge);
+}
+
+userInfo("Sarah"); //My name is Sarah, my age is 20
+userInfo("Ben", 40); //My name is Ben, my age is 40
+
+
+4. Local variables
+
+A variable declared inside a function is only visible inside that function.
+
+function userMoreInfo (userName, userAge) {
+    let eyeColor = "blue"; //local variable 
+    console.log("My name is " + userName + ", my age is "  + userAge + ", I have " + eyeColor + " eyes");
+}
+
+userMoreInfo("Sarah", 22); //My name is Sarah, my age is 22, I have blue eyes
+
+// undefined in the global scope
+console.log(eyeColor); //Uncaught ReferenceError: eyeColor is not defined
+
+
+5. Global variables
+
+Global variables are visible from any function.
+
+//global variable 
+let eyeColor = "blue";
+
+function userMoreInfo (userName, userAge) {
+    console.log("My name is " + userName + ", my age is " + userAge + ", I have " + eyeColor + " eyes");
+}
+
+userMoreInfo("Sarah", 22); //My name is Sarah, my age is 22, I have blue eyes
+console.log(eyeColor); // blue
+
+function favoriteColor () {
+    console.log("My favorite color is " + eyeColor);
+}
+
+favoriteColor(); //My favorite color is blue

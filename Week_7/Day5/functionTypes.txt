@@ -1,0 +1,96 @@
+1. Function declaration
+Syntax
+
+function funcName (parameters) {
+  // statement to execute
+}
+funcName(arguments)
+
+2. Function expression
+Functions stored in variables do not need function names. They are always invoked (called) using the variable name.
+
+Syntax
+
+const funcName = function (parameters) {
+  // statement to execute
+}
+funcName(arguments)
+
+3. ES6 Arrow Function expressions
+An arrow function expression is a syntactically compact alternative to a regular function.
+The arrow comes after the list of parameters and is followed by the function’s body.
+We can express it as: these inputs (i.e., the parameters) => produce this result (i.e., the body).
+
+Arrow functions were added in 2015, mainly to make it possible to write small function expressions in a less verbose way.
+
+function myFunc (x, y) {
+  return x + y;
+}
+
+myFunc(2,9);
+
+const myFunc1 = (x, y) => {
+  return x + y;
+}
+
+myFunc1(6,7)
+ 
+
+
+Concise way to write functions in JavaScript.
+
+Syntax
+
+const funcName = () => {
+   // statement to execute
+}
+
+
+const show = (name, age) => {
+    console.log(name, age);
+}
+show("Sarah",20) 
+
+
+Implicit return
+
+Arrow functions allow you to have an implicit return, values are returned without having to use the return keyword.
+
+
+    If you use the block {} syntax, you need to specify the return keyword:
+
+
+const show = (x, y) => {
+    return x + y
+}
+
+
+    If the arrow function only returns a value, you can omit the {} and the return keyword.
+
+const show = (x, y) => x + y
+
+
+Single Parameter, No Parameter
+
+    If an arrow function takes a single parameter, you can omit the parentheses as follows:
+
+const show = (x) => x*2
+show(3) // 6
+
+//same as
+const show = x => x*2
+show(3) // 6
+
+
+    If the arrow function has no parameter, you need to use parentheses, like this:
+
+
+const funcName = () => //statement
+
+
+let username = "john";
+const changeUsername = () => username.toUpperCase(); 
+changeUsername() // "JOHN"
+
+
+
