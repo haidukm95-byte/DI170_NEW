@@ -1,0 +1,18 @@
+<html>
+    <body>
+        <button id="jsstyle">Style</button> 
+        <script>
+            let myBtn=document.getElementById('jsstyle');
+            myBtn.addEventListener('click', changeColor)
+            myBtn.addEventListener('mouseout', changeOut)
+            function changeColor(){
+                myBtn.style.background='blue'
+                myBtn.style.color='white'
+            }
+            function changeOut(){
+                myBtn.style.background='pink'
+                myBtn.style.border='5px solid green'
+            }
+        </script>
+    </body>
+</html>

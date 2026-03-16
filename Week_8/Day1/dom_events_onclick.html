@@ -1,0 +1,40 @@
+DOM Events
+I. Two ways of writing Event handlers
+
+An event handler is a function that runs in case of an event.
+
+
+1. Inline Event Handler : set in HTML with an attribute onevent
+
+    <form>
+        <input type="button" name="test" value="Click me" onclick="inform()">
+    </form>
+
+    <script>
+        function inform(){
+            alert("You clicked me")
+        }
+
+    </script>
+
+
+2. DOM property: set a handler using a DOM property onevent.
+
+    <form>
+        <input id="button" type="button" name="test" value="Click me">
+    </form>
+
+    <script>
+       document.getElementById('button').onclick = function() {
+            alert('Click!');
+        };
+    </script>
+
+Some Event Handler
+Name 	Goal
+onclick() 	invoke JavaScript upon clicking (a link, or form boxes)
+onload() 	invoke JavaScript after the page or an image has finished loading.
+onmouseover() 	invoke JavaScript if the mouse passes by some link
+onmouseout() 	invoke JavaScript if the mouse goes pass some link
+onunload() 	invoke JavaScript right after someone leaves this page. 
+

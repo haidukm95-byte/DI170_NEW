@@ -1,0 +1,28 @@
+<html>
+    <body>
+        <table id="sampleTable" border="1"> 
+        <tr>
+        <td>Row1 cell1</td> 
+        <td>Row1 cell2</td>
+        </tr> 
+        <tr>
+            <td>Row2 cell1</td> 
+            <td>Row2 cell2</td>
+        </tr> 
+        </table>
+<script>
+    function insertRow(){
+        let table=document.getElementById('sampleTable')
+        let tableRow=document.createElement('tr')
+        tableRow.innerHTML=`
+        <td>Row ${count} cell1</td>
+        <td>Row ${count} cell2</td>
+        `
+        table.appendChild(tableRow)
+        count++
+    }
+</script>
+
+<input type="button" onclick="insertRow()" value="Insert row">  
+    </body>
+</html>

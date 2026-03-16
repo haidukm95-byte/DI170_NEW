@@ -1,0 +1,27 @@
+HTML:
++1. adjust page to screen width
++2. create div class='sidebar'
++3. create button "clear"
++4. create color cells (div class='color')
++5. crate a main div id='main'
++6. create a div for drawing cells (div class='cell')
+CSS:
++1. displace a sidebar on the left side, main bar - 
+on the right
++2.   - define each div class=color size (square);
+     +- make angles rounded;
+     +- add margins to every div class='color'
++3.   +- define each div class='cell' size (rectangle twice as high as wide)
+     +- add margins to every div class='cell'
+     +- add bgcolor='white'
++4. desing a button:
+    + - make corners rounded;
+    + - bgcolor='lightgreen';
+    + - text 'Clear' in the middle 
+JS:
++1. multiple a grid cell to 50 by width, on 25 by height
++2. create click event for color selecting
++3. create mousedown event for drawing with selected color
++4. create mouseup event for releasing the drawing process
++5. create click event for 'Clear' button
+
