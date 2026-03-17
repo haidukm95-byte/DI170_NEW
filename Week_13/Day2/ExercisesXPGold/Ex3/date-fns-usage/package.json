@@ -1,0 +1,15 @@
+{
+  "name": "date-fns-usage",
+  "version": "1.0.0",
+  "description": "W13D2ExG3",
+  "license": "ISC",
+  "author": "Marko",
+  "type": "module",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "date-fns": "^4.1.0"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "name": "ex4",
+  "version": "1.0.0",
+  "description": "W13D2ExG4",
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "faker.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "faker": "^5.5.3",
+    "prompt": "^1.3.0"
+  }
+}
