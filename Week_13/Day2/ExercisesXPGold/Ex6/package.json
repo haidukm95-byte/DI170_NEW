@@ -1,0 +1,12 @@
+{
+  "name": "ex6",
+  "version": "1.0.0",
+  "description": "W13D2ExG6",
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "regex2.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
