@@ -1,0 +1,17 @@
+{
+  "name": "ex2_book-api",
+  "version": "1.0.0",
+  "description": "W13D4Ex2",
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "body-parser": "^2.2.2",
+    "express": "^5.2.1"
+  }
+}
