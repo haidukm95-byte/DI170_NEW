@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <title></title>
+  </head>
+  <body>
+    <h2>Get</h2>
+    <form action="http://localhost:3000/login" method="GET" target="_blank">
+      <label for="getUsername">Username:</label>
+      <input type="text" id="getUsername" name="username" />
+      <label for="getPassword">Password:</label>
+      <input type="password" id="getPassword" name="password" />
+      <input type="submit" value="Submit" />
+    </form>
+
+    <h2>Post</h2>
+    <form action="http://localhost:3000/login" method="POST" target="_blank">
+      <label for="postUsername">Username:</label>
+      <input type="text" id="postUsername" name="username" value="" />
+      <label for="postPassword">Password:</label>
+      <input type="password" id="postPassword" name="password" value="" />
+      <input type="submit" value="Submit" />
+    </form>
+
+    <h2>Fetch</h2>
+    username: <input type="text" name="username" id="username" /> password:
+    <input type="password" name="password" id="password" />
+    <button type="button" name="button" onclick="sendData()">Fetch Data</button>
+
+    <div id="root"></div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
