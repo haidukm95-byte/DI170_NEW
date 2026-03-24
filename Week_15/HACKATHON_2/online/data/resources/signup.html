@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign up - To-Do list</title>
+    <link rel="stylesheet" type="text/css" href="signup.css" />
+  </head>
+  <body>
+    <div id="wrapper">
+    <form id="signup-form">
+        <h3>Welcome!</h3>
+        <h4>Create your account to have your history saved</h4>
+        <label for="email">Your email</label><br />
+        <input type="text" id="email" name="email" /><br />
+        <label for="username">Your username</label><br />
+        <input type="text" id="username" name="username" /><br />
+        <label for="password">Your password</label><br />
+        <input type="password" id="password" name="password" /><br />
+        <label for="password">Confirm your password</label><br />
+        <input type="password" id="passwordConfirm" name="password" /><br />
+        <input type="submit" value="Create & log in" id="loginButton">
+        <input type="checkbox" id="show-password" name="show-password" value="Show password"/>
+        <label for="show-password">Show password<br />
+        <p>Already have an account? <a id="login" href="../index.html">Log in</a></p>
+      </form>
+    </div>
+
+    <script type="text/javascript" src="signup.js"></script>
+  </body>
+</html>

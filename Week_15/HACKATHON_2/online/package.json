@@ -1,0 +1,19 @@
+{
+  "name": "hackathon_2",
+  "version": "1.0.0",
+  "description": "Hackathon #2 project",
+  "license": "ISC",
+  "author": "Marko Haiduk",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "test": "npm start",
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "pg": "^8.12.0"
+  }
+}

@@ -1,0 +1,36 @@
+* {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-image: url("acc-settings-theme.jpg");
+  background-size: cover;
+  width: fit-content;
+  margin: 0 auto;
+  text-align: center;
+}
+
+#wrapper {
+  background-color: rgb(213, 223, 231);
+  border: 5px solid rgb(213, 223, 231);
+  border-radius: 20px;
+  width: 80vh;
+  margin-top: 15px;
+}
+
+label,
+input {
+  margin: 10px;
+  height: 4vh;
+  font-size: 1em;
+}
+
+a {
+  display: inline-block;
+  font-weight: bold;
+  background-color: darkturquoise;
+  border: 0px solid;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 5px;
+}

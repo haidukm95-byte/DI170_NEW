@@ -1,0 +1,37 @@
+* {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-image: url("signup-theme.png");
+  background-size: cover;
+  width: fit-content;
+  margin: 0 auto;
+  text-align: center;
+}
+
+#wrapper {
+  background-color: rgb(213, 223, 231);
+  border: 5px solid rgb(213, 223, 231);
+  border-radius: 20px;
+  width: 80vh;
+  margin-top: 50px;
+}
+
+#signup-form > h2,
+h3,
+label,
+input {
+  margin: 10px;
+}
+
+#signup-form > label,
+input {
+  font-size: 1em;
+}
+
+#loginButton {
+  width: 30%;
+  height: 30%;
+  font-weight: bold;
+}

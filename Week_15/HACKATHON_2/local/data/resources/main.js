@@ -48,6 +48,62 @@ function renderTask(task) {
   li.appendChild(taskName);
   li.appendChild(taskDT);
 
+  const editBtn = document.createElement("button");
+  editBtn.textContent = "Edit";
+  editBtn.type = "button";
+  editBtn.addEventListener("click", () => {
+    const editInput = document.createElement("input");
+    editInput.type = "text";
+    editInput.value = taskName.textContent;
+
+    const editDT = document.createElement("input");
+    editDT.type = "datetime-local";
+    editDT.value = task.datetime ? task.datetime.slice(0, 16) : "";
+
+    const saveBtn = document.createElement("button");
+    saveBtn.textContent = "Save";
+    saveBtn.type = "button";
+
+    const cancelBtn = document.createElement("button");
+    cancelBtn.textContent = "Cancel";
+    cancelBtn.type = "button";
+
+    taskName.replaceWith(editInput);
+    taskDT.replaceWith(editDT);
+    editBtn.replaceWith(saveBtn);
+    saveBtn.after(cancelBtn);
+
+    cancelBtn.addEventListener("click", () => {
+      editInput.replaceWith(taskName);
+      editDT.replaceWith(taskDT);
+      saveBtn.replaceWith(editBtn);
+      cancelBtn.remove();
+    });
+
+    saveBtn.addEventListener("click", async () => {
+      const newTask = editInput.value.trim();
+      const newDT = editDT.value || null;
+      if (!newTask) return;
+      await fetch(`api/tasks/${task.taskuid}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ task: newTask, datetime: newDT }),
+      });
+      task.task = newTask;
+      task.datetime = newDT;
+      taskName.textContent = newTask;
+      taskDT.textContent = formatDatetime(newDT);
+      li.dataset.datetime = newDT || "";
+      editInput.replaceWith(taskName);
+      editDT.replaceWith(taskDT);
+      saveBtn.replaceWith(editBtn);
+      cancelBtn.remove();
+      sortActiveTasks();
+    });
+  });
+
+  li.appendChild(editBtn);
+
   const liDone = document.createElement("input");
   liDone.type = "checkbox";
   liDone.checked = task.isdone;
