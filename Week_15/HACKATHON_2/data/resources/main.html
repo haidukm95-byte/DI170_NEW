@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="main.css" />
+    <title>Tasks list - To-Do list</title>
+  </head>
+  <body>
+    <div id="accInfo">
+      <h2>You have logged in as <b></b></h2>
+      <a href="acc-settings.html" id="acc-settings">Account settings</a>
+    </div>
+    <div id="main">
+      <form id="tasks">
+        <input
+          type="text"
+          for="new-task"
+          class="new-task"
+          name="new-task"
+          placeholder="Your new task..."
+        />
+        <input
+          type="datetime-local"
+          for="new-task"
+          class="new-task-dt"
+          name="new-task-dt"
+        />
+        <input type="submit" value="Add task" id="addtask-button" />
+      </form>
+      <div id="active-tasks">
+        <h3 id="activetasksmenu">Active</h3>
+      </div>
+      <div id="done-tasks">
+        <h3 id="donetasksmenu">Done</h3>
+      </div>
+      <footer>
+        <a id="saveandlogout" href="../index.html">Save & logout</a>
+      </footer>
+    </div>
+    <script type="text/javascript" src="main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,93 @@
+body {
+  background-image: url("main-theme.jpg");
+  background-size: cover;
+  width: fit-content;
+  margin: 0 auto;
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+}
+
+#accInfo {
+  background-color: rgb(162, 198, 235);
+  border: 5px solid rgb(162, 198, 235);
+  border-radius: 20px;
+  width: 80vh;
+  margin-top: 15px;
+}
+
+h2 > b {
+  background-color: chartreuse;
+  border-radius: 20px;
+  padding: 5px;
+}
+
+#acc-settings,
+#saveandlogout {
+  display: inline-block;
+  font-weight: bold;
+  background-color: darkturquoise;
+  border: 0px solid;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 5px;
+}
+
+#main {
+  background-color: rgb(162, 198, 235);
+  border: 5px solid rgb(162, 198, 235);
+  border-radius: 20px;
+  width: 80vh;
+  margin-top: 15px;
+  height: fit-content;
+}
+
+#active-tasks {
+  background-color: yellow;
+  border: 0px solid;
+  border-radius: 10px;
+  padding: 5px;
+  margin: 10px;
+}
+
+#done-tasks {
+  background-color: rgb(19, 240, 19);
+  border: 0px solid;
+  border-radius: 10px;
+  padding: 5px;
+  margin: 10px;
+}
+
+#active-tasks li {
+  background-color: rgba(255, 136, 0, 0.5);
+  border: 0px solid;
+  border-radius: 5px;
+  margin: 3px;
+}
+
+#done-tasks li {
+  background-color: rgba(15, 43, 29, 0.342);
+  border: 0px solid;
+  border-radius: 5px;
+  margin: 3px;
+}
+.new-task {
+  height: 4vh;
+  width: 70vh;
+  margin-top: 7px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 1em;
+}
+
+.new-task-dt {
+  height: 4vh;
+
+  margin-top: 7px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 1em;
+}
+
+#addtask-button {
+  height: 5vh;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 1em;
+}

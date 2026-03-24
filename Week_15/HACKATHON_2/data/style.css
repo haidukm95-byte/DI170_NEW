@@ -1,0 +1,39 @@
+* {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+body {
+  background-image: url("login-theme.jpg");
+  width: fit-content;
+  margin: 0 auto;
+  text-align: center;
+}
+header {
+  background-color: rgb(213, 223, 231);
+  border: 5px solid rgb(213, 223, 231);
+  border-radius: 20px;
+  width: 80vh;
+  margin-top: 15px;
+}
+#wrapper {
+  background-color: rgb(213, 223, 231);
+  border: 5px solid rgb(213, 223, 231);
+  border-radius: 20px;
+  width: 80vh;
+  margin-top: 50px;
+}
+#login-form > h3,
+h4 {
+  margin: 15px;
+}
+
+#login-form > label,
+input {
+  font-size: 1em;
+  margin: 10px;
+}
+
+#loginButton {
+  width: 70px;
+  height: 30px;
+  font-weight: bold;
+}
