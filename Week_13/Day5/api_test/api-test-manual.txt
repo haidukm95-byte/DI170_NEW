@@ -1,0 +1,49 @@
+Testing APIs
+
+APIs, short for Application Programming Interface, are sets of functions that allow communication with or utilization of other services.
+
+There are many ways to test an API. In Node.js, a useful testing tool is Mocha, a library for testing.
+
+To install Mocha globally, use the following command.
+
+npm i --global mocha
+
+
+Usage
+
+There are multiple ways to test APIs. A common test for APIs is the POST request test, which tests communication from a program with the API server. SuperTest, might be a useful way to implement this library as it simplifies HTTP POST requests for testing purposes.
+
+To create a development dependency on SuperTest, run the following script.
+
+npm install supertest --save-dev
+
+Next, the test program needs to be written. The test should be stored in a directory called “test” that is inside the root folder. For this example, we will assume that our API handles Edpresso Shots.
+
+const request = require('supertest');
+// app is supposed to point to the app.js file
+const app = require('/app');
+
+describe('Testing POSTS/shots endpoint', function () {
+    it('respond with valid HTTP status code and description and message', function (done) {
+      // Make POST Request
+      const response = await supertest(app).post('/shots').send({
+        title: 'How to write a shot',
+        body: "Access the Edpresso tutorial"
+      });
+
+      // Compare response with expectations
+      expect(response.status).toBe(200);
+      expect(response.body.status).toBe('success');
+      expect(response.body.message).toBe('Shot Saved Successfully.');
+    });
+});
+
+Here, describe() and it() describe what is being tested and what is expected from the test as a response. In their second argument, a lambda function is defined. In general, it() functions are inside describe() functions, but the actual tests are taking place in the it() function.
+
+The POST request is made by the SuperTest library on line 8. The responses are compared to expected responses between lines 14 and 16. These responses may be different for other APIs and largely depend on how the API is designed to respond.
+
+Now, the test needs to be run.
+
+npm test
+
+This script is used to run the test. The test results will appear on the console.

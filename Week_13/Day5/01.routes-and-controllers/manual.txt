@@ -1,0 +1,120 @@
+Express Router
+
+As you’ve seen in the previous article, creating a CRUD API with Express is easy. However, you might have noticed that having all that code in the same file can become bulky and make the code hard to manage. By convention, Express developers split the code into different files and folders to optimize code organization.
+
+A common approach is to split the route definitions and their implementation codes. To achieve this, we can use an Express package called Router.
+
+
+Routers help create a list of all your app’s routes and associate them with controller files containing the implementation code.
+
+Let’s start with an example from the previous article. Here’s a way to split the route and its implementation code:
+
+
+routes/products.js
+
+const express = require('express')
+const router = express.Router()
+
+const { 
+    getProducts,
+    getProduct,
+    createProduct,
+    updateProduct,
+    deleteProduct 
+} = require('../controllers/products.js')
+
+router.get('/', getProducts)
+router.get('/:productID', getProduct)
+router.post('/', createProduct) 
+router.put('/:productID', updateProduct) 
+router.delete('/:productID', deleteProduct)
+
+module.exports = router
+
+
+In this example:
+
+    Create an instance of the Router object.
+    Import all the controller functions.
+    Use the router object to create a route and controller association.
+
+Now let’s look at an example of the controller functions:
+
+
+controllers/products.js
+
+const products = require('../data.js')
+
+const getProducts = (req, res) => {
+    res.json(products)
+}
+
+const getProduct = (req, res) => {
+    const id = Number(req.params.productID)
+    const product = products.find(product => product.id === id)
+
+    if (!product) {
+        return res.status(404).send('Product not found')
+    }
+    res.json(product)
+}
+
+const createProduct = (req, res) => {
+    const newProduct = {
+        id: products.length + 1,
+        name: req.body.name,
+        price: req.body.price
+    }
+    products.push(newProduct)
+    res.status(201).json(newProduct)
+}
+
+const updateProduct = (req, res) => {
+    const id = Number(req.params.productID)
+    const index = products.findIndex(product => product.id === id)
+    const updatedProduct = {
+        id: products[index].id,
+        name: req.body.name,
+        price: req.body.price
+    }
+
+    products[index] = updatedProduct
+    res.status(200).json('Product updated')
+}
+
+const deleteProduct = (req, res) => {
+    const id = Number(req.params.productID)
+    const index = products.findIndex(product => product.id === id)
+    products.splice(index, 1)
+    res.status(200).json('Product deleted')
+}
+
+module.exports = {
+    getProducts,
+    getProduct,
+    createProduct,
+    updateProduct,
+    deleteProduct
+}
+
+
+This structure maintains the same implementation, but the code is now organized into separate functions with req and res parameters.
+
+
+Once the route and controller files are created, we need to tell Express to use those routes. In the main file, add an app.use() with a reference to our routes:
+
+const express = require('express')
+const app = express()
+const products_routes = require('./routes/products.js')
+
+app.listen(5000, () => {
+    console.log('server is listening on port 5000')
+})
+
+app.use(express.json())
+app.use('/api/products', products_routes)
+
+
+Note that the app.use() has a routes prefix of /api/products, which means all URL paths in the routes file will automatically include that prefix.
+
+This approach enhances code organization and makes your application more maintainable as it grows.
