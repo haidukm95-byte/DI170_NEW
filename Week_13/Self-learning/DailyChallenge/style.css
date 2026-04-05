@@ -1,0 +1,55 @@
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+  background-image: url("https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimages.wallpapersden.com%2Fimage%2Fdownload%2Fstarry-sky-hd-dark-blue-night_bmZpaG2UmZqaraWkpJRnbmZnrWZraGc.jpg&f=1&nofb=1&ipt=3c400d0c2540e6daf707bd947c0c8cfcb65acabc1070cb2f1702b03e1fb6f803");
+  background-size: auto;
+}
+
+.quiz-body {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.2em;
+  font-weight: bold;
+  background-color: aquamarine;
+  border: 3px solid darkgray;
+  border-radius: 30px;
+  padding: 10px;
+  width: 50%;
+  height: 30vh;
+}
+
+#score {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.2em;
+  font-weight: bold;
+  background-color: chocolate;
+  border: 3px solid darkgray;
+  border-radius: 30px;
+  padding: 10px;
+  width: 50%;
+  height: 30vh;
+}
+
+.quiz-body > * {
+  margin: 10px;
+}
+
+.answer {
+  width: 50%;
+  height: 1.2em;
+  font-size: 1em;
+}
+
+.next-q {
+  width: 25%;
+  height: 25%;
+  font-size: 0.7em;
+}

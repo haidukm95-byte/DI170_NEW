@@ -1,0 +1,1 @@
+In this folder, the example how to link a HTML file with Node.js server logic is demonstrated
