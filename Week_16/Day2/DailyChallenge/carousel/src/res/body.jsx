@@ -25,6 +25,11 @@ function Body() {
         setIndex((prev) => (prev - 1 + keys.length) % keys.length);
     };
 
+    const goToThumb = (i) => {
+        setDirection(i > index ? "slide-right" : "slide-left");
+        setIndex(i);
+    };
+
     useEffect(() => {
         const handleKey = (e) => {
             if (e.key === "ArrowRight") goNext();
@@ -42,6 +47,15 @@ function Body() {
                     <img src={values[index]} alt={keys[index]} />
                     <p className="city-name">{keys[index]}</p>
                 </div>
+            </div>
+            <div className="thumbs">
+                <ul className="thumbs-list">
+                    {values.map((src, i) => (
+                        <li key={i} className="thumbs-list-thumb">
+                            <img src={src} alt={keys[i]} onClick={() => goToThumb(i)} />
+                        </li>
+                    ))}
+                </ul>
             </div>
         </div>
     );
