@@ -1,0 +1,41 @@
+.carousel-slider {
+    overflow: hidden;
+    position: relative;
+    width: 480px;
+    margin: 0 auto;
+}
+
+@keyframes slide-from-right {
+    from { transform: translateX(100%); opacity: 0; }
+    to   { transform: translateX(0);    opacity: 1; }
+}
+
+@keyframes slide-from-left {
+    from { transform: translateX(-100%); opacity: 0; }
+    to   { transform: translateX(0);     opacity: 1; }
+}
+
+.city {
+    animation-duration: 0.4s;
+    animation-timing-function: ease;
+    animation-fill-mode: both;
+}
+
+.city.slide-right {
+    animation-name: slide-from-right;
+}
+
+.city.slide-left {
+    animation-name: slide-from-left;
+}
+
+.city img {
+    width: 100%;
+    display: block;
+}
+
+.city-name {
+    text-align: center;
+    font-size: 1.2rem;
+    margin: 8px 0 0;
+}
