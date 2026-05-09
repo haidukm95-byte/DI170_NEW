@@ -1,0 +1,34 @@
+.input_div * {
+  margin: 5px;
+}
+
+.date_div {
+  border: 1px solid black;
+  border-radius: 7px;
+  padding: 5px;
+  width: 85%;
+  margin: auto;
+  background-color: lightgrey;
+  margin-top: 5px;
+}
+
+.date_div h3 {
+  color: black;
+}
+
+.task_div {
+  color: black;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.task_div span {
+  flex: 1;
+}
+
+.task-done,
+.task-delete {
+  border: none;
+  background: none;
+}
