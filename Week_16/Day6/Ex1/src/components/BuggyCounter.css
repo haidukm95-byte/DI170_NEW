@@ -1,0 +1,5 @@
+.counter-container p {
+  font-size: 2rem;
+  margin: 1rem;
+  cursor: pointer;
+}
