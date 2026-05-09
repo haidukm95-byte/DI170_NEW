@@ -10,7 +10,9 @@ export const tasksReducer = (state = tasksInitialState, action) => {
       return {
         ...state,
         tasks: state.tasks.map((task) =>
-          task.id === action.payload ? { ...task, isCompleted: true } : task,
+          task.id === action.payload
+            ? { ...task, isCompleted: !task.isCompleted }
+            : task,
         ),
       };
     case REMOVE_TASK:
