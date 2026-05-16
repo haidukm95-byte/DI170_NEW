@@ -1,0 +1,26 @@
+import React, { useCallback } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { likePost } from './postSlice';
+
+const PostList = () => {
+  const dispatch = useDispatch();
+  const posts = useSelector((state) => state.posts);
+
+  const handleLike = useCallback(
+    (postId) => {
+      dispatch(likePost(postId));
+    },
+    [dispatch]
+  );
+
+  return (
+    <ul>
+      {posts.map((post) => (
+        <li key={post.id}>
+          {post.title}
+          <button onClick={() => handleLike(post.id)}>Like</button>
+        </li>
+      ))}
+    </ul>
+  );
+};
