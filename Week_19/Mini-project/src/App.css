@@ -199,7 +199,6 @@
   flex-direction: column;
   align-items: center;
   color: black;
-  background-color: rgba(221, 218, 22, 0.507);
   border-radius: 10px;
 }
 
@@ -215,4 +214,31 @@ button {
   color: rgb(173, 44, 44);
   cursor: pointer;
   border-radius: 10px;
+}
+
+#books-list {
+  background-image: url("./features/library.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: 150px;
+}
+
+#books-list-scifi {
+  background-image: url("./features/scifi.png");
+  min-height: 150px;
+}
+
+#books-list-horror {
+  background-image: url("./features/horror.png");
+  min-height: 150px;
+}
+
+#books-list-fantasy {
+  background-image: url("./features/fantasy.png");
+  min-height: 150px;
+}
+
+.books-names > * > * {
+  background-color: rgba(56, 56, 56, 0.3);
+  color: rgb(211, 208, 61);
 }
