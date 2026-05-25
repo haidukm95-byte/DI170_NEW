@@ -7,11 +7,11 @@
 
     // Environment Settings
     // See also https://aka.ms/tsconfig/module
-    "module": "es2015",
+    "module": "nodenext",
     "target": "esnext",
     "types": [],
     // For nodejs:
-    "lib": ["dom", "esnext"],
+    // "lib": ["esnext"],
     // "types": ["node"],
     // and npm install -D @types/node
 
