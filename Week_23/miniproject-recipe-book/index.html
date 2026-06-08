@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Recipe Book</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: sans-serif;
+            background: #f5f5f5;
+            padding: 24px;
+            color: #333;
+        }
+
+        .recipe-app { max-width: 720px; margin: 0 auto; }
+
+        h1 { margin-bottom: 20px; }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+            margin-bottom: 24px;
+        }
+
+        input, textarea, button {
+            font-size: 14px;
+            padding: 8px 12px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+
+        textarea { resize: vertical; min-height: 80px; }
+
+        button[type="submit"] {
+            background: #4caf50;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        button[type="submit"]:hover { background: #43a047; }
+
+        #clearRecipesButton {
+            display: block;
+            margin-top: 16px;
+            background: #e53935;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            padding: 8px 16px;
+            border-radius: 6px;
+        }
+        #clearRecipesButton:hover { background: #c62828; }
+
+        .recipe-card {
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+            margin-bottom: 14px;
+            overflow: hidden;
+            border-left: 4px solid transparent;
+        }
+        .recipe-card.favorite { border-left-color: #ffd600; }
+
+        .recipe-header {
+            padding: 14px 16px;
+            cursor: pointer;
+            user-select: none;
+            background: #fafafa;
+        }
+        .recipe-header h3 { font-size: 16px; }
+        .recipe-header:hover { background: #f0f0f0; }
+
+        .recipe-details {
+            padding: 14px 16px;
+            border-top: 1px solid #eee;
+        }
+        .recipe-details.hidden { display: none; }
+        .recipe-details h4 { margin: 10px 0 4px; font-size: 13px; text-transform: uppercase; color: #888; }
+        .recipe-details ul { padding-left: 18px; }
+        .recipe-details li { margin-bottom: 2px; }
+        .recipe-details p { line-height: 1.5; }
+
+        .recipe-actions {
+            display: flex;
+            gap: 8px;
+            padding: 10px 16px;
+            border-top: 1px solid #eee;
+        }
+
+        .btn-favorite {
+            background: #fff8e1;
+            border: 1px solid #ffd600;
+            color: #333;
+            cursor: pointer;
+            border-radius: 6px;
+            padding: 5px 12px;
+        }
+        .btn-favorite:hover { background: #fff59d; }
+
+        .btn-delete {
+            background: #fff;
+            border: 1px solid #e53935;
+            color: #e53935;
+            cursor: pointer;
+            border-radius: 6px;
+            padding: 5px 12px;
+        }
+        .btn-delete:hover { background: #ffebee; }
+    </style>
+</head>
+<body>
+    <div class="recipe-app">
+        <h1>Recipe Book</h1>
+
+        <form id="recipeEntryForm">
+            <input type="text" id="recipeTitle" placeholder="Recipe Title" required />
+            <textarea id="ingredients" placeholder="Enter ingredients (one per line)" required></textarea>
+            <textarea id="instructions" placeholder="Enter cooking instructions" required></textarea>
+            <button type="submit">Add Recipe</button>
+        </form>
+
+        <div id="recipeContainer"></div>
+
+        <button id="clearRecipesButton">Clear All Recipes</button>
+    </div>
+
+    <script type="module" src="./dist/main.js"></script>
+</body>
+</html>
