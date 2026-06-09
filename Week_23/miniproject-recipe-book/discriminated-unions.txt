@@ -1,0 +1,27 @@
+type Shape = 
+
+  | { kind: 'circle'; radius: number }
+
+  | { kind: 'square'; sideLength: number };
+
+
+
+function getArea(shape: Shape): number {
+
+  if (shape.kind === 'circle') {
+
+    return Math.PI * shape.radius ** 2;
+
+  } else if (shape.kind === 'square') {
+
+    return shape.sideLength ** 2;
+
+  }
+
+  return 0;
+
+}
+
+
+
+console.log(getArea({ kind: 'circle', radius: 5 }));
