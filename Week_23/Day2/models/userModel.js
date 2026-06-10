@@ -27,5 +27,5 @@ export async function listUsers() {
     const {rows} = await pool.query(
         `SELECT id, email, created_at FROM users ORDER BY id`
     )
-    return rows[0];
+    return rows;
 }
