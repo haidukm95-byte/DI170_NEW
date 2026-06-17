@@ -10,14 +10,14 @@ import AccountSettings from './features/account/AccountSettings';
 import ProtectedRoute from './components/ProtectedRoute';
 import AdminRoute from './components/AdminRoute';
 import AdminReports from './features/admin/AdminReports';
-import { verifyToken } from './features/auth/authSlice';
+import { refreshSession } from './features/auth/authSlice';
 import type { RootState, AppDispatch } from './app/store';
 
+// Runs once on mount — calls POST /auth/refresh using the httpOnly cookie.
+// No localStorage involved: the cookie is sent automatically by the browser.
 function AuthInitializer() {
     const dispatch = useDispatch<AppDispatch>();
-    useEffect(() => {
-        if (localStorage.getItem('token')) dispatch(verifyToken());
-    }, []);
+    useEffect(() => { dispatch(refreshSession()); }, []);
     return null;
 }
 

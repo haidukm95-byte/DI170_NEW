@@ -1,28 +1,63 @@
 import axios from 'axios';
+import { getAccessToken, setAccessToken } from './tokenStorage';
 
 const api = axios.create({
-    baseURL: import.meta.env.VITE_API_URL || 'http://localhost:5000',
-    withCredentials: true,  // sends cookies
+    baseURL: import.meta.env.VITE_API_URL || undefined,
+    withCredentials: true, // needed so the httpOnly refresh cookie is sent
 });
 
 api.interceptors.request.use((config) => {
-    const token = localStorage.getItem('token');
+    const token = getAccessToken();
     if (token) config.headers.Authorization = `Bearer ${token}`;
     return config;
 });
 
-// On 401/403, clear the stale session and return to login.
-// Skip for /auth/verify itself — that call's rejection is handled by the verifyToken thunk.
+// Silent token refresh on 401: retry the original request with the new access token.
+// Falls back to redirecting to /login if the refresh token is also expired.
+let isRefreshing = false;
+type CB = (token: string) => void;
+let queue: CB[] = [];
+
+function drainQueue(token: string) {
+    queue.forEach(cb => cb(token));
+    queue = [];
+}
+
 api.interceptors.response.use(
     (res) => res,
-    (err) => {
-        const isVerify = err.config?.url?.includes('/auth/verify');
-        if (!isVerify && (err.response?.status === 401 || err.response?.status === 403)) {
-            localStorage.removeItem('token');
-            localStorage.removeItem('user');
-            localStorage.removeItem('stayLoggedIn');
-            window.location.href = '/login';
+    async (err) => {
+        const config = err.config;
+        const isAuthCall = config?.url?.includes('/auth/refresh') || config?.url?.includes('/auth/login');
+
+        if (err.response?.status === 401 && !config?._retry && !isAuthCall) {
+            if (isRefreshing) {
+                return new Promise<void>(resolve => {
+                    queue.push((token: string) => {
+                        config.headers.Authorization = `Bearer ${token}`;
+                        resolve(api(config));
+                    });
+                });
+            }
+
+            config._retry = true;
+            isRefreshing = true;
+
+            try {
+                const { data } = await api.post('/auth/refresh');
+                setAccessToken(data.accessToken);
+                drainQueue(data.accessToken);
+                config.headers.Authorization = `Bearer ${data.accessToken}`;
+                return api(config);
+            } catch {
+                setAccessToken(null);
+                queue = [];
+                window.location.href = '/login';
+                return Promise.reject(err);
+            } finally {
+                isRefreshing = false;
+            }
         }
+
         return Promise.reject(err);
     }
 );

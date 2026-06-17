@@ -11,15 +11,24 @@ import authRouter from './routes/auth.js';
 import usersRouter from './routes/users.js';
 import storiesRouter from './routes/stories.js';
 import adminRouter from './routes/admin.js';
+import contributorsRouter from './routes/contributors.js';
 
 dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+const allowedOrigins = process.env.CLIENT_URL
+    ? process.env.CLIENT_URL.split(',').map(o => o.trim())
+    : ['http://localhost:5173'];
+
 app.use(cors({
-    origin: process.env.CLIENT_URL || 'http://localhost:5173',
-    credentials: true,  // required for cookies to be sent cross-origin
+    origin: (origin, callback) => {
+        // allow same-origin requests (no Origin header) and listed origins
+        if (!origin || allowedOrigins.includes(origin)) callback(null, true);
+        else callback(new Error(`CORS: ${origin} not allowed`));
+    },
+    credentials: true,
 }));
 app.use(express.json());
 app.use(cookieParser());
@@ -28,6 +37,7 @@ app.use('/auth', authRouter);
 app.use('/users', usersRouter);
 app.use('/stories', storiesRouter);
 app.use('/admin', adminRouter);
+app.use('/contributors', contributorsRouter);
 
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static(path.join(__dirname, '../../client/dist')));

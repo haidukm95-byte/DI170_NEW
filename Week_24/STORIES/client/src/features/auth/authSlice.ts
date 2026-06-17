@@ -1,11 +1,12 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import api from '../../api/axios';
+import { setAccessToken } from '../../api/tokenStorage';
 
 export const login = createAsyncThunk('auth/login', async (credentials: {
-    identifier: string; password: string; stayLoggedIn: boolean;
+    identifier: string; password: string;
 }) => {
     const res = await api.post('/auth/login', credentials);
-    return { ...res.data, stayLoggedIn: credentials.stayLoggedIn };
+    return res.data;
 });
 
 export const register = createAsyncThunk('auth/register', async (data: {
@@ -15,82 +16,69 @@ export const register = createAsyncThunk('auth/register', async (data: {
     return res.data;
 });
 
-export const verifyToken = createAsyncThunk('auth/verifyToken', async (_, { rejectWithValue }) => {
-    try {
-        const res = await api.get('/auth/verify');
-        return res.data;
-    } catch (err: any) {
-        return rejectWithValue(err.response?.data || 'Token invalid');
+// Called on app load — uses the httpOnly refresh token cookie to restore the session.
+// Returns { user, accessToken } on success.
+export const refreshSession = createAsyncThunk(
+    'auth/refreshSession',
+    async (_, { rejectWithValue }) => {
+        try {
+            const res = await api.post('/auth/refresh');
+            return res.data;
+        } catch (err: any) {
+            return rejectWithValue(err.response?.data || 'Session expired');
+        }
     }
-});
-
-const storedToken = localStorage.getItem('token');
-const storedUser = (() => {
-    try {
-        const raw = localStorage.getItem('user');
-        return raw ? JSON.parse(raw) : null;
-    } catch {
-        return null;
-    }
-})();
+);
 
 type AuthStatus = 'checking' | 'authenticated' | 'unauthenticated';
 
 const authSlice = createSlice({
     name: 'auth',
     initialState: {
-        user: storedUser as any,
-        token: storedToken as string | null,
-        status: (storedToken ? 'checking' : 'unauthenticated') as AuthStatus,
+        user: null as any,
+        status: 'checking' as AuthStatus,
         loading: false,
         error: null as string | null,
     },
     reducers: {
         logout(state) {
             state.user = null;
-            state.token = null;
             state.status = 'unauthenticated';
-            localStorage.removeItem('token');
-            localStorage.removeItem('user');
-            localStorage.removeItem('stayLoggedIn');
+            setAccessToken(null);
+        },
+        setUser(state, action) {
+            state.user = action.payload;
         },
     },
     extraReducers: (builder) => {
         builder
-            .addCase(verifyToken.fulfilled, (state, { payload }) => {
+            .addCase(refreshSession.fulfilled, (state, { payload }) => {
                 state.user = payload.user;
                 state.status = 'authenticated';
-                localStorage.setItem('user', JSON.stringify(payload.user));
+                setAccessToken(payload.accessToken);
             })
-            .addCase(verifyToken.rejected, (state) => {
+            .addCase(refreshSession.rejected, (state) => {
                 state.user = null;
-                state.token = null;
                 state.status = 'unauthenticated';
-                localStorage.removeItem('token');
-                localStorage.removeItem('user');
-                localStorage.removeItem('stayLoggedIn');
+                setAccessToken(null);
             })
             .addCase(login.fulfilled, (state, { payload }) => {
                 state.user = payload.user;
-                state.token = payload.token;
                 state.status = 'authenticated';
-                localStorage.setItem('token', payload.token);
-                localStorage.setItem('user', JSON.stringify(payload.user));
-                localStorage.setItem('stayLoggedIn', payload.stayLoggedIn ? 'true' : 'false');
+                setAccessToken(payload.accessToken);
             })
             .addCase(register.fulfilled, (state, { payload }) => {
                 state.user = payload.user;
-                state.token = payload.token;
                 state.status = 'authenticated';
-                localStorage.setItem('token', payload.token);
-                localStorage.setItem('user', JSON.stringify(payload.user));
+                setAccessToken(payload.accessToken);
             })
+            // loading/error spinners — exclude refreshSession so it's transparent
             .addMatcher(
-                (action) => action.type.endsWith('/pending') && !action.type.includes('verifyToken'),
+                (action) => action.type.endsWith('/pending') && !action.type.includes('refreshSession'),
                 (state) => { state.loading = true; state.error = null; }
             )
             .addMatcher(
-                (action) => action.type.endsWith('/rejected') && !action.type.includes('verifyToken'),
+                (action) => action.type.endsWith('/rejected') && !action.type.includes('refreshSession'),
                 // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 (state, action: any) => {
                     state.loading = false;
@@ -98,11 +86,11 @@ const authSlice = createSlice({
                 }
             )
             .addMatcher(
-                (action) => action.type.endsWith('/fulfilled') && !action.type.includes('verifyToken'),
+                (action) => action.type.endsWith('/fulfilled') && !action.type.includes('refreshSession'),
                 (state) => { state.loading = false; }
             );
     },
 });
 
-export const { logout } = authSlice.actions;
+export const { logout, setUser } = authSlice.actions;
 export default authSlice.reducer;
