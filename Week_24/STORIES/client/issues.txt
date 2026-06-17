@@ -1,0 +1,2 @@
+{user_id=1} not all the friends and collaborators are displayed in 
+"friends" and "collaborators" tabs in LeftSidebar

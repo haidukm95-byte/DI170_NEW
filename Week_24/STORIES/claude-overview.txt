@@ -1,0 +1,572 @@
+Project Overview
+A collaborative story-writing social platform with versioned stories, friends/co-authors, and JWT-protected routes.
+
+1. Project Structure
+
+stories-app/
+├── client/                    # React frontend
+│   ├── src/
+│   │   ├── app/
+│   │   │   └── store.ts
+│   │   ├── features/
+│   │   │   ├── auth/
+│   │   │   │   ├── authSlice.ts
+│   │   │   │   ├── Login.tsx
+│   │   │   │   └── Register.tsx
+│   │   │   ├── feed/
+│   │   │   │   ├── feedSlice.ts
+│   │   │   │   ├── FeedMyProfile.tsx
+│   │   │   │   └── FeedOtherProfile.tsx
+│   │   │   ├── stories/
+│   │   │   │   ├── storiesSlice.ts
+│   │   │   │   └── StoryCard.tsx
+│   │   │   └── account/
+│   │   │       ├── accountSlice.ts
+│   │   │       └── AccountSettings.tsx
+│   │   ├── components/
+│   │   │   ├── LeftSidebar.tsx
+│   │   │   └── ProtectedRoute.tsx
+│   │   ├── api/
+│   │   │   └── axios.ts
+│   │   ├── App.tsx
+│   │   └── main.tsx
+│   └── package.json
+│
+└── server/                    # Express backend
+    ├── src/
+    │   ├── routes/
+    │   │   ├── auth.ts
+    │   │   ├── users.ts
+    │   │   └── stories.ts
+    │   ├── middleware/
+    │   │   └── verifyJWT.ts
+    │   ├── db/
+    │   │   └── pool.ts
+    │   └── index.ts
+    └── package.json
+2. Database (PostgreSQL)
+
+CREATE TABLE users (
+    user_id SERIAL PRIMARY KEY,
+    username TEXT NOT NULL UNIQUE,
+    email TEXT NOT NULL UNIQUE,
+    password TEXT,
+    avatar TEXT,
+    is_logged_in BOOLEAN DEFAULT false,
+    is_private BOOLEAN DEFAULT false,
+    is_active BOOLEAN DEFAULT true,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+    friends TEXT[] DEFAULT '{}',
+    coauthors TEXT[] DEFAULT '{}'
+);
+
+CREATE TABLE stories (
+    story_id INTEGER NOT NULL,
+    version INTEGER NOT NULL DEFAULT 1,
+    header TEXT,
+    story TEXT NOT NULL,
+    author_id INTEGER REFERENCES users(user_id),
+    collaborators TEXT[] DEFAULT '{}',
+    likes INTEGER DEFAULT 0,
+    dislikes INTEGER DEFAULT 0,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+    PRIMARY KEY (story_id, version)
+);
+
+-- Auto-increment story_id separately from version
+CREATE SEQUENCE story_id_seq;
+Versioning logic: When a story is edited, insert a new row with the same story_id and version + 1. Query MAX(version) for the latest.
+
+3. Backend (Express + TypeScript)
+Install dependencies
+
+cd server
+npm init -y
+npm install express pg bcryptjs jsonwebtoken nodemailer dotenv cors
+npm install -D typescript ts-node @types/express @types/node @types/bcryptjs @types/jsonwebtoken nodemon
+server/src/db/pool.ts
+
+import { Pool } from 'pg';
+import dotenv from 'dotenv';
+dotenv.config();
+
+export const pool = new Pool({ connectionString: process.env.DATABASE_URL });
+server/src/middleware/verifyJWT.ts
+
+import { Request, Response, NextFunction } from 'express';
+import jwt from 'jsonwebtoken';
+
+export interface AuthRequest extends Request {
+    user?: { user_id: number; email: string };
+}
+
+export function verifyJWT(req: AuthRequest, res: Response, next: NextFunction) {
+    const token = req.cookies?.token || req.headers.authorization?.split(' ')[1];
+    if (!token) return res.status(401).json({ error: 'No token' });
+
+    try {
+        req.user = jwt.verify(token, process.env.JWT_SECRET!) as any;
+        next();
+    } catch {
+        res.status(403).json({ error: 'Invalid token' });
+    }
+}
+server/src/routes/auth.ts — key endpoints
+
+import express from 'express';
+import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
+import { pool } from '../db/pool';
+
+const router = express.Router();
+
+// REGISTER
+router.post('/register', async (req, res) => {
+    const { username, email, password } = req.body;
+    const hashed = await bcrypt.hash(password, 12);
+    const result = await pool.query(
+        `INSERT INTO users (username, email, password)
+         VALUES ($1, $2, $3) RETURNING user_id, username, email`,
+        [username, email, hashed]
+    );
+    const user = result.rows[0];
+    const token = jwt.sign({ user_id: user.user_id, email: user.email },
+        process.env.JWT_SECRET!, { expiresIn: '5m' });
+    res.cookie('token', token, { httpOnly: true, sameSite: 'strict' });
+    res.json({ user, token });
+});
+
+// LOGIN
+router.post('/login', async (req, res) => {
+    const { email, password, stayLoggedIn } = req.body;
+    const result = await pool.query('SELECT * FROM users WHERE email=$1', [email]);
+    const user = result.rows[0];
+    if (!user || !(await bcrypt.compare(password, user.password)))
+        return res.status(401).json({ error: 'Invalid credentials' });
+
+    const expiresIn = stayLoggedIn ? '48h' : '5m';
+    const token = jwt.sign({ user_id: user.user_id, email: user.email },
+        process.env.JWT_SECRET!, { expiresIn });
+    res.cookie('token', token, { httpOnly: true, maxAge: stayLoggedIn ? 172800000 : 300000 });
+    res.json({ user: { user_id: user.user_id, username: user.username, avatar: user.avatar }, token });
+});
+
+// CHECK USERNAME / EMAIL AVAILABILITY (for real-time input validation)
+router.get('/check', async (req, res) => {
+    const { field, value } = req.query;
+    if (!['username', 'email'].includes(field as string)) return res.status(400).end();
+    const result = await pool.query(`SELECT 1 FROM users WHERE ${field}=$1`, [value]);
+    res.json({ available: result.rowCount === 0 });
+});
+
+// LOGOUT
+router.post('/logout', (req, res) => {
+    res.clearCookie('token');
+    res.json({ message: 'Logged out' });
+});
+
+export default router;
+server/src/routes/stories.ts — key endpoints
+
+//CREATE NEW STORY
+router.post('/', verifyJWT, async (req: AuthRequest, res) => {
+    const { header, story, collaborators } = req.body;
+    const story_id = (await pool.query('SELECT nextval($1)', ['story_id_seq'])).rows[0].nextval;
+    const result = await pool.query(
+        `INSERT INTO stories (story_id, version, header, story, author_id, collaborators)
+         VALUES ($1, 1, $2, $3, $4, $5) RETURNING *`,
+        [story_id, header, story, req.user!.user_id, collaborators || []]
+    );
+    res.json(result.rows[0]);
+});
+
+// Edit = new version
+router.put('/:story_id', verifyJWT, async (req: AuthRequest, res) => {
+    const { story_id } = req.params;
+    const latest = await pool.query(
+        'SELECT MAX(version) as v FROM stories WHERE story_id=$1', [story_id]);
+    const newVersion = latest.rows[0].v + 1;
+    const result = await pool.query(
+        `INSERT INTO stories (story_id, version, header, story, author_id, collaborators)
+         SELECT story_id, $1, $2, $3, author_id, collaborators
+         FROM stories WHERE story_id=$4 AND version=$5 RETURNING *`,
+        [newVersion, req.body.header, req.body.story, story_id, latest.rows[0].v]
+    );
+    res.json(result.rows[0]);
+});
+
+4. Frontend (React + Redux Toolkit)
+Install
+
+cd client
+npm create vite@latest . -- --template react-ts
+npm install @reduxjs/toolkit react-redux react-router-dom axios js-cookie
+npm install -D @types/js-cookie
+client/src/app/store.ts
+
+import { configureStore } from '@reduxjs/toolkit';
+import authReducer from '../features/auth/authSlice';
+import storiesReducer from '../features/stories/storiesSlice';
+import accountReducer from '../features/account/accountSlice';
+
+export const store = configureStore({
+    reducer: { auth: authReducer, stories: storiesReducer, account: accountReducer }
+});
+
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
+client/src/features/auth/authSlice.ts
+
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import api from '../../api/axios';
+
+export const login = createAsyncThunk('auth/login', async (credentials: {
+    email: string; password: string; stayLoggedIn: boolean;
+}) => {
+    const res = await api.post('/auth/login', credentials);
+    return res.data;
+});
+
+export const register = createAsyncThunk('auth/register', async (data: {
+    username: string; email: string; password: string;
+}) => {
+    const res = await api.post('/auth/register', data);
+    return res.data;
+});
+
+const authSlice = createSlice({
+    name: 'auth',
+    initialState: { user: null as any, token: null as string | null, loading: false, error: null as string | null },
+    reducers: {
+        logout(state) { state.user = null; state.token = null; }
+    },
+    extraReducers: (builder) => {
+        builder
+            .addCase(login.fulfilled, (state, { payload }) => {
+                state.user = payload.user;
+                state.token = payload.token;
+            })
+            .addCase(register.fulfilled, (state, { payload }) => {
+                state.user = payload.user;
+                state.token = payload.token;
+            })
+            .addMatcher(
+                (action) => action.type.endsWith('/pending'),
+                (state) => { state.loading = true; state.error = null; }
+            )
+            .addMatcher(
+                (action) => action.type.endsWith('/rejected'),
+                (state, action: any) => {
+                    state.loading = false;
+                    state.error = action.error.message;
+                }
+            )
+            .addMatcher(
+                (action) => action.type.endsWith('/fulfilled'),
+                (state) => { state.loading = false; }
+            );
+    }
+});
+
+export const { logout } = authSlice.actions;
+export default authSlice.reducer;
+client/src/api/axios.ts
+
+import axios from 'axios';
+
+const api = axios.create({
+    baseURL: import.meta.env.VITE_API_URL || 'http://localhost:5000',
+    withCredentials: true,  // sends cookies
+});
+
+// Auto-attach JWT from localStorage fallback
+api.interceptors.request.use((config) => {
+    const token = localStorage.getItem('token');
+    if (token) config.headers.Authorization = `Bearer ${token}`;
+    return config;
+});
+
+export default api;
+client/src/features/auth/Login.tsx
+
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate, Link } from 'react-router-dom';
+import { login } from './authSlice';
+import { AppDispatch, RootState } from '../../app/store';
+
+export default function Login() {
+    const dispatch = useDispatch<AppDispatch>();
+    const navigate = useNavigate();
+    const { loading, error } = useSelector((s: RootState) => s.auth);
+    const [form, setForm] = useState({ email: '', password: '', stayLoggedIn: false });
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        const result = await dispatch(login(form));
+        if (login.fulfilled.match(result)) navigate('/feed');
+    };
+
+    return (
+        <form onSubmit={handleSubmit}>
+            <input type="email" placeholder="Enter your email"
+                onChange={e => setForm({ ...form, email: e.target.value })} />
+            <input type="password" placeholder="Enter your password"
+                onChange={e => setForm({ ...form, password: e.target.value })} />
+            <label>
+                <input type="checkbox"
+                    onChange={e => setForm({ ...form, stayLoggedIn: e.target.checked })} />
+                Stay logged in
+            </label>
+            <button type="submit" disabled={loading}>Log in</button>
+            {error && <p className="error">{error}</p>}
+            <p>Don't have an account? <Link to="/register">Register</Link></p>
+        </form>
+    );
+}
+client/src/features/auth/Register.tsx — with real-time availability check
+
+import { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { register } from './authSlice';
+import api from '../../api/axios';
+import { AppDispatch } from '../../app/store';
+
+function useAvailability(field: 'username' | 'email', value: string) {
+    const [available, setAvailable] = useState<boolean | null>(null);
+    useEffect(() => {
+        if (!value) return;
+        const timer = setTimeout(async () => {
+            const res = await api.get(`/auth/check?field=${field}&value=${value}`);
+            setAvailable(res.data.available);
+        }, 400);  // debounce
+        return () => clearTimeout(timer);
+    }, [value]);
+    return available;
+}
+
+export default function Register() {
+    const dispatch = useDispatch<AppDispatch>();
+    const navigate = useNavigate();
+    const [form, setForm] = useState({ username: '', email: '', password: '' });
+
+    const usernameAvailable = useAvailability('username', form.username);
+    const emailAvailable = useAvailability('email', form.email);
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        const result = await dispatch(register(form));
+        if (register.fulfilled.match(result)) navigate('/feed');
+    };
+
+    return (
+        <form onSubmit={handleSubmit}>
+            <input type="text" placeholder="Create your username"
+                onChange={e => setForm({ ...form, username: e.target.value })} />
+            {form.username && <span>{usernameAvailable === null ? '...' : usernameAvailable ? 'Available' : 'Not available'}</span>}
+
+            <input type="email" placeholder="Enter your email"
+                onChange={e => setForm({ ...form, email: e.target.value })} />
+            {form.email && <span>{emailAvailable === null ? '...' : emailAvailable ? 'Available' : 'Not available'}</span>}
+
+            <input type="password" placeholder="Create your password"
+                onChange={e => setForm({ ...form, password: e.target.value })} />
+
+            <button type="submit" disabled={!usernameAvailable || !emailAvailable}>Register</button>
+        </form>
+    );
+}
+client/src/components/ProtectedRoute.tsx
+
+import { useSelector } from 'react-redux';
+import { Navigate } from 'react-router-dom';
+import { RootState } from '../app/store';
+
+export default function ProtectedRoute({ children }: { children: JSX.Element }) {
+    const { token } = useSelector((s: RootState) => s.auth);
+    return token ? children : <Navigate to="/login" />;
+}
+client/src/App.tsx
+
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import Login from './features/auth/Login';
+import Register from './features/auth/Register';
+import FeedMyProfile from './features/feed/FeedMyProfile';
+import FeedOtherProfile from './features/feed/FeedOtherProfile';
+import AccountSettings from './features/account/AccountSettings';
+import ProtectedRoute from './components/ProtectedRoute';
+
+export default function App() {
+    return (
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<Navigate to="/login" />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<Register />} />
+                <Route path="/feed" element={<ProtectedRoute><FeedMyProfile /></ProtectedRoute>} />
+                <Route path="/user/:id" element={<ProtectedRoute><FeedOtherProfile /></ProtectedRoute>} />
+                <Route path="/settings" element={<ProtectedRoute><AccountSettings /></ProtectedRoute>} />
+            </Routes>
+        </BrowserRouter>
+    );
+}
+client/src/features/feed/FeedMyProfile.tsx — structure
+
+import { useSelector, useDispatch } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
+import { logout } from '../auth/authSlice';
+import LeftSidebar from '../../components/LeftSidebar';
+import StoryCard from '../stories/StoryCard';
+
+export default function FeedMyProfile() {
+    const { user } = useSelector((s: any) => s.auth);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        dispatch(logout());
+        navigate('/login');
+    };
+
+    return (
+        <div className="feed-layout">
+            <LeftSidebar user={user} onLogout={handleLogout} isOwn={true} />
+
+            <div className="feed-main">
+                <div className="feed-main-createstory">
+                    <input type="text" placeholder="Type your story here..." />
+                    <button>Publish</button>
+                </div>
+                {/* map over stories */}
+                <StoryCard isOwner={true} />
+            </div>
+        </div>
+    );
+}
+client/src/components/LeftSidebar.tsx
+
+import { Link } from 'react-router-dom';
+
+interface Props {
+    user: any;
+    onLogout: () => void;
+    isOwn: boolean;
+    backToFeed?: boolean;
+}
+
+export default function LeftSidebar({ user, onLogout, isOwn, backToFeed }: Props) {
+    return (
+        <div className="feed-myprofile">
+            <div className="feed-myprofile-myinfo">
+                <p>{user?.username}</p>
+                <img src={user?.avatar || '/default-avatar.png'} alt="avatar" />
+                {isOwn && <><Link to="/feed?filter=mine">My stories</Link>
+                    <Link to="/feed?filter=all">All stories</Link>
+                    {backToFeed
+                        ? <Link to="/feed">Back to Feed</Link>
+                        : <Link to="/settings">Account settings</Link>}
+                    <button onClick={onLogout}>Logout</button></>}
+            </div>
+            <div className="feed-myprofile-friends">
+                {user?.friends?.map((f: any) => (
+                    <Link key={f.user_id} to={`/user/${f.user_id}`} title={f.username}>
+                        <img src={f.avatar} alt={f.username} />
+                    </Link>
+                ))}
+            </div>
+        </div>
+    );
+}
+client/src/features/stories/StoryCard.tsx
+
+interface Props { story?: any; isOwner: boolean; }
+
+export default function StoryCard({ story, isOwner }: Props) {
+    const likeDiff = (story?.likes || 0) - (story?.dislikes || 0);
+    const likeColor = likeDiff > 0 ? 'green' : likeDiff < 0 ? 'red' : 'yellow';
+
+    return (
+        <div className="feed-main-story">
+            <h3>{story?.header}</h3>
+            <p>{story?.story}</p>
+            {!isOwner && (
+                <>
+                    <button>Like</button>
+                    <p style={{ color: likeColor }}>{likeDiff}</p>
+                    <button>Dislike</button>
+                </>
+            )}
+            <nav>
+                <span>v{story?.version}</span>
+                {/* collaborator avatars */}
+                <button>Edit</button>
+                <button>Report</button>
+                {isOwner && <button>Delete story</button>}
+            </nav>
+        </div>
+    );
+}
+5. Environment Variables
+server/.env
+
+
+DATABASE_URL=postgresql://user:pass@host/dbname
+JWT_SECRET=your_super_secret_key
+EMAIL_USER=your@email.com
+EMAIL_PASS=your_email_password
+PORT=5000
+client/.env
+
+VITE_API_URL=https://your-backend.onrender.com
+
+6. Build for Deployment
+client/vite.config.ts — ensure dist output
+
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+
+export default defineConfig({
+    plugins: [react()],
+    build: { outDir: 'dist' }
+});
+Serve dist from Express (for single-repo deploy)
+
+// server/src/index.ts
+import path from 'path';
+
+// After all API routes:
+app.use(express.static(path.join(__dirname, '../../client/dist')));
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../../client/dist/index.html'));
+});
+7. Deploy to Render.com
+Option A — Single Web Service (recommended for simplicity)
+Build client first locally (cd client && npm run build) and commit the dist folder, OR configure a build command on Render.
+Push everything to GitHub.
+On Render Dashboard → New → Web Service:
+Root Directory: server
+Build Command: cd ../client && npm install && npm run build && cd ../server && npm install && npx tsc
+Start Command: node dist/index.js
+Environment Variables: add all your .env keys
+Add a PostgreSQL database via Render → New → PostgreSQL. Copy the Internal Database URL as DATABASE_URL.
+Deploy — Render auto-assigns a URL like https://stories-app.onrender.com.
+Option B — Separate services
+Service	Settings
+Backend (Web Service)	Root: server, Start: node dist/index.js
+Frontend (Static Site)	Root: client, Build: npm run build, Publish: dist
+Database	PostgreSQL (free tier)
+Set VITE_API_URL in client environment to the backend Render URL before building.
+
+8. Key Implementation Checklist
+ PostgreSQL schema with versioned stories sequence
+ bcrypt hash on register, compare on login
+ JWT issued on login/register, verified by middleware on protected routes
+ stayLoggedIn toggles token expiry between 48h and 5m
+ Debounced /auth/check endpoint for real-time username/email availability
+ Story versioning: same story_id, incrementing version
+ isPrivate gates story visibility on FeedOtherProfile
+ isActive=false shows deactivated account UI instead of avatar/username
+ ProtectedRoute wraps all post-login pages
+ dist folder served from Express for single-repo Render deploy
+This gives you the full skeleton. The most complex pieces to implement carefully are the story versioning logic (especially delete-version vs delete-story), the inactivity timer for the 5-minute logout, and the collaborator permission checks on edit/delete. Start with auth → feed → story CRUD → then layer in versioning.

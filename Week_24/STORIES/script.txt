@@ -1,0 +1,115 @@
+SQL tables:
+users (user_id SERIAL PRIMARY KEY UNIQUE, 
+    username TEXT NOT NULL UNIQUE, 
+    email TEXT NOT NULL UNIQUE, 
+    password TEXT ,
+    avatar IMAGE, 
+    isLoggedIn BOOLEAN,
+    isPrivate BOOLEAN,
+    created_at TIMESTAMP WITH TIME ZONE),
+    friends TEXT (list of user_id`s of friends within the app),
+    coauthors TEXT (list of people who you collaborate your stories with)
+    isActive BOOLEAN (true as default)
+
+stories (story_id SERIAL PRIMARY KEY UNIQUE, 
+    version INTEGER (looks like story_id+1,2,3 etc.),
+    header TEXT,
+    story TEXT NOT NULL, 
+    author_id INTEGER (linked with users->id),
+    collaborators TEXT (list of collaborators` user_id`s)
+    ); - each edition creates new story version - story_id remains the same (e.g. story_id 1212), while
+        a version changes (e.g. 1212_1 is the primanry version, 1212_2 is the next one)
+
+
+REACT COMPONENTS (src/features, together with Redux components):
+LOGIN
+<input type='text' placeholder='Enter your email'/>
+<input type='text' placeholder='Enter your password'/>
+Button: Log in - redirect to FEED
+<input type='chechbox'>Stay logged in if clicked stay logged in for 48 hours else logout after 5 minutes of inactivity
+Links: Don't have an account? Register -> redirect to REGISTER 
+        Share on: Facebook | X
+Add a email confirmation tool!!
+Add bcrypt check for encrypted passwords checking!
+Add JWT token authorization!
+
+REGISTER
+Inputs: 
+<input type='text' placeholder='Create your username'/>
+<input type='text' placeholder='Enter your email'/>
+<input type='text' placeholder='Create your password'/>
+SQL users.isPrivate=false as default! Changeable in ACCOUNT SETTINGS
+Button: Register - add a new user to users table of SQL datatbase, redirect to FEED
+Add username and email check while typing on inputs! Check each char and display under the input 'Available' else display 'Not available'
+Add bcrypt for passwords encrypting!
+Add JWT token authorization!
+
+AFTER BEING AUTHORIZED
+FEEDMYPROFILE (FeedMyProfile.tsx)
+<div className='feed-myprofile'>My profile information (column from the left; non-scrollable unless its consent expands over the screen)
+        <div className='feed-myprofile-myinfo'>
+            <p className='feed-myprofile-myinfo-paragraph'>{username}</p>
+            <img src={my profile avatar}>
+            <p className='feed-myprofile-myinfo-paragraph'><Link>{my stories -> displays only stories where a current user is an author (e.g. person who firstly published it)}</Link></p>
+            <p className='feed-myprofile-myinfo-paragraph'><Link>{all stories (displayed instead of <p>my stories</p> while clicked on my stories) -> displays all stories from friends and collaborators}</Link></p>
+            <p className='feed-myprofile-myinfo-paragraph'><Link>Account settings -> redirects to ACCOUNT SETTINGS</Link></p>
+            <p className='feed-myprofile-myinfo-paragraph'><Link>Logout {redirect to LOGIN}</Link></p>
+        </div>
+        <div className='feed-myprofile-friends'>list of friends (their avatars, while cursor on it, display user`s username - also each of them is a link to redirect on this user`s feed)</div>
+        <div className='feed-myprofile-friends'>list of co-authors</div>
+</div>
+<div className='feed-main'>
+    <div className='feed-main-createstory'>
+        <input type="text" placeholder="Type your story here..."/>
+        <button>Publish</button>
+    </div>
+    {<div class='feed-main-story'>all current user`s stories, his collaborators` and friends` if not private profile;
+        <nav>current story`s version, collaborator`s avatars, edit button, delete version button (possible for author or a collaborator who have created the version)delete story button(possible only for story`s author!), report button (to leave a complaint)</nav>
+    </div>}
+</div>
+// optional - <nav> containing links ABOUT etc.
+
+FEEDOTHERPROFILE (FeedOtherProfile.tsx)
+<div className='feed-myprofile'>My profile information (column from the left; non-scrollable unless its consent expands over the screen)
+        <div className='feed-myprofile-myinfo'>
+            <p className='feed-myprofile-myinfo-paragraph'>{username}</p>
+            <img src=>
+            <p className='feed-myprofile-myinfo-paragraph'><Link>{my stories -> displays only stories where a current user is an author (e.g. person who firstly published it)}</Link></p>
+            <p className='feed-myprofile-myinfo-paragraph'><Link>{all stories (displayed instead of <p>my stories</p> while clicked on my stories) -> displays all stories from friends and collaborators}</Link></p>
+            <p className='feed-myprofile-myinfo-paragraph'><Link>Account settings -> redirects to ACCOUNT SETTINGS</Link></p>
+            <p className='feed-myprofile-myinfo-paragraph'><Link>Logout {redirect to LOGIN}</Link></p>
+        </div>
+        <div className='feed-myprofile-friends'>list of friends (their avatars, while cursor on it, display user`s username - also each of them is a link to redirect on this user`s feed)</div>
+        <div className='feed-myprofile-friends'>list of co-authors</div>
+</div>
+<div className='feed-main'>
+    {<div class='feed-main-story'>all current user`s stories, his collaborators` and friends` if not private profile;
+        <button>Like</button>
+        <p>{Likes amount-dislikes amount: if positive font color=green, if 0 font color=yellow, if negative font color=red}</p>
+        <button>Dislike</button>
+        <nav>current story`s version, collaborator`s avatars, edit button (if u are allowed collaborators), report button (to leave a complaint)</nav>
+    </div>}
+</div>
+// optional - <nav> containing links ABOUT etc.
+
+ACCOUNT SETTINGS (AccountSettings.tsx)
+The structure of page remains the same as FEEDMYPROFILE and FEEDOTHERPROFILE has.
+
+In left sidebar (.feed-myprofile)everything remains the same, only while entered into Account settings, the former Account Settings link
+changes to Back to Feed link which redirects to FEEDMYPROFILE
+
+This container occupies the place of .feed-main 
+<div className='acc-settings-main'>
+    Change username
+    Change avatar
+    Change password
+    Set profile as private or public (SQL users.isPrivate=false)
+    Deactivate account (set SQL users.isActive=false) - if deactivated, in FEED, there will be written DeactivatedAccount instead of avatar and Username;
+        also instead of a current avatar, there will be displayed an avatar of deactivated account (like a round with ? sign)
+</div>
+
+
+DEPLOYMENT
+dist folder for deployment in render.com required!
+
+
