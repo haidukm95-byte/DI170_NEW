@@ -16,4 +16,10 @@ npm-debug.log*
 Thumbs.db
 
 # Files
-FOR FUN/qwerty-jcuken.js
+FOR_FUN/
+.agents/
+HTML_SHABLONA.txt
+skills-lock.json
+
+# Windows reserved filename (cannot be tracked by git)
+**/nul

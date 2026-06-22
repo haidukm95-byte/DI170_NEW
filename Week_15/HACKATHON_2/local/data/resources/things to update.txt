@@ -1,0 +1,10 @@
+Things to update in the project:
+1. Add "isActive" column to "tasks" table and to "users" table in SQL database to prevent 
+users and their tasks to be removed physically from the database
+2. Add "Forgot password" form
+3. Add email verification for password resetting and for email change in "Account settings"
+4. Add "Notification settings" for push-notification personalized arranging
+5. Add Hebrew version, and optionally in other languages (including Ukrainian)
+6. Improve the styling to make it less primitive
+7. Add the entire project to online hosting to make it usable for all the users throughout the world
+(except countries hostile to Israel, including Russia, Belarus and PRC)
