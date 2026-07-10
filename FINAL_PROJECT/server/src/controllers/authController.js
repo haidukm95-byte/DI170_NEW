@@ -35,17 +35,22 @@ function sanitizeUser(user) {
     return safeUser;
 }
 
+// 'none' is required because the client and server are deployed on separate
+// Render subdomains (cross-site); browsers only honor sameSite:'none' cookies
+// when secure:true, which is why this is tied to NODE_ENV=production.
+const CROSS_SITE_COOKIE = process.env.NODE_ENV === 'production';
+
 const REFRESH_COOKIE_OPTIONS = {
     httpOnly: true,
-    secure: process.env.NODE_ENV === 'production',
-    sameSite: 'strict',
+    secure: CROSS_SITE_COOKIE,
+    sameSite: CROSS_SITE_COOKIE ? 'none' : 'lax',
     maxAge: REFRESH_TTL_MS,
 };
 
 const ACCESS_COOKIE_OPTIONS = {
     httpOnly: true,
-    secure: process.env.NODE_ENV === 'production',
-    sameSite: 'strict',
+    secure: CROSS_SITE_COOKIE,
+    sameSite: CROSS_SITE_COOKIE ? 'none' : 'lax',
     maxAge: ACCESS_TTL_MS,
 };
 
