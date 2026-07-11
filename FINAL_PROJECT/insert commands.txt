@@ -1,6 +1,0 @@
-PERSONNEL
-INSERT INTO personnel(gov_id, full_name, date_of_birth, occupation_code, password) VALUES
---the rest is autofilled according to foreign keys
-LOGISTICS
-INSERT INTO logistics(code, quantity, operation_code, responsible_id) VALUES
---the rest is autofilled according to foreign keys

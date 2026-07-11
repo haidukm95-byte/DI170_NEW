@@ -338,3 +338,57 @@ $$ LANGUAGE plpgsql;
 CREATE TRIGGER before_logistics_check_general_worker_restriction
 BEFORE INSERT ON logistics
 FOR EACH ROW EXECUTE FUNCTION check_general_worker_receive_restriction();
+
+-- -------------------------------------------------------
+-- TRIGGER: propagate goods_registry edits (name/is_food/measuring_unit)
+-- to foods_inventory, general_inventory and logistics
+-- -------------------------------------------------------
+-- name/measuring_unit changes: overwrite the denormalized copies
+-- is_food flips: move the inventory row between foods_inventory <-> general_inventory
+
+CREATE OR REPLACE FUNCTION propagate_goods_registry_update()
+RETURNS TRIGGER AS $$
+BEGIN
+    UPDATE logistics
+    SET name = NEW.name,
+        is_food = NEW.is_food,
+        measuring_unit = NEW.measuring_unit
+    WHERE code = NEW.code;
+
+    IF OLD.is_food = NEW.is_food THEN
+        IF NEW.is_food THEN
+            UPDATE foods_inventory
+            SET name = NEW.name, measuring_unit = NEW.measuring_unit
+            WHERE code = NEW.code;
+        ELSE
+            UPDATE general_inventory
+            SET name = NEW.name, measuring_unit = NEW.measuring_unit
+            WHERE code = NEW.code;
+        END IF;
+    ELSIF OLD.is_food THEN
+        INSERT INTO general_inventory (code, name, measuring_unit, quantity)
+        SELECT code, NEW.name, NEW.measuring_unit, quantity
+        FROM foods_inventory WHERE code = NEW.code
+        ON CONFLICT (code) DO UPDATE
+            SET quantity = general_inventory.quantity + EXCLUDED.quantity,
+                name = EXCLUDED.name,
+                measuring_unit = EXCLUDED.measuring_unit;
+        DELETE FROM foods_inventory WHERE code = NEW.code;
+    ELSE
+        INSERT INTO foods_inventory (code, name, measuring_unit, quantity)
+        SELECT code, NEW.name, NEW.measuring_unit, quantity
+        FROM general_inventory WHERE code = NEW.code
+        ON CONFLICT (code) DO UPDATE
+            SET quantity = foods_inventory.quantity + EXCLUDED.quantity,
+                name = EXCLUDED.name,
+                measuring_unit = EXCLUDED.measuring_unit;
+        DELETE FROM general_inventory WHERE code = NEW.code;
+    END IF;
+
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER after_goods_registry_update
+AFTER UPDATE OF name, is_food, measuring_unit ON goods_registry
+FOR EACH ROW EXECUTE FUNCTION propagate_goods_registry_update();
