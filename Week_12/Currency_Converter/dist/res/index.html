@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bitcount+Prop+Double:wght@100..900&family=Funnel+Sans:ital,wght@0,300..800;1,300..800&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>Currency converter</title>
+</head>
+<body>
+    <div id="wrapper">
+        <header><h1>Currency Converter</h1></header>
+        <div class="currency">
+            <h2>From:</h2>
+            <br><select id="select_from"></select>
+            <br><h2>To:</h2>
+            <br><select id="select_to"></select>
+            <br><h2>Amount:</h2>
+            <form method="post" name="amount" id="amount">
+                <input type="number" id="amount_input">
+                <button type="button" id="submitButton">Convert!</button>
+                <br><h2>Result:</h2><input type="number" id="result">
+            </form>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
+
+
+                
+                
