@@ -84,7 +84,7 @@ export async function editProfile(personnelId, govid, name, dateOfBirth, passwor
         full_name=$2,
         date_of_birth=$3,
         password=$4
-        WHERE personnel_id=$5
+        WHERE personnel_id=$5 AND isactive=true
         RETURNING *`,
         [govid, name, dateOfBirth, hashedPassword, personnelId]
     )
@@ -94,7 +94,7 @@ export async function editProfile(personnelId, govid, name, dateOfBirth, passwor
 //change occupation code
 export async function changeOccCode(id, occCode) {
     const r=await pool.query(
-        `UPDATE personnel SET occupation_code=$1 WHERE personnel_id=$2 RETURNING *`,
+        `UPDATE personnel SET occupation_code=$1 WHERE personnel_id=$2 AND isactive=true RETURNING *`,
         [occCode, id]
     )
     return r.rows[0];

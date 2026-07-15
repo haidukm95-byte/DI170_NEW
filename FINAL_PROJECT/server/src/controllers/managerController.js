@@ -52,7 +52,7 @@ export async function editProfile(req,res,next){
         }
         const employee=await ManagerModel.editProfile(id, gov_id, full_name, date_of_birth, password);
         if (!employee) {
-            return res.status(404).json({ error: 'Employee not found' });
+            return res.status(404).json({ error: 'Employee not found or is dismissed' });
         }
         return res.status(200).json({employee: sanitizeEmployee(employee)});
     } catch(err){
@@ -88,7 +88,7 @@ export async function changeOccupation(req, res, next) {
         }
         const employee = await ManagerModel.changeOccCode(id, occupation_code);
         if (!employee) {
-            return res.status(404).json({ error: 'Employee not found' });
+            return res.status(404).json({ error: 'Employee not found or is dismissed' });
         }
         return res.status(200).json({ employee: sanitizeEmployee(employee) });
     } catch (err) {
