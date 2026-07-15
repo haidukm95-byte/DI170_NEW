@@ -460,12 +460,3 @@ $$ LANGUAGE plpgsql;
 CREATE OR REPLACE TRIGGER after_goods_registry_update
 AFTER UPDATE OF name, is_food, measuring_unit ON goods_registry
 FOR EACH ROW EXECUTE FUNCTION propagate_goods_registry_update();
-
---Check if the worker is not active to block successful statement execution SET personnel.is_active=false;
-CREATE OR REPLACE FUNCTION is_not_active_employee_check()
-RETURNS TRIGGER AS $$
-BEGIN
-    SELECT * FROM personnel
-    WHERE personnel_id=NEW.personnel_id;
-
-    IF OLD.is_active=false
