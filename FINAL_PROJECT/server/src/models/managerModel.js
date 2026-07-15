@@ -196,6 +196,7 @@ export async function updateGoodsInRegistry(code, name, isFood, unit) {
     return r.rows[0]
 }
 
+
 //New logistic operation
 export async function newLogisticOperation(code, quantity, operation_code, responsible_id) {
     const r=await pool.query(

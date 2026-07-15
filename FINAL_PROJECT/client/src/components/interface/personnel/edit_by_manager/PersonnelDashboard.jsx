@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, Route, Routes } from 'react-router-dom';
 import api from '../../../../api/axiosInstance';
+import { useAuth } from '../../../../context/AuthContext';
 import AddNewEmployee from './AddNewEmployee';
 import UpdateNewEmployee from './UpdateNewEmployee';
 
@@ -20,6 +21,7 @@ function PersonnelList() {
             document.title = 'Personnel - Warehouse App';
         }, []);
 
+    const { user } = useAuth();
     const [filters, setFilters] = useState(EMPTY_FILTERS);
     const [employees, setEmployees] = useState([]);
     const [error, setError] = useState('');
@@ -123,7 +125,9 @@ function PersonnelList() {
                                 <td>{employee.working_start_date}</td>
                                 <td>{employee.working_end_date ?? ''}</td>
                                 <td>
-                                    <Link to={`/personnel/employees/${employee.personnel_id}`}>Manage</Link>
+                                    {employee.personnel_id !== user?.personnel_id && (
+                                        <Link to={`/personnel/employees/${employee.personnel_id}`}>Manage</Link>
+                                    )}
                                 </td>
                             </tr>
                         ))}

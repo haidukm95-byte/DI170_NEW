@@ -1,0 +1,9 @@
+1. Add is_in_use column to goods_inventory table
+2. Update models and controllers (add is_in_use editing as well(due to foreing key constraint violation and 
+potential legal issues, the goods are impossible to remove from goods_registry. Status is_in_use=false will in fact 
+deactivate these items from use in logistics; before swithching is_in_use=false make a SQL function and trigger
+checking the item`s presence in inventory; the only condition to set is_in_use=false is zero quantity of the 
+item in the inventory))
+3. Make sure if newly created function and trigger will be automated as well
+4. According to these changes, Update UI (client)
+5. Push the changes to Github

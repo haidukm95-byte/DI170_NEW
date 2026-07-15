@@ -20,7 +20,8 @@ INSERT INTO operation_codes (operation_code, operation_name) VALUES
     (33, 'UTILIZED BY DAMAGE'),
     (34, 'UTILIZED BY HAZARD'),
     (35, 'UTILIZED BY THEFT'),
-    (36, 'UTILIZED BY OTHER REASON (EXPLANATION MANDATORY!)');
+    (36, 'UTILIZED BY OTHER REASON (EXPLANATION MANDATORY!)')
+ON CONFLICT (operation_code) DO NOTHING;
 
 REVOKE ALL ON operation_codes FROM PUBLIC;
 GRANT SELECT ON operation_codes TO PUBLIC;
@@ -36,7 +37,8 @@ CREATE TABLE IF NOT EXISTS occupation_codes (
 INSERT INTO occupation_codes (occupation_code, occupation_name, auth_receive, auth_edit_personnel, auth_edit_goods_registry) VALUES
     (1, 'Manager', true, true, true),
     (2, 'Receiver', true, false, false),
-    (3, 'General worker', false, false, false);
+    (3, 'General worker', false, false, false)
+ON CONFLICT (occupation_code) DO NOTHING;
 
 -- Master goods registry
 
@@ -132,7 +134,7 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-CREATE TRIGGER before_goods_registry_insert
+CREATE OR REPLACE TRIGGER before_goods_registry_insert
 BEFORE INSERT ON goods_registry
 FOR EACH ROW EXECUTE FUNCTION check_goods_registry_duplicate();
 
@@ -159,7 +161,7 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-CREATE TRIGGER before_logistics_check_auth
+CREATE OR REPLACE TRIGGER before_logistics_check_auth
 BEFORE INSERT ON logistics
 FOR EACH ROW EXECUTE FUNCTION check_receive_authorization();
 
@@ -177,7 +179,7 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-CREATE TRIGGER before_logistics_check_registry
+CREATE OR REPLACE TRIGGER before_logistics_check_registry
 BEFORE INSERT ON logistics
 FOR EACH ROW EXECUTE FUNCTION check_goods_registry_exists();
 
@@ -196,7 +198,7 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-CREATE TRIGGER before_logistics_set_goods_info
+CREATE OR REPLACE TRIGGER before_logistics_set_goods_info
 BEFORE INSERT OR UPDATE OF code ON logistics
 FOR EACH ROW EXECUTE FUNCTION fill_logistics_goods_info();
 
@@ -214,7 +216,7 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-CREATE TRIGGER before_logistics_set_operation_name
+CREATE OR REPLACE TRIGGER before_logistics_set_operation_name
 BEFORE INSERT OR UPDATE OF operation_code ON logistics
 FOR EACH ROW EXECUTE FUNCTION fill_logistics_operation_name();
 
@@ -258,7 +260,7 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-CREATE TRIGGER after_logistics_insert
+CREATE OR REPLACE TRIGGER after_logistics_insert
 AFTER INSERT ON logistics
 FOR EACH ROW EXECUTE FUNCTION handle_logistics_operation();
 
@@ -280,11 +282,11 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-CREATE TRIGGER check_zero_quantity_food
+CREATE OR REPLACE TRIGGER check_zero_quantity_food
 AFTER UPDATE OF quantity ON foods_inventory
 FOR EACH ROW EXECUTE FUNCTION remove_if_zero_quantity();
 
-CREATE TRIGGER check_zero_quantity_general
+CREATE OR REPLACE TRIGGER check_zero_quantity_general
 AFTER UPDATE OF quantity ON general_inventory
 FOR EACH ROW EXECUTE FUNCTION remove_if_zero_quantity();
 
@@ -308,7 +310,7 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-CREATE TRIGGER before_personnel_set_auth
+CREATE OR REPLACE TRIGGER before_personnel_set_auth
 BEFORE INSERT OR UPDATE OF occupation_code ON personnel
 FOR EACH ROW EXECUTE FUNCTION fill_personnel_auth();
 
@@ -335,9 +337,75 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-CREATE TRIGGER before_logistics_check_general_worker_restriction
+CREATE OR REPLACE TRIGGER before_logistics_check_general_worker_restriction
 BEFORE INSERT ON logistics
 FOR EACH ROW EXECUTE FUNCTION check_general_worker_receive_restriction();
+
+-- -------------------------------------------------------
+-- TRIGGER: block negative quantity on logistics insert/update
+-- -------------------------------------------------------
+
+CREATE OR REPLACE FUNCTION check_non_negative_quantity()
+RETURNS TRIGGER AS $$
+BEGIN
+    IF NEW.quantity < 0 THEN
+        RAISE EXCEPTION 'Quantity cannot be negative. Value: %', NEW.quantity;
+    END IF;
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE TRIGGER check_logistics_quantity
+BEFORE INSERT OR UPDATE OF quantity ON logistics
+FOR EACH ROW EXECUTE FUNCTION check_non_negative_quantity();
+
+-- -------------------------------------------------------
+-- TRIGGER: block departure (operation_code=20) if amount exceeds
+-- available inventory, or the item isn't present in inventory
+-- (quantity = 0 or no inventory row exists)
+-- -------------------------------------------------------
+-- is_food is looked up directly from goods_registry (not NEW.is_food)
+-- since trigger firing order is alphabetical and this must not depend
+-- on before_logistics_set_goods_info having run first.
+
+CREATE OR REPLACE FUNCTION check_departure_availability()
+RETURNS TRIGGER AS $$
+DECLARE
+    v_is_food BOOLEAN;
+    v_quantity NUMERIC(12,3);
+BEGIN
+    IF NEW.operation_code = 20 THEN
+        SELECT is_food INTO v_is_food
+        FROM goods_registry
+        WHERE code = NEW.code;
+
+        IF NOT FOUND THEN
+            RAISE EXCEPTION 'Item % does not exist in goods registry', NEW.code;
+        END IF;
+
+        IF v_is_food THEN
+            SELECT quantity INTO v_quantity FROM foods_inventory WHERE code = NEW.code;
+        ELSE
+            SELECT quantity INTO v_quantity FROM general_inventory WHERE code = NEW.code;
+        END IF;
+
+
+        IF v_quantity IS NULL OR v_quantity = 0 THEN
+            RAISE EXCEPTION 'Item % is not present in inventory (quantity is zero or does not exist)', NEW.code;
+        END IF;
+
+        IF NEW.quantity > v_quantity THEN
+            RAISE EXCEPTION 'Departure quantity % exceeds available inventory quantity % for item %', NEW.quantity, v_quantity, NEW.code;
+        END IF;
+    END IF;
+
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE TRIGGER before_logistics_check_departure_availability
+BEFORE INSERT ON logistics
+FOR EACH ROW EXECUTE FUNCTION check_departure_availability();
 
 -- -------------------------------------------------------
 -- TRIGGER: propagate goods_registry edits (name/is_food/measuring_unit)
@@ -389,6 +457,15 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-CREATE TRIGGER after_goods_registry_update
+CREATE OR REPLACE TRIGGER after_goods_registry_update
 AFTER UPDATE OF name, is_food, measuring_unit ON goods_registry
 FOR EACH ROW EXECUTE FUNCTION propagate_goods_registry_update();
+
+--Check if the worker is not active to block successful statement execution SET personnel.is_active=false;
+CREATE OR REPLACE FUNCTION is_not_active_employee_check()
+RETURNS TRIGGER AS $$
+BEGIN
+    SELECT * FROM personnel
+    WHERE personnel_id=NEW.personnel_id;
+
+    IF OLD.is_active=false

@@ -6,6 +6,10 @@ function sanitizeEmployee(employee) {
     return safeEmployee;
 }
 
+function isOwnAccount(req, id) {
+    return String(req.user.sub) === String(id);
+}
+
 export async function viewEmployees(req,res,next) {
     try{
         const {gov_id, full_name, date_of_birth, occupation_code, isactive} = req.query;
@@ -39,6 +43,9 @@ export async function addEmployee(req, res, next) {
 export async function editProfile(req,res,next){
     try{
         const { id } = req.params;
+        if (isOwnAccount(req, id)) {
+            return res.status(403).json({ error: 'Use /manager/me/edit to edit your own account' });
+        }
         const { gov_id, full_name, date_of_birth, password } = req.body;
         if (!gov_id || !full_name || !date_of_birth || !password) {
             return res.status(400).json({ error: 'gov_id, full_name, date_of_birth and password are required' });
@@ -72,6 +79,9 @@ export async function editMyProfile(req, res, next) {
 export async function changeOccupation(req, res, next) {
     try {
         const { id } = req.params;
+        if (isOwnAccount(req, id)) {
+            return res.status(403).json({ error: 'Cannot change your own occupation' });
+        }
         const { occupation_code } = req.body;
         if (!occupation_code) {
             return res.status(400).json({ error: 'occupation_code is required' });
@@ -89,6 +99,9 @@ export async function changeOccupation(req, res, next) {
 export async function dismissEmployee(req, res, next) {
     try {
         const { id } = req.params;
+        if (isOwnAccount(req, id)) {
+            return res.status(403).json({ error: 'Cannot dismiss your own account' });
+        }
         const employee = await ManagerModel.dismissEmployee(id);
         if (!employee) {
             return res.status(404).json({ error: 'Employee not found' });
@@ -102,6 +115,9 @@ export async function dismissEmployee(req, res, next) {
 export async function returnEmployee(req, res, next) {
     try {
         const { id } = req.params;
+        if (isOwnAccount(req, id)) {
+            return res.status(403).json({ error: 'Cannot return your own account' });
+        }
         const { occupation_code } = req.body;
         if (!occupation_code) {
             return res.status(400).json({ error: 'occupation_code is required' });
@@ -156,6 +172,18 @@ export async function updateGoods(req, res, next) {
             return res.status(404).json({ error: 'Item not found' });
         }
         return res.status(200).json({ item });
+    } catch (err) {
+        return next(err);
+    }
+}
+
+export async function deleteGoods(req,res,next) {
+    try {
+        const {code} = req.params;
+        if (!code) return res.status(400).json({error: 'code is required'});
+        const item=await ManagerModel.deleteFromGoodsRegistry(code);
+        if (!item) return res.status(404).json({error: "Item not found"});
+        return res.status(200).json({item});
     } catch (err) {
         return next(err);
     }

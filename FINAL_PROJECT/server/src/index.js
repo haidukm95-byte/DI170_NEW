@@ -5,6 +5,7 @@ import dotenv from 'dotenv';
 import authRoutes from './routes/auth.js';
 import managerRoutes from './routes/manager.js';
 import receiverWorkerRoutes from './routes/receiverWorker.js';
+import { migrate } from './db/migrate.js';
 
 dotenv.config();
 
@@ -36,4 +37,12 @@ app.use((err, req, res, next) => {
 });
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server listening on port ${PORT}`));
+
+migrate()
+    .then(() => {
+        app.listen(PORT, () => console.log(`Server listening on port ${PORT}`));
+    })
+    .catch(err => {
+        console.error('Failed to apply database schema, server not started:', err);
+        process.exit(1);
+    });
