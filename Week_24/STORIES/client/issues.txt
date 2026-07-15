@@ -1,2 +1,21 @@
-{user_id=1} not all the friends and collaborators are displayed in 
-"friends" and "collaborators" tabs in LeftSidebar
+
+Week_24/STORIES
+Deployed on: https://stories-app-311o.onrender.com
+1. Loading main page
+Failed to load resource: the server responded with a status of 404 ()Understand this error
+(index):1 Refused to apply style from 'https://stories-app-311o.onrender.com/assets/index-FbgCRRm3.css' because its MIME type ('text/plain') is not a supported stylesheet MIME type, and strict MIME checking is enabled.Understand this error
+(index):1 Uncaught (in promise) Error: A listener indicated an asynchronous response by returning true, but the message channel closed before a response was receivedUnderstand this error
+zmstat.com/:1  Failed to load resource: net::ERR_CONNECTION_REFUSEDUnderstand this error
+/favicon.svg:1  Failed to load resource: the server responded with a status of 404 ()
+UPD: LOADED SUCCESSFULLY
+
+Week_24/STORIES
+Deployed on: https://stories-app-311o.onrender.com
+
+
+Compare basic plans which will be suitable for a small web application, on these platforms:
+ - render.com
+ - Heroku
+ - AWS
+ - Vercel
+ - Netlify

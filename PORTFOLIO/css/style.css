@@ -1,0 +1,25 @@
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  padding-top: 56px;
+}
+
+.hero {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #212529, #495057);
+}
+
+.btn-linkedin {
+  color: #fff;
+  background-color: #0a66c2;
+  border-color: #0a66c2;
+}
+
+.btn-linkedin:hover,
+.btn-linkedin:focus {
+  color: #fff;
+  background-color: #084e96;
+  border-color: #084e96;
+}

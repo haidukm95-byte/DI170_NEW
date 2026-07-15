@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marko Haiduk | Portfolio</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#home">Marko Haiduk</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+          <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <header id="home" class="hero d-flex align-items-center text-center text-white">
+    <div class="container">
+      <h1 class="display-4 fw-bold">Marko Haiduk</h1>
+      <p class="lead">Full-Stack Developer</p>
+      <a href="#projects" class="btn btn-primary btn-lg mt-3">View My Work</a>
+    </div>
+  </header>
+
+  <section id="about" class="py-5">
+    <div class="container">
+      <h2 class="text-center mb-4">About Me</h2>
+      <p class="lead text-center mx-auto" style="max-width: 700px;">
+        I'm a full-stack developer building web applications with JavaScript, Node.js, and modern frontend
+        frameworks. I enjoy turning ideas into clean, working software.
+      </p>
+    </div>
+  </section>
+
+  <section id="skills" class="py-5 bg-light">
+    <div class="container">
+      <h2 class="text-center mb-4">Skills</h2>
+      <div class="row g-4 text-center">
+        <div class="col-6 col-md-3">
+          <div class="p-3 bg-white rounded shadow-sm h-100">JavaScript</div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="p-3 bg-white rounded shadow-sm h-100">Node.js / Express / Authentification</div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="p-3 bg-white rounded shadow-sm h-100">SQL / PostgreSQL</div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="p-3 bg-white rounded shadow-sm h-100">HTML / CSS / Bootstrap</div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="p-3 bg-white rounded shadow-sm h-100">React / Typescript</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects" class="py-5">
+    <div class="container">
+      <h2 class="text-center mb-4">Projects</h2>
+      <div class="row g-4">
+        <div class="col-md-6">
+          <div class="card h-100">
+            <div class="card-body">
+              <h5 class="card-title">Currency Converter Web App</h5>
+              <p class="card-text">
+                Web application that converts currencies using live exchange rates. Built with HTML, CSS, and
+                JavaScript, integrating an external currency exchange API with dynamic conversion for 170+ global
+                currencies.
+              </p>
+              <a href="https://github.com/haidukm95-byte/DI170/tree/Week_12_currency_converter" class="btn btn-outline-primary btn-sm">GitHub</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card h-100">
+            <div class="card-body">
+              <h5 class="card-title">To-Do List Web App</h5>
+              <p class="card-text">
+                Simple task management application with a dynamic interface. Built with JavaScript, HTML, and CSS,
+                using DOM manipulation for task creation and completion in an interactive daily-task UI.
+              </p>
+              <a href="https://github.com/haidukm95-byte/DI170/tree/Week_8_to_do_list" class="btn btn-outline-primary btn-sm">GitHub</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card h-100">
+            <div class="card-body">
+              <h5 class="card-title">Stories App</h5>
+              <p class="card-text">
+                A mini social-media-style app: create an account, add friends, and post stories to your feed alone
+                or collaboratively, with edit, discard, and delete options. Backend built with models, controllers,
+                and routes with token-based user authorization; frontend built on React, Redux, and TypeScript.
+              </p>
+              <a href="https://stories-app-311o.onrender.com/" class="btn btn-outline-primary btn-sm me-2">Live App</a>
+              <a href="https://github.com/haidukm95-byte/DI170_NEW/tree/main/Week_24/STORIES" class="btn btn-outline-primary btn-sm">GitHub</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card h-100">
+            <div class="card-body">
+              <h5 class="card-title">Warehouse App</h5>
+              <p class="card-text">
+                Multi-user application for warehouse logistics logging and inventory inspection, built for small
+                warehouse teams and accessible from PC, tablet, or smartphone. Backend handles authorization,
+                logistics, goods registry, inventory checks, and personnel operations, with token-based
+                authorization that expires after inactivity; frontend built on React.
+              </p>
+              <a href="https://warehouse-app-client-new.onrender.com/" class="btn btn-outline-primary btn-sm me-2">Live App</a>
+              <a href="https://github.com/haidukm95-byte/DI170_NEW/tree/main/FINAL_PROJECT" class="btn btn-outline-primary btn-sm">GitHub</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="py-5 bg-dark text-white">
+    <div class="container text-center">
+      <h2 class="mb-4">Contact</h2>
+      <p>Let's get in touch.</p>
+      <a href="mailto:haidukm95@gmail.com" id="emailBtn" class="btn btn-primary me-2">Email Me</a>
+      <a href="https://github.com/haidukm95-byte" class="btn btn-outline-light">GitHub</a>
+      <a href="https://www.linkedin.com/in/marko-haiduk-0725893b7" class="btn btn-linkedin">LinkedIn</a>
+    </div>
+  </section>
+
+  <footer class="text-center py-3 bg-black text-white-50">
+    <small>&copy; 2026 Marko Haiduk. All rights reserved.</small>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

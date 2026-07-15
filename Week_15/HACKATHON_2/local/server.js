@@ -121,12 +121,19 @@ app.post("/api/tasks", async (req, res) => {
 
 // PATCH /api/tasks/:taskuid — toggle isdone
 app.patch("/api/tasks/:taskuid", async (req, res) => {
-  const { isdone } = req.body;
+  const { isdone, task, datetime } = req.body;
   try {
-    await pool.query("UPDATE users_tasks SET isdone = $1 WHERE taskuid = $2", [
-      isdone,
-      req.params.taskuid,
-    ]);
+    if (isdone !== undefined) {
+      await pool.query(
+        "UPDATE users_tasks SET isdone = $1 WHERE taskuid = $2",
+        [isdone, req.params.taskuid],
+      );
+    } else {
+      await pool.query(
+        "UPDATE users_tasks SET task = $1, datetime = $2 WHERE taskuid = $3",
+        [task, datetime || null, req.params.taskuid],
+      );
+    }
     res.json({ updated: true });
   } catch (err) {
     console.error("DB error:", err.message);
@@ -253,7 +260,6 @@ app.delete("/api/user", async (req, res) => {
     res.status(500).json({ error: "Database error" });
   }
 });
-
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () =>

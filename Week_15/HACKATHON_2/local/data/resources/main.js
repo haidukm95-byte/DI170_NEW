@@ -84,7 +84,7 @@ function renderTask(task) {
       const newTask = editInput.value.trim();
       const newDT = editDT.value || null;
       if (!newTask) return;
-      await fetch(`api/tasks/${task.taskuid}`, {
+      await fetch(`/api/tasks/${task.taskuid}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ task: newTask, datetime: newDT }),
