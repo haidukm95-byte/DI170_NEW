@@ -4,9 +4,9 @@ import { dirname, join } from 'node:path';
 import { pool } from './pool.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const schemaPath = join(__dirname, '../../../Create_tables.sql');
+const schemaPath = join(__dirname, '../../../create_tables.sql');
 
-// Create_tables.sql is written to be safely re-run: CREATE TABLE IF NOT EXISTS,
+// create_tables.sql is written to be safely re-run: CREATE TABLE IF NOT EXISTS,
 // CREATE OR REPLACE FUNCTION/TRIGGER, and ON CONFLICT DO NOTHING seed inserts.
 // Running it as one query executes it as a single implicit transaction, so a
 // failure partway through rolls back instead of leaving triggers half-applied.
