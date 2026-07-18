@@ -1,4 +1,0 @@
-1. Review PORTFOLIO/requirements/requirements.txt
-2. Review my existing portfolio on https://www.datascienceportfol.io/haidukm95
-2. Based on aforementioned requirements, take a data from https://www.datascienceportfol.io/haidukm95 and update existing site in PORTFOLIO/ directory
-3. I don`t have a professional avatar yet, so live empty template in place where the avatar is meant to be
