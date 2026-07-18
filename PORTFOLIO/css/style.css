@@ -11,6 +11,14 @@ body {
   background: linear-gradient(135deg, #212529, #495057);
 }
 
+.avatar-placeholder {
+  width: 140px;
+  height: 140px;
+  background-color: rgba(255, 255, 255, 0.15);
+  border: 2px dashed rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.7);
+}
+
 .btn-linkedin {
   color: #fff;
   background-color: #0a66c2;

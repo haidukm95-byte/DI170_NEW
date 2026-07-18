@@ -1,0 +1,48 @@
+What is a portfolio
+
+A portfolio is a single page site that showcases who you are, what skills you have, and most importantly the work you’ve done.
+As a developer, your portfolio is going to be in the form of a website. The main goal of this website is to showcase yourself and your work in the best way possible.
+We recommend you to code the portfolio using only CSS (you could use framework like Bootstrap, Materialize, Tailwing only for the structure)
+
+
+1. What you need to include:
+
+    A profile picture
+
+    A small bio about yourself and what job you are looking for (it’s like an “about me” section where people can learn about you). It could also be a funny bio.
+
+    Your strongest skills and the coding languages you know.
+
+    Your education or certificates, and make sure to show that the skills you learned are relevant to web development and the jobs you desire.
+
+    Links to your Github and Linkedin profile.
+
+    A button to download your resume.
+
+    Projects showcasing your work.
+
+    A contact form.
+
+    Nice transition and animations (not mandatory).
+
+
+2. What you need to showcase in the project section
+
+Add a section to present all the projects you did. You can also add the projects you did in groups, like the Hackathons.
+Include your best and most unique projects to well represent your skill set.
+
+Add the name of your project and a picture
+
+When you click on the project, you could redirect the user to another page or display a dropdown, with this information:
+
+    Why did you choose to build this project? Short description of the project and purpose
+
+    What tools did you use when building this project, and how much time you worked on it?
+
+    What challenged you when making this project?
+
+    What did you learn from making this project?
+
+    Add 2 buttons that redirect to your Github Repo and to your deployed project
+
+    Add screenshots or videos of the project

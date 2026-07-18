@@ -19,6 +19,7 @@
         <ul class="navbar-nav ms-auto">
           <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
           <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+          <li class="nav-item"><a class="nav-link" href="#education">Education</a></li>
           <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
           <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
         </ul>
@@ -28,9 +29,13 @@
 
   <header id="home" class="hero d-flex align-items-center text-center text-white">
     <div class="container">
+      <div class="avatar-placeholder rounded-circle mx-auto mb-4 d-flex align-items-center justify-content-center">
+        <img src="avatar.png" alt="Marko Haiduk" class="rounded-circle w-100 h-100" style="object-fit: cover;">
+      </div>
       <h1 class="display-4 fw-bold">Marko Haiduk</h1>
-      <p class="lead">Full-Stack Developer</p>
+      <p class="lead">Full-Stack Web Developer &middot; Mevaseret Zion, Israel</p>
       <a href="#projects" class="btn btn-primary btn-lg mt-3">View My Work</a>
+      <a href="resume.pdf" download class="btn btn-outline-light btn-lg mt-3 ms-2">Download Resume</a>
     </div>
   </header>
 
@@ -38,8 +43,10 @@
     <div class="container">
       <h2 class="text-center mb-4">About Me</h2>
       <p class="lead text-center mx-auto" style="max-width: 700px;">
-        I'm a full-stack developer building web applications with JavaScript, Node.js, and modern frontend
-        frameworks. I enjoy turning ideas into clean, working software.
+        Full-stack web developer based in Mevaseret Zion, Israel, and a graduate of the Developers Institute's
+        Full Stack Web Development program. Experienced building backend and frontend web applications and working
+        with PostgreSQL databases. I enjoy turning ideas into clean, working software, and I'm looking for a
+        full-stack developer role where I can keep building it.
       </p>
     </div>
   </section>
@@ -49,19 +56,44 @@
       <h2 class="text-center mb-4">Skills</h2>
       <div class="row g-4 text-center">
         <div class="col-6 col-md-3">
-          <div class="p-3 bg-white rounded shadow-sm h-100">JavaScript</div>
+          <div class="p-3 bg-white rounded shadow-sm h-100">JavaScript / TypeScript</div>
         </div>
         <div class="col-6 col-md-3">
-          <div class="p-3 bg-white rounded shadow-sm h-100">Node.js / Express / Authentification</div>
+          <div class="p-3 bg-white rounded shadow-sm h-100">Node.js / Express</div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="p-3 bg-white rounded shadow-sm h-100">React / Redux</div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="p-3 bg-white rounded shadow-sm h-100">HTML5 / CSS / Bootstrap</div>
         </div>
         <div class="col-6 col-md-3">
           <div class="p-3 bg-white rounded shadow-sm h-100">SQL / PostgreSQL</div>
         </div>
         <div class="col-6 col-md-3">
-          <div class="p-3 bg-white rounded shadow-sm h-100">HTML / CSS / Bootstrap</div>
+          <div class="p-3 bg-white rounded shadow-sm h-100">Python</div>
         </div>
         <div class="col-6 col-md-3">
-          <div class="p-3 bg-white rounded shadow-sm h-100">React / Typescript</div>
+          <div class="p-3 bg-white rounded shadow-sm h-100">Authentication</div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="p-3 bg-white rounded shadow-sm h-100">Deployment</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="education" class="py-5">
+    <div class="container">
+      <h2 class="text-center mb-4">Education</h2>
+      <div class="card mx-auto shadow-sm" style="max-width: 700px;">
+        <div class="card-body">
+          <h5 class="card-title mb-1">Full Stack Web Development</h5>
+          <h6 class="card-subtitle mb-2 text-muted">Developers Institute, Ramat Gan, Israel &middot; 2025 - 2026</h6>
+          <p class="card-text">
+            27-week part-time bootcamp covering Python, SQL, HTML5, CSS, JavaScript, Node.js, React, Redux,
+            TypeScript, authentication, and deployment &mdash; the same stack used across the projects below.
+          </p>
         </div>
       </div>
     </div>
@@ -80,6 +112,7 @@
                 JavaScript, integrating an external currency exchange API with dynamic conversion for 170+ global
                 currencies.
               </p>
+              <a href="https://currency-converter-server-wk8d.onrender.com/" class="btn btn-outline-primary btn-sm me-2">Live App</a>
               <a href="https://github.com/haidukm95-byte/DI170/tree/Week_12_currency_converter" class="btn btn-outline-primary btn-sm">GitHub</a>
             </div>
           </div>
