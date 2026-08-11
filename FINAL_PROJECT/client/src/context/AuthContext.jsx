@@ -1,5 +1,5 @@
 import { createContext, useCallback, useContext, useEffect, useRef, useState } from 'react';
-import api, { setSessionExpiredHandler } from '../api/axiosInstance';
+import api, { refreshSession, setSessionExpiredHandler } from '../api/axiosInstance';
 
 const AuthContext = createContext(null);
 
@@ -85,7 +85,7 @@ export function AuthProvider({ children }) {
         const id = setInterval(() => {
             const idleFor = Date.now() - lastActivityRef.current;
             if (idleFor < ACTIVITY_WINDOW_MS) {
-                api.post('/auth/refresh').catch(() => {
+                refreshSession().catch(() => {
                     setUser(null);
                     setStatus('unauthenticated');
                 });
