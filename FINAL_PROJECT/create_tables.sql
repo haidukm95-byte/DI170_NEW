@@ -264,50 +264,11 @@ CREATE OR REPLACE TRIGGER after_logistics_insert
 AFTER INSERT ON logistics
 FOR EACH ROW EXECUTE FUNCTION handle_logistics_operation();
 
--- -------------------------------------------------------
--- TRIGGER 1b: reverse inventory effect when a logistics row is deleted
--- -------------------------------------------------------
--- Mirrors handle_logistics_operation() so removing a logged operation
--- (e.g. an operator undoing a mis-entered row) doesn't leave inventory
--- out of sync. The inventory row may already have been removed by the
--- zero-quantity trigger below, hence ON CONFLICT DO UPDATE on re-add.
-
-CREATE OR REPLACE FUNCTION reverse_logistics_operation()
-RETURNS TRIGGER AS $$
-BEGIN
-    IF OLD.is_food = TRUE THEN
-
-        IF OLD.operation_code = 10 THEN
-            UPDATE foods_inventory SET quantity = quantity - OLD.quantity WHERE code = OLD.code;
-
-        ELSIF OLD.operation_code = 20 OR OLD.operation_code BETWEEN 32 AND 36 THEN
-            INSERT INTO foods_inventory (code, name, measuring_unit, quantity)
-            VALUES (OLD.code, OLD.name, OLD.measuring_unit, OLD.quantity)
-            ON CONFLICT (code) DO UPDATE
-                SET quantity = foods_inventory.quantity + OLD.quantity;
-        END IF;
-
-    ELSE
-
-        IF OLD.operation_code = 10 THEN
-            UPDATE general_inventory SET quantity = quantity - OLD.quantity WHERE code = OLD.code;
-
-        ELSIF OLD.operation_code = 20 OR OLD.operation_code BETWEEN 32 AND 36 THEN
-            INSERT INTO general_inventory (code, name, measuring_unit, quantity)
-            VALUES (OLD.code, OLD.name, OLD.measuring_unit, OLD.quantity)
-            ON CONFLICT (code) DO UPDATE
-                SET quantity = general_inventory.quantity + OLD.quantity;
-        END IF;
-
-    END IF;
-
-    RETURN OLD;
-END;
-$$ LANGUAGE plpgsql;
-
-CREATE OR REPLACE TRIGGER after_logistics_delete
-AFTER DELETE ON logistics
-FOR EACH ROW EXECUTE FUNCTION reverse_logistics_operation();
+-- Dev DBs that already ran the now-removed after_logistics_delete trigger
+-- (from when rows could be deleted individually) get it cleaned up here;
+-- harmless no-op on a DB that never had it.
+DROP TRIGGER IF EXISTS after_logistics_delete ON logistics;
+DROP FUNCTION IF EXISTS reverse_logistics_operation();
 
 -- -------------------------------------------------------
 -- TRIGGER 2: remove item from inventory when quantity = 0
