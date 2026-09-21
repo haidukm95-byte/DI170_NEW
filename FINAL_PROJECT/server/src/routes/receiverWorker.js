@@ -15,7 +15,8 @@ router.get('/goods', ReceiverWorkerController.viewGoods); //checked
 
 router.post('/logistics/new', ReceiverWorkerController.logOperation); //checked
 router.get('/logistics', ReceiverWorkerController.getLogistics); //checked
-router.put('/logistics/:operation_id/report', ReceiverWorkerController.report); 
+router.put('/logistics/:operation_id/report', ReceiverWorkerController.report);
+router.delete('/logistics/:operation_id', ReceiverWorkerController.deleteOperation);
 
 router.get('/inventory/foods', ReceiverWorkerController.getFoodsInventory); //checked
 router.get('/inventory/general', ReceiverWorkerController.getGeneralInventory); //checked

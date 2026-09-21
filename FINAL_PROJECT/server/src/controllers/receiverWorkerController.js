@@ -50,6 +50,19 @@ export async function logOperation(req, res, next) {
     }
 }
 
+export async function deleteOperation(req, res, next) {
+    try {
+        const { operation_id } = req.params;
+        const operation = await ReceiverWorkerModel.deleteLogisticOperation(operation_id, req.user.sub);
+        if (!operation) {
+            return res.status(404).json({ error: 'Operation not found' });
+        }
+        return res.status(200).json({ operation });
+    } catch (err) {
+        return next(err);
+    }
+}
+
 export async function getLogistics(req, res, next) {
     try{
         const {code, name, quantity, operation_code, operation_name, is_food, measuring_unit, report, responsible_id, date, time} = req.query;

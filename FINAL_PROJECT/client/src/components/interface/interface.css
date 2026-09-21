@@ -134,6 +134,11 @@ a.btn-primary {
   min-width: 140px;
 }
 
+.operation-row-actions {
+  display: flex;
+  gap: 8px;
+}
+
 .lookup-form label,
 .entity-form label {
   display: flex;

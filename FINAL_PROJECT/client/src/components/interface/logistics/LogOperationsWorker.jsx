@@ -44,20 +44,42 @@ export default function LogOperationsWorker() {
         setRows((prev) => prev.map((row, i) => (i === index ? { ...row, [name]: value } : row)));
     }
 
-    function handleNextRow(index) {
+    // Logged immediately (not deferred to the final submit) because the resulting
+    // operation_id is what receipt printing looks up, so the row must be persisted
+    // and locked as soon as the operator moves on to the next one.
+    async function handleNextRow(index) {
         const row = rows[index];
         if (!row.code || !row.quantity) {
             setError('Fill in the goods code and quantity before adding the next operation.');
             return;
         }
         setError('');
-        setRows((prev) => [
-            ...prev.map((r, i) => (i === index ? { ...r, saved: true } : r)),
-            { ...EMPTY_FORM, saved: false },
-        ]);
+        try {
+            const { data } = await api.post('/manager/logistics/new', {
+                code: Number(row.code),
+                quantity: Number(row.quantity),
+                operation_code: Number(row.operation_code),
+            });
+            setRows((prev) => [
+                ...prev.map((r, i) => (i === index ? { ...r, saved: true, operation: data.operation } : r)),
+                { ...EMPTY_FORM, saved: false },
+            ]);
+        } catch (err) {
+            setError(err.response?.data?.error ?? 'Failed to log operation');
+        }
     }
 
-    function handleRemoveRow(index) {
+    async function handleRemoveRow(index) {
+        const row = rows[index];
+        if (row.saved) {
+            setError('');
+            try {
+                await api.delete(`/manager/logistics/${row.operation.operation_id}`);
+            } catch (err) {
+                setError(err.response?.data?.error ?? 'Failed to remove operation');
+                return;
+            }
+        }
         setRows((prev) => prev.filter((_, i) => i !== index));
     }
 
@@ -66,23 +88,27 @@ export default function LogOperationsWorker() {
         setError('');
         setSuccess(null);
 
-        const entries = rows.filter((row) => row.code !== '' && row.quantity !== '');
-        if (entries.length === 0) {
+        const lastIndex = rows.length - 1;
+        const lastRow = rows[lastIndex];
+        const alreadyLogged = rows.filter((row) => row.saved).map((row) => row.operation);
+        const hasPendingLastRow = lastRow && !lastRow.saved && lastRow.code !== '' && lastRow.quantity !== '';
+
+        if (!hasPendingLastRow && alreadyLogged.length === 0) {
             setError('Enter at least one operation before logging.');
             return;
         }
 
         try {
-            const results = await Promise.all(
-                entries.map((row) =>
-                    api.post('/manager/logistics/new', {
-                        code: Number(row.code),
-                        quantity: Number(row.quantity),
-                        operation_code: Number(row.operation_code),
-                    })
-                )
-            );
-            setSuccess(results.map((res) => res.data.operation));
+            let newOperations = [];
+            if (hasPendingLastRow) {
+                const { data } = await api.post('/manager/logistics/new', {
+                    code: Number(lastRow.code),
+                    quantity: Number(lastRow.quantity),
+                    operation_code: Number(lastRow.operation_code),
+                });
+                newOperations = [data.operation];
+            }
+            setSuccess([...alreadyLogged, ...newOperations]);
             setRows([{ ...EMPTY_FORM, saved: false }]);
         } catch (err) {
             setError(err.response?.data?.error ?? 'Failed to log operation');
@@ -133,15 +159,19 @@ export default function LogOperationsWorker() {
                                 ))}
                             </select>
                         </label>
-                        {row.saved ? (
-                            <button type="button" className="btn-secondary" onClick={() => handleRemoveRow(index)}>
-                                Remove
-                            </button>
-                        ) : (
-                            <button type="button" onClick={() => handleNextRow(index)}>
-                                Next
-                            </button>
-                        )}
+                        {row.saved && <span className="form-success">Logged #{row.operation.operation_id}</span>}
+                        <div className="operation-row-actions">
+                            {!row.saved && (
+                                <button type="button" onClick={() => handleNextRow(index)}>
+                                    Next
+                                </button>
+                            )}
+                            {rows.length > 1 && (
+                                <button type="button" className="btn-secondary" onClick={() => handleRemoveRow(index)}>
+                                    Remove
+                                </button>
+                            )}
+                        </div>
                     </div>
                 ))}
                 {error && (

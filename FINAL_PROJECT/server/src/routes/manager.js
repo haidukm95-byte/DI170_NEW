@@ -22,6 +22,7 @@ router.put('/goods/:code/edit', requirePermission('auth_edit_goods_registry'), M
 router.post('/logistics/new', requirePermission('auth_receive'), ManagerController.logOperation); //checked
 router.get('/logistics', ManagerController.getLogistics); // checked
 router.put('/logistics/:operation_id/report', ManagerController.report); //checked
+router.delete('/logistics/:operation_id', ManagerController.deleteOperation);
 
 router.get('/inventory/foods', ManagerController.getFoodsInventory); //checked
 router.get('/inventory/general', ManagerController.getGeneralInventory); //checked

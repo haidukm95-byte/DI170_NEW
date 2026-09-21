@@ -80,6 +80,19 @@ export async function newLogisticOperation(code, quantity, operation_code, respo
     return r.rows[0]
 }
 
+// Delete a logistic operation. Restricted to the employee who logged it,
+// so removing a row can't be used to erase someone else's history.
+// The after_logistics_delete DB trigger reverses the inventory effect.
+export async function deleteLogisticOperation(operation_id, responsible_id) {
+    const r=await pool.query(
+        `DELETE FROM logistics
+         WHERE operation_id=$1 AND responsible_id=$2
+         RETURNING *`,
+        [operation_id, responsible_id]
+    )
+    return r.rows[0]
+}
+
 //Watch logistics operations
 export async function watchLogisticsAll() {
     const r=await pool.query(`
