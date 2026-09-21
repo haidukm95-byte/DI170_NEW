@@ -82,7 +82,10 @@ export default function LogOperationsManagerReceiver() {
                 return;
             }
         }
-        setRows((prev) => prev.filter((_, i) => i !== index));
+        setRows((prev) => {
+            const next = prev.filter((_, i) => i !== index);
+            return next.length === 0 ? [emptyRow()] : next;
+        });
     }
 
     async function handleSubmit(e) {
@@ -168,11 +171,9 @@ export default function LogOperationsManagerReceiver() {
                                     Next
                                 </button>
                             )}
-                            {rows.length > 1 && (
-                                <button type="button" className="btn-secondary" onClick={() => handleRemoveRow(index)}>
-                                    Remove
-                                </button>
-                            )}
+                            <button type="button" className="btn-secondary" onClick={() => handleRemoveRow(index)}>
+                                Remove
+                            </button>
                         </div>
                     </div>
                 ))}

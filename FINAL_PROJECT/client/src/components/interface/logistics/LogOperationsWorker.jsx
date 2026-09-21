@@ -80,7 +80,10 @@ export default function LogOperationsWorker() {
                 return;
             }
         }
-        setRows((prev) => prev.filter((_, i) => i !== index));
+        setRows((prev) => {
+            const next = prev.filter((_, i) => i !== index);
+            return next.length === 0 ? [{ ...EMPTY_FORM, saved: false }] : next;
+        });
     }
 
     async function handleSubmit(e) {
@@ -166,11 +169,9 @@ export default function LogOperationsWorker() {
                                     Next
                                 </button>
                             )}
-                            {rows.length > 1 && (
-                                <button type="button" className="btn-secondary" onClick={() => handleRemoveRow(index)}>
-                                    Remove
-                                </button>
-                            )}
+                            <button type="button" className="btn-secondary" onClick={() => handleRemoveRow(index)}>
+                                Remove
+                            </button>
                         </div>
                     </div>
                 ))}
