@@ -48,7 +48,8 @@ export default function LogOperationsManagerReceiver() {
 
     // Next only stages the row locally (locks its inputs) and opens a new
     // one — nothing is sent to the backend until "Log Operation" submits
-    // everything that's been entered at once.
+    // everything that's been entered at once. Every row shares the
+    // operation type chosen on the first row, so it isn't re-picked here.
     function handleNextRow(index) {
         const row = rows[index];
         if (!row.code || !row.quantity) {
@@ -58,7 +59,7 @@ export default function LogOperationsManagerReceiver() {
         setError('');
         setRows((prev) => [
             ...prev.map((r, i) => (i === index ? { ...r, saved: true } : r)),
-            emptyRow(),
+            { ...emptyRow(), operation_code: prev[0].operation_code },
         ]);
     }
 
@@ -132,7 +133,7 @@ export default function LogOperationsManagerReceiver() {
                                 name="operation_code"
                                 value={row.operation_code}
                                 onChange={(e) => handleRowChange(index, e)}
-                                disabled={row.saved}
+                                disabled={row.saved || index > 0}
                             >
                                 {availableCodes.map((o) => (
                                     <option key={o.code} value={o.code}>
@@ -147,9 +148,11 @@ export default function LogOperationsManagerReceiver() {
                                     Next
                                 </button>
                             )}
-                            <button type="button" className="btn-secondary" onClick={() => handleRemoveRow(index)}>
-                                Remove
-                            </button>
+                            {(index > 0 || rows.length === 1) && (
+                                <button type="button" className="btn-secondary" onClick={() => handleRemoveRow(index)}>
+                                    Remove
+                                </button>
+                            )}
                         </div>
                     </div>
                 ))}

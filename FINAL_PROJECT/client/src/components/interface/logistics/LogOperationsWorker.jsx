@@ -46,7 +46,8 @@ export default function LogOperationsWorker() {
 
     // Next only stages the row locally (locks its inputs) and opens a new
     // one — nothing is sent to the backend until "Log Operation" submits
-    // everything that's been entered at once.
+    // everything that's been entered at once. Every row shares the
+    // operation type chosen on the first row, so it isn't re-picked here.
     function handleNextRow(index) {
         const row = rows[index];
         if (!row.code || !row.quantity) {
@@ -56,7 +57,7 @@ export default function LogOperationsWorker() {
         setError('');
         setRows((prev) => [
             ...prev.map((r, i) => (i === index ? { ...r, saved: true } : r)),
-            { ...EMPTY_FORM, saved: false },
+            { ...EMPTY_FORM, saved: false, operation_code: prev[0].operation_code },
         ]);
     }
 
@@ -130,7 +131,7 @@ export default function LogOperationsWorker() {
                                 name="operation_code"
                                 value={row.operation_code}
                                 onChange={(e) => handleRowChange(index, e)}
-                                disabled={row.saved}
+                                disabled={row.saved || index > 0}
                             >
                                 {OPERATION_CODES.map((o) => (
                                     <option key={o.code} value={o.code}>
