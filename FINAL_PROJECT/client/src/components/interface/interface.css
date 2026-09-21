@@ -111,6 +111,29 @@ a.btn-primary {
   max-width: 420px;
 }
 
+.entity-form--logistics {
+  max-width: none;
+}
+
+.operation-row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.operation-row:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.operation-row label {
+  min-width: 140px;
+}
+
 .lookup-form label,
 .entity-form label {
   display: flex;

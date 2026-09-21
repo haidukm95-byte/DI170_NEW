@@ -1,0 +1,7 @@
+Convert "new logistic operation" into a card for multiple operations logging at the same time
+In CSS: 
+.entity-form
+change display: column to display: row;
+remove max-width to make it look like a row;
+
+In JS:

@@ -35,28 +35,57 @@ export default function LogOperationsManagerReceiver() {
         () => OPERATION_CODES.filter((o) => !o.requiresReceive || user?.auth_receive),
         [user?.auth_receive]
     );
-    const [form, setForm] = useState({ code: '', quantity: '', operation_code: String(availableCodes[0].code) });
+    const emptyRow = () => ({ code: '', quantity: '', operation_code: String(availableCodes[0].code), saved: false });
+    const [rows, setRows] = useState([emptyRow()]);
     const [error, setError] = useState('');
     const [success, setSuccess] = useState(null);
     const navigate = useNavigate();
 
-    function handleChange(e) {
+    function handleRowChange(index, e) {
         const { name, value } = e.target;
-        setForm((prev) => ({ ...prev, [name]: value }));
+        setRows((prev) => prev.map((row, i) => (i === index ? { ...row, [name]: value } : row)));
+    }
+
+    function handleNextRow(index) {
+        const row = rows[index];
+        if (!row.code || !row.quantity) {
+            setError('Fill in the goods code and quantity before adding the next operation.');
+            return;
+        }
+        setError('');
+        setRows((prev) => [
+            ...prev.map((r, i) => (i === index ? { ...r, saved: true } : r)),
+            emptyRow(),
+        ]);
+    }
+
+    function handleRemoveRow(index) {
+        setRows((prev) => prev.filter((_, i) => i !== index));
     }
 
     async function handleSubmit(e) {
         e.preventDefault();
         setError('');
         setSuccess(null);
+
+        const entries = rows.filter((row) => row.code !== '' && row.quantity !== '');
+        if (entries.length === 0) {
+            setError('Enter at least one operation before logging.');
+            return;
+        }
+
         try {
-            const { data } = await api.post('/operations/logistics/new', {
-                code: Number(form.code),
-                quantity: Number(form.quantity),
-                operation_code: Number(form.operation_code),
-            });
-            setSuccess(data.operation);
-            setForm({ code: '', quantity: '', operation_code: String(availableCodes[0].code) });
+            const results = await Promise.all(
+                entries.map((row) =>
+                    api.post('/operations/logistics/new', {
+                        code: Number(row.code),
+                        quantity: Number(row.quantity),
+                        operation_code: Number(row.operation_code),
+                    })
+                )
+            );
+            setSuccess(results.map((res) => res.data.operation));
+            setRows([emptyRow()]);
         } catch (err) {
             setError(err.response?.data?.error ?? 'Failed to log operation');
         }
@@ -65,31 +94,68 @@ export default function LogOperationsManagerReceiver() {
     return (
         <section>
             <h2>New Logistics Operation</h2>
-            <form onSubmit={handleSubmit} className="entity-form">
-                <label>
-                    Goods Code
-                    <input name="code" type="number" value={form.code} onChange={handleChange} required />
-                </label>
-                <label>
-                    Quantity
-                    <input name="quantity" type="number" step="0.001" value={form.quantity} onChange={handleChange} required />
-                </label>
-                <label>
-                    Operation
-                    <select name="operation_code" value={form.operation_code} onChange={handleChange}>
-                        {availableCodes.map((o) => (
-                            <option key={o.code} value={o.code}>
-                                {o.code} — {o.name}
-                            </option>
-                        ))}
-                    </select>
-                </label>
+            <form onSubmit={handleSubmit} className="entity-form entity-form--logistics">
+                {rows.map((row, index) => (
+                    <div className="operation-row" key={index}>
+                        <label>
+                            Goods Code
+                            <input
+                                name="code"
+                                type="number"
+                                value={row.code}
+                                onChange={(e) => handleRowChange(index, e)}
+                                disabled={row.saved}
+                                required
+                            />
+                        </label>
+                        <label>
+                            Quantity
+                            <input
+                                name="quantity"
+                                type="number"
+                                step="0.001"
+                                value={row.quantity}
+                                onChange={(e) => handleRowChange(index, e)}
+                                disabled={row.saved}
+                                required
+                            />
+                        </label>
+                        <label>
+                            Operation
+                            <select
+                                name="operation_code"
+                                value={row.operation_code}
+                                onChange={(e) => handleRowChange(index, e)}
+                                disabled={row.saved}
+                            >
+                                {availableCodes.map((o) => (
+                                    <option key={o.code} value={o.code}>
+                                        {o.code} — {o.name}
+                                    </option>
+                                ))}
+                            </select>
+                        </label>
+                        {row.saved ? (
+                            <button type="button" className="btn-secondary" onClick={() => handleRemoveRow(index)}>
+                                Remove
+                            </button>
+                        ) : (
+                            <button type="button" onClick={() => handleNextRow(index)}>
+                                Next
+                            </button>
+                        )}
+                    </div>
+                ))}
                 {error && (
                     <p role="alert" className="form-error">
                         {error}
                     </p>
                 )}
-                {success && <p className="form-success">Logged operation #{success.operation_id}.</p>}
+                {success && (
+                    <p className="form-success">
+                        Logged {success.length} operation{success.length === 1 ? '' : 's'}: {success.map((o) => `#${o.operation_id}`).join(', ')}.
+                    </p>
+                )}
                 <div className="form-actions">
                     <button type="submit">Log Operation</button>
                     <button type="button" className="btn-secondary" onClick={() => navigate('/logistics')}>
